@@ -20,7 +20,7 @@ namespace Inavina.View.RegistBarcodes
 {
     public partial class frmRegistBarcode : DevExpress.XtraEditors.XtraForm
     {
-        ProjectDataContext _projectDataContext = new ProjectDataContext();
+        ProjectDataContext _projectDataContext;
         RegistBarcodeRepository _registBarcodeRepository;
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
@@ -33,7 +33,7 @@ namespace Inavina.View.RegistBarcodes
             KeyEventArgs e = new KeyEventArgs(keyData);
             if (e.KeyCode == Keys.F1)
             {
-                btnRegist_Click(null, null);
+                btnAdd_Click(null, null);
                 return true;
             }
             else if (e.KeyCode == Keys.F2)
@@ -66,26 +66,22 @@ namespace Inavina.View.RegistBarcodes
 
         private void frmRegistBarcode_Load(object sender, EventArgs e)
         {
-            _registBarcodeRepository = new RegistBarcodeRepository(_projectDataContext);
             LanguageTranslate.ChangeLanguageForm(this);
             LanguageTranslate.ChangeLanguageGridView(viewDuLieu);
+            dtpFromDate.Value = DateTime.Now;
+            dtpToDate.Value = DateTime.Now;
             Search();
         }
 
         private void Search()
         {
+            _projectDataContext = new ProjectDataContext();
+            _registBarcodeRepository = new RegistBarcodeRepository(_projectDataContext);
             List<Expression<Func<RegistBarcode, bool>>> expressions = new List<Expression<Func<RegistBarcode, bool>>>();
-            if (!chkAllStatus.Checked)
-            {
-                GlobalConstants.StatusValue statusValue;
-                Enum.TryParse<GlobalConstants.StatusValue>((chkUsing.Checked ? GlobalConstants.StatusValue.Using.ToString() : GlobalConstants.StatusValue.NoUse.ToString()), out statusValue);
-                expressions.Add(_ => _.Status == statusValue);
-            }
             DateTime fromDate = DateTime.Parse(dtpFromDate.Value.ToString("yyyy-MM-dd 00:00:00"));
             DateTime toDate = DateTime.Parse(dtpToDate.Value.ToString("yyyy-MM-dd 23:59:59"));
-            expressions.Add(_ => _.RegistDate >= fromDate);
-            expressions.Add(_ => _.RegistDate <= toDate);
-            dgvDuLieu.DataSource = _registBarcodeRepository.Find(expressions);
+            expressions.Add(_ => _.RegistDate >= fromDate && _.RegistDate <= toDate);
+            dgvDuLieu.DataSource = _registBarcodeRepository.Find(expressions).OrderBy(_ => _.RegistDate).ThenBy(_ => _.ShiftNo).ThenBy(_ => _.SEQ);
             Control();
         }
 
@@ -94,7 +90,7 @@ namespace Inavina.View.RegistBarcodes
             btnRePrint.Enabled = btnHuy.Enabled = btnExcel.Enabled = (viewDuLieu.RowCount > 0);
         }
 
-        private void btnRegist_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
             frmRegistBarcodeAddEdit frm = new frmRegistBarcodeAddEdit();
             frm.ShowDialog();
@@ -103,17 +99,28 @@ namespace Inavina.View.RegistBarcodes
 
         private void btnRePrint_Click(object sender, EventArgs e)
         {
-            //frmRegistBarcodeAddEdit frm = new frmRegistBarcodeAddEdit(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
-            //DialogResult dr = frm.ShowDialog();
-            //if (dr == DialogResult.OK)
-            //{
-            //    Search();
-            //}
+            if (viewDuLieu.RowCount > 0)
+            {
+                DataTable listBarcode = new DataTable();
+                listBarcode.Columns.Add("Barcode", typeof(string));
+                listBarcode.Columns.Add("PartNo", typeof(string));
+                listBarcode.Columns.Add("DateShift", typeof(string));
+                listBarcode.Columns.Add("MoldNoSEQ", typeof(string));
+                listBarcode.Columns.Add("VN", typeof(string));
+                listBarcode.Rows.Add(new string[] {
+                    viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Barcode").ToString(),
+                    viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "PartNo").ToString(),
+                    DateTime.Parse( viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "RegistDate").ToString()).ToString("yyMMdd") + viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "ShiftNo").ToString(),
+                    viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "MoldNo").ToString() + "SEQ" + viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "SEQ").ToString(),
+                    "VN001200"
+                });
+                _registBarcodeRepository.PrintListBarcode(listBarcode);
+            }
         }
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            if (XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Bạn có muốn hủy thông tin này?"), LanguageTranslate.ChangeLanguageText("Xác nhận"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (viewDuLieu.RowCount > 0 && XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Bạn có muốn hủy thông tin này?"), LanguageTranslate.ChangeLanguageText("Xác nhận"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 _registBarcodeRepository.Cancel(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
                 UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);
@@ -174,21 +181,6 @@ namespace Inavina.View.RegistBarcodes
                     e.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F, FontStyle.Strikeout);
                 }
             }
-        }
-
-        private void chkAllStatus_CheckedChanged(object sender, EventArgs e)
-        {
-            Search();
-        }
-
-        private void chkUsing_CheckedChanged(object sender, EventArgs e)
-        {
-            Search();
-        }
-
-        private void chkNoUse_CheckedChanged(object sender, EventArgs e)
-        {
-            Search();
         }
     }
 }

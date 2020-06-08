@@ -28,16 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.chkAllStatus = new System.Windows.Forms.RadioButton();
-            this.chkUsing = new System.Windows.Forms.RadioButton();
-            this.chkNoUse = new System.Windows.Forms.RadioButton();
             this.btnExcel = new DevExpress.XtraEditors.SimpleButton();
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnHuy = new DevExpress.XtraEditors.SimpleButton();
             this.btnRePrint = new DevExpress.XtraEditors.SimpleButton();
-            this.btnRegist = new DevExpress.XtraEditors.SimpleButton();
+            this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.dgvDuLieu = new DevExpress.XtraGrid.GridControl();
             this.viewDuLieu = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Id = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -54,12 +50,10 @@
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.dtpFromDate = new System.Windows.Forms.DateTimePicker();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.dtpToDate = new System.Windows.Forms.DateTimePicker();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.dtpFromDate = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDuLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewDuLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
@@ -70,60 +64,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // groupControl1
-            // 
-            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.groupControl1.AppearanceCaption.Options.UseFont = true;
-            this.groupControl1.Controls.Add(this.chkAllStatus);
-            this.groupControl1.Controls.Add(this.chkUsing);
-            this.groupControl1.Controls.Add(this.chkNoUse);
-            this.groupControl1.Location = new System.Drawing.Point(442, 5);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(260, 40);
-            this.groupControl1.TabIndex = 8;
-            this.groupControl1.Text = "Trạng thái";
-            // 
-            // chkAllStatus
-            // 
-            this.chkAllStatus.AutoSize = true;
-            this.chkAllStatus.BackColor = System.Drawing.Color.Transparent;
-            this.chkAllStatus.Checked = true;
-            this.chkAllStatus.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.chkAllStatus.Location = new System.Drawing.Point(5, 18);
-            this.chkAllStatus.Name = "chkAllStatus";
-            this.chkAllStatus.Size = new System.Drawing.Size(63, 23);
-            this.chkAllStatus.TabIndex = 9;
-            this.chkAllStatus.TabStop = true;
-            this.chkAllStatus.Text = "Tất cả";
-            this.chkAllStatus.UseVisualStyleBackColor = false;
-            this.chkAllStatus.CheckedChanged += new System.EventHandler(this.chkAllStatus_CheckedChanged);
-            // 
-            // chkUsing
-            // 
-            this.chkUsing.AutoSize = true;
-            this.chkUsing.BackColor = System.Drawing.Color.Transparent;
-            this.chkUsing.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.chkUsing.Location = new System.Drawing.Point(74, 18);
-            this.chkUsing.Name = "chkUsing";
-            this.chkUsing.Size = new System.Drawing.Size(78, 23);
-            this.chkUsing.TabIndex = 6;
-            this.chkUsing.Text = "Sử dụng";
-            this.chkUsing.UseVisualStyleBackColor = false;
-            this.chkUsing.CheckedChanged += new System.EventHandler(this.chkUsing_CheckedChanged);
-            // 
-            // chkNoUse
-            // 
-            this.chkNoUse.AutoSize = true;
-            this.chkNoUse.BackColor = System.Drawing.Color.Transparent;
-            this.chkNoUse.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.chkNoUse.Location = new System.Drawing.Point(158, 18);
-            this.chkNoUse.Name = "chkNoUse";
-            this.chkNoUse.Size = new System.Drawing.Size(97, 23);
-            this.chkNoUse.TabIndex = 7;
-            this.chkNoUse.Text = "Ko sử dụng";
-            this.chkNoUse.UseVisualStyleBackColor = false;
-            this.chkNoUse.CheckedChanged += new System.EventHandler(this.chkNoUse_CheckedChanged);
             // 
             // btnExcel
             // 
@@ -187,18 +127,18 @@
             this.btnRePrint.Text = "In lại (F2)";
             this.btnRePrint.Click += new System.EventHandler(this.btnRePrint_Click);
             // 
-            // btnRegist
+            // btnAdd
             // 
-            this.btnRegist.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(250)))));
-            this.btnRegist.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnRegist.Appearance.Options.UseBackColor = true;
-            this.btnRegist.Appearance.Options.UseFont = true;
-            this.btnRegist.Location = new System.Drawing.Point(12, 5);
-            this.btnRegist.Name = "btnRegist";
-            this.btnRegist.Size = new System.Drawing.Size(80, 40);
-            this.btnRegist.TabIndex = 0;
-            this.btnRegist.Text = "Đăng ký (F1)";
-            this.btnRegist.Click += new System.EventHandler(this.btnRegist_Click);
+            this.btnAdd.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(250)))));
+            this.btnAdd.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnAdd.Appearance.Options.UseBackColor = true;
+            this.btnAdd.Appearance.Options.UseFont = true;
+            this.btnAdd.Location = new System.Drawing.Point(12, 5);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(80, 40);
+            this.btnAdd.TabIndex = 0;
+            this.btnAdd.Text = "Thêm (F1)";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // dgvDuLieu
             // 
@@ -213,7 +153,7 @@
             this.repositoryItemButtonEdit1,
             this.repositoryItemMemoEdit1});
             this.dgvDuLieu.Size = new System.Drawing.Size(1290, 418);
-            this.dgvDuLieu.TabIndex = 4;
+            this.dgvDuLieu.TabIndex = 1;
             this.dgvDuLieu.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.viewDuLieu});
             // 
@@ -402,18 +342,19 @@
             // 
             this.Status.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.Status.AppearanceCell.Options.UseFont = true;
+            this.Status.AppearanceCell.Options.UseTextOptions = true;
+            this.Status.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.Status.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.Status.AppearanceHeader.Options.UseFont = true;
             this.Status.AppearanceHeader.Options.UseTextOptions = true;
             this.Status.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.Status.Caption = "Trạng thái";
             this.Status.FieldName = "Status";
-            this.Status.MaxWidth = 100;
-            this.Status.MinWidth = 100;
+            this.Status.MaxWidth = 75;
+            this.Status.MinWidth = 75;
             this.Status.Name = "Status";
             this.Status.Visible = true;
             this.Status.VisibleIndex = 7;
-            this.Status.Width = 100;
             // 
             // repositoryItemCheckEdit1
             // 
@@ -433,62 +374,38 @@
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.panelControl2);
-            this.panelControl1.Controls.Add(this.groupControl1);
             this.panelControl1.Controls.Add(this.btnExcel);
             this.panelControl1.Controls.Add(this.btnRefresh);
             this.panelControl1.Controls.Add(this.btnClose);
             this.panelControl1.Controls.Add(this.btnHuy);
             this.panelControl1.Controls.Add(this.btnRePrint);
-            this.panelControl1.Controls.Add(this.btnRegist);
+            this.panelControl1.Controls.Add(this.btnAdd);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1290, 50);
-            this.panelControl1.TabIndex = 5;
+            this.panelControl1.TabIndex = 0;
             // 
             // panelControl2
             // 
+            this.panelControl2.Controls.Add(this.dtpFromDate);
             this.panelControl2.Controls.Add(this.dtpToDate);
             this.panelControl2.Controls.Add(this.labelControl1);
-            this.panelControl2.Controls.Add(this.dtpFromDate);
             this.panelControl2.Controls.Add(this.labelControl3);
-            this.panelControl2.Location = new System.Drawing.Point(708, 5);
+            this.panelControl2.Location = new System.Drawing.Point(442, 5);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(380, 40);
-            this.panelControl2.TabIndex = 9;
-            // 
-            // dtpFromDate
-            // 
-            this.dtpFromDate.CustomFormat = "dd/MM/yyyy";
-            this.dtpFromDate.Enabled = false;
-            this.dtpFromDate.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFromDate.Location = new System.Drawing.Point(72, 7);
-            this.dtpFromDate.Name = "dtpFromDate";
-            this.dtpFromDate.Size = new System.Drawing.Size(115, 27);
-            this.dtpFromDate.TabIndex = 5;
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(5, 12);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(49, 19);
-            this.labelControl3.TabIndex = 4;
-            this.labelControl3.Text = "Từ ngày";
+            this.panelControl2.TabIndex = 6;
             // 
             // dtpToDate
             // 
             this.dtpToDate.CustomFormat = "dd/MM/yyyy";
-            this.dtpToDate.Enabled = false;
             this.dtpToDate.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.dtpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpToDate.Location = new System.Drawing.Point(258, 7);
             this.dtpToDate.Name = "dtpToDate";
             this.dtpToDate.Size = new System.Drawing.Size(115, 27);
-            this.dtpToDate.TabIndex = 7;
+            this.dtpToDate.TabIndex = 1;
             // 
             // labelControl1
             // 
@@ -500,6 +417,27 @@
             this.labelControl1.Size = new System.Drawing.Size(59, 19);
             this.labelControl1.TabIndex = 6;
             this.labelControl1.Text = "Đến ngày";
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.labelControl3.Appearance.Options.UseFont = true;
+            this.labelControl3.Location = new System.Drawing.Point(5, 11);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(49, 19);
+            this.labelControl3.TabIndex = 4;
+            this.labelControl3.Text = "Từ ngày";
+            // 
+            // dtpFromDate
+            // 
+            this.dtpFromDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpFromDate.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFromDate.Location = new System.Drawing.Point(72, 7);
+            this.dtpFromDate.Name = "dtpFromDate";
+            this.dtpFromDate.Size = new System.Drawing.Size(115, 27);
+            this.dtpFromDate.TabIndex = 7;
             // 
             // frmRegistBarcode
             // 
@@ -516,9 +454,6 @@
             this.Text = "Đăng ký in mã vạch";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmRegistBarcode_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
-            this.groupControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDuLieu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewDuLieu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
@@ -538,7 +473,7 @@
         //private System.Windows.Forms.Panel radPanel1;
         private DevExpress.XtraEditors.SimpleButton btnHuy;
         private DevExpress.XtraEditors.SimpleButton btnRePrint;
-        private DevExpress.XtraEditors.SimpleButton btnRegist;
+        private DevExpress.XtraEditors.SimpleButton btnAdd;
         private DevExpress.XtraEditors.SimpleButton btnExcel;
         private DevExpress.XtraEditors.SimpleButton btnRefresh;
         private DevExpress.XtraEditors.SimpleButton btnClose;
@@ -551,10 +486,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn PartNo;
         private DevExpress.XtraGrid.Columns.GridColumn RegistDate;
         private DevExpress.XtraGrid.Columns.GridColumn MachineNo;
-        private DevExpress.XtraEditors.GroupControl groupControl1;
-        private System.Windows.Forms.RadioButton chkUsing;
-        private System.Windows.Forms.RadioButton chkNoUse;
-        private System.Windows.Forms.RadioButton chkAllStatus;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraGrid.Columns.GridColumn ShiftNo;
         private DevExpress.XtraGrid.Columns.GridColumn MoldNo;
@@ -564,7 +495,7 @@
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private System.Windows.Forms.DateTimePicker dtpToDate;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private System.Windows.Forms.DateTimePicker dtpFromDate;
         private DevExpress.XtraEditors.LabelControl labelControl3;
+        private System.Windows.Forms.DateTimePicker dtpFromDate;
     }
 }

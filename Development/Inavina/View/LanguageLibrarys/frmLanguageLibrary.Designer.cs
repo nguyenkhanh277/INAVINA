@@ -140,7 +140,7 @@
             this.repositoryItemButtonEdit1,
             this.repositoryItemMemoEdit1});
             this.dgvDuLieu.Size = new System.Drawing.Size(1290, 418);
-            this.dgvDuLieu.TabIndex = 4;
+            this.dgvDuLieu.TabIndex = 1;
             this.dgvDuLieu.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.viewDuLieu});
             // 
@@ -257,7 +257,7 @@
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1290, 50);
-            this.panelControl1.TabIndex = 5;
+            this.panelControl1.TabIndex = 0;
             // 
             // frmLanguageLibrary
             // 

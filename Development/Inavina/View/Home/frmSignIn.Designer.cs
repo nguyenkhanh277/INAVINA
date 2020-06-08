@@ -53,7 +53,7 @@
             this.linkIForgetMyPassword.Location = new System.Drawing.Point(45, 302);
             this.linkIForgetMyPassword.Name = "linkIForgetMyPassword";
             this.linkIForgetMyPassword.Size = new System.Drawing.Size(300, 30);
-            this.linkIForgetMyPassword.TabIndex = 7;
+            this.linkIForgetMyPassword.TabIndex = 4;
             this.linkIForgetMyPassword.Text = "Quên mật khẩu";
             this.linkIForgetMyPassword.Visible = false;
             // 
@@ -66,7 +66,7 @@
             this.chkKeepMeSignedIn.Properties.AutoHeight = false;
             this.chkKeepMeSignedIn.Properties.Caption = "Lưu thông tin đăng nhập";
             this.chkKeepMeSignedIn.Size = new System.Drawing.Size(300, 30);
-            this.chkKeepMeSignedIn.TabIndex = 5;
+            this.chkKeepMeSignedIn.TabIndex = 2;
             // 
             // btnSignIn
             // 
@@ -74,10 +74,11 @@
             this.btnSignIn.Appearance.Font = new System.Drawing.Font("Segoe UI", 20F);
             this.btnSignIn.Appearance.Options.UseBackColor = true;
             this.btnSignIn.Appearance.Options.UseFont = true;
+            this.btnSignIn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSignIn.Location = new System.Drawing.Point(45, 246);
             this.btnSignIn.Name = "btnSignIn";
             this.btnSignIn.Size = new System.Drawing.Size(300, 50);
-            this.btnSignIn.TabIndex = 6;
+            this.btnSignIn.TabIndex = 3;
             this.btnSignIn.Text = "Đăng nhập";
             this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
             // 
@@ -93,7 +94,7 @@
             this.txtPassword.Properties.AutoHeight = false;
             this.txtPassword.Properties.UseSystemPasswordChar = true;
             this.txtPassword.Size = new System.Drawing.Size(300, 30);
-            this.txtPassword.TabIndex = 4;
+            this.txtPassword.TabIndex = 1;
             this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
             // labelControl3
@@ -136,7 +137,7 @@
             this.txtUsername.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.txtUsername.Properties.AutoHeight = false;
             this.txtUsername.Size = new System.Drawing.Size(300, 30);
-            this.txtUsername.TabIndex = 2;
+            this.txtUsername.TabIndex = 0;
             this.txtUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUsername_KeyDown);
             // 
             // labelControl1
@@ -178,6 +179,7 @@
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.CancelButton = this.btnSignIn;
             this.ClientSize = new System.Drawing.Size(390, 368);
             this.Controls.Add(this.picEnglish);
             this.Controls.Add(this.picVietnamese);

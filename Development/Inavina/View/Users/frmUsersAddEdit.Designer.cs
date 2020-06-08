@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.txtPassword = new DevExpress.XtraEditors.TextEdit();
@@ -77,7 +76,7 @@
             this.btnClose.Location = new System.Drawing.Point(265, 512);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 40);
-            this.btnClose.TabIndex = 17;
+            this.btnClose.TabIndex = 9;
             this.btnClose.Text = "Đóng (ESC)";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -90,7 +89,7 @@
             this.btnSave.Location = new System.Drawing.Point(179, 512);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 40);
-            this.btnSave.TabIndex = 16;
+            this.btnSave.TabIndex = 8;
             this.btnSave.Text = "Lưu (F1)";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -107,7 +106,7 @@
             this.txtPassword.Properties.AutoHeight = false;
             this.txtPassword.Properties.UseSystemPasswordChar = true;
             this.txtPassword.Size = new System.Drawing.Size(300, 30);
-            this.txtPassword.TabIndex = 3;
+            this.txtPassword.TabIndex = 1;
             // 
             // labelControl3
             // 
@@ -132,7 +131,7 @@
             this.txtUsername.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.txtUsername.Properties.AutoHeight = false;
             this.txtUsername.Size = new System.Drawing.Size(300, 30);
-            this.txtUsername.TabIndex = 1;
+            this.txtUsername.TabIndex = 0;
             // 
             // labelControl1
             // 
@@ -168,7 +167,7 @@
             this.txtFullName.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.txtFullName.Properties.AutoHeight = false;
             this.txtFullName.Size = new System.Drawing.Size(300, 30);
-            this.txtFullName.TabIndex = 5;
+            this.txtFullName.TabIndex = 2;
             // 
             // txtPhone
             // 
@@ -182,7 +181,7 @@
             this.txtPhone.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.txtPhone.Properties.AutoHeight = false;
             this.txtPhone.Size = new System.Drawing.Size(300, 30);
-            this.txtPhone.TabIndex = 7;
+            this.txtPhone.TabIndex = 3;
             // 
             // labelControl4
             // 
@@ -218,7 +217,7 @@
             this.txtAddress.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.txtAddress.Properties.AutoHeight = false;
             this.txtAddress.Size = new System.Drawing.Size(300, 30);
-            this.txtAddress.TabIndex = 9;
+            this.txtAddress.TabIndex = 4;
             // 
             // labelControl6
             // 
@@ -312,7 +311,7 @@
             this.panelControl1.Location = new System.Drawing.Point(45, 354);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(300, 30);
-            this.panelControl1.TabIndex = 11;
+            this.panelControl1.TabIndex = 5;
             // 
             // panelControl2
             // 
@@ -321,7 +320,7 @@
             this.panelControl2.Location = new System.Drawing.Point(45, 476);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(300, 30);
-            this.panelControl2.TabIndex = 15;
+            this.panelControl2.TabIndex = 7;
             // 
             // txtNote
             // 
@@ -333,7 +332,7 @@
             this.txtNote.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.txtNote.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.txtNote.Size = new System.Drawing.Size(300, 30);
-            this.txtNote.TabIndex = 13;
+            this.txtNote.TabIndex = 6;
             // 
             // dgvDuLieu
             // 
@@ -357,21 +356,13 @@
             this.Assign,
             this.Id,
             this.AuthorityGroupName});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(70)))), ((int)(((byte)(68)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDuLieu.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDuLieu.Location = new System.Drawing.Point(370, 12);
             this.dgvDuLieu.Name = "dgvDuLieu";
             this.dgvDuLieu.RowHeadersVisible = false;
             this.dgvDuLieu.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.dgvDuLieu.RowTemplate.Height = 30;
             this.dgvDuLieu.Size = new System.Drawing.Size(408, 544);
-            this.dgvDuLieu.TabIndex = 18;
+            this.dgvDuLieu.TabIndex = 10;
             // 
             // Assign
             // 

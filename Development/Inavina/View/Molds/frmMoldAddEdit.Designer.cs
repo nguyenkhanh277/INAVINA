@@ -52,7 +52,7 @@
             this.btnClose.Location = new System.Drawing.Point(265, 199);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 40);
-            this.btnClose.TabIndex = 7;
+            this.btnClose.TabIndex = 4;
             this.btnClose.Text = "Đóng (ESC)";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -65,7 +65,7 @@
             this.btnSave.Location = new System.Drawing.Point(179, 199);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 40);
-            this.btnSave.TabIndex = 6;
+            this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Lưu (F1)";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -81,7 +81,7 @@
             this.txtMoldNo.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.txtMoldNo.Properties.AutoHeight = false;
             this.txtMoldNo.Size = new System.Drawing.Size(300, 30);
-            this.txtMoldNo.TabIndex = 1;
+            this.txtMoldNo.TabIndex = 0;
             // 
             // labelControl1
             // 
@@ -149,7 +149,7 @@
             this.panelControl2.Location = new System.Drawing.Point(45, 163);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(300, 30);
-            this.panelControl2.TabIndex = 5;
+            this.panelControl2.TabIndex = 2;
             // 
             // txtNote
             // 
@@ -161,7 +161,7 @@
             this.txtNote.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.txtNote.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.txtNote.Size = new System.Drawing.Size(300, 30);
-            this.txtNote.TabIndex = 3;
+            this.txtNote.TabIndex = 1;
             // 
             // frmMoldAddEdit
             // 

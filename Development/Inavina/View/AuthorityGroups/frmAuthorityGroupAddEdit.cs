@@ -88,7 +88,7 @@ namespace Inavina.View.AuthorityGroups
 
         private void LoadProgramFunction()
         {
-            var programFunctionMasters = _programFunctionMasterRepository.GetAll().OrderBy(_ => _.ProgramName).ThenBy(_ => _.FunctionName);
+            var programFunctionMasters = _programFunctionMasterRepository.Find(_ => _.Status == GlobalConstants.StatusValue.Using).OrderBy(_ => _.ProgramName).ThenBy(_ => _.FunctionName);
             var oldProgramFunctionAuthority = _programFunctionAuthorityRepository.Find(_ => _.AuthorityGroupID.Equals(_id));
 
             dgvDuLieu.Rows.Clear();

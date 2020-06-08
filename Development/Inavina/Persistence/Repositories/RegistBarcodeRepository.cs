@@ -7,6 +7,7 @@ using Inavina.Core;
 using Inavina.Core.Helper;
 using System.Linq.Expressions;
 using System.Drawing.Printing;
+using System.Data;
 
 namespace Inavina.Persistence.Repositories
 {
@@ -90,7 +91,7 @@ namespace Inavina.Persistence.Repositories
 
         public string GetSEQ(DateTime dateTime, string shiftNo)
         {
-            int result = 1;
+            string result = "0";
             try
             {
                 DateTime fromDate = DateTime.Parse(dateTime.ToString("yyyy-MM-dd 00:00:00"));
@@ -98,23 +99,44 @@ namespace Inavina.Persistence.Repositories
                 var registBarcode = Find(_ => _.RegistDate >= fromDate && _.RegistDate <= toDate && _.ShiftNo.Equals(shiftNo));
                 if (registBarcode != null)
                 {
-                    string seq = registBarcode.OrderByDescending(_ => _.SEQ).Select(_ => _.SEQ).FirstOrDefault();
-                    result = (int.Parse(seq) + 1);
+                    result = registBarcode.OrderByDescending(_ => _.SEQ).Select(_ => _.SEQ).FirstOrDefault();
+                    result = (result == null ? "0" : result);
                 }
             }
-            catch (Exception ex)
-            { }
-            return result.ToString("0000");
+            catch { }
+            return result;
         }
 
-        public bool PrintBarcode(string barcode)
+        //public void PrintBarcode(string barcode)
+        //{
+        //    try
+        //    {
+        //        View.RegistBarcodes.rptListBarcode _report = new View.RegistBarcodes.rptListBarcode();
+        //        _report.txtBarcode.Text = barcode;
+        //        _report.Parameters["Barcode"].Value = barcode;
+        //        //if (GeneralHelper.ValidPrinter(GlobalConstants.printerName))
+        //        //{
+        //        //    _report.PrinterName = GlobalConstants.printerName;
+        //        //    DevExpress.XtraReports.UI.ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(_report);
+        //        //    rpt.AutoShowParametersPanel = false;
+        //        //    rpt.Print();
+        //        //}
+        //        //else
+        //        {
+        //            DevExpress.XtraReports.UI.ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(_report);
+        //            rpt.AutoShowParametersPanel = false;
+        //            rpt.ShowPreview();
+        //        }
+        //    }
+        //    catch { }
+        //}
+
+        public void PrintListBarcode(DataTable listBarcode)
         {
-            bool result = false;
             try
             {
-                View.RegistBarcodes.rptBarcode _report = new View.RegistBarcodes.rptBarcode();
-                _report.txtCodeMemo.Text = barcode;
-                _report.Parameters["Barcode"].Value = barcode;
+                View.RegistBarcodes.rptListBarcode _report = new View.RegistBarcodes.rptListBarcode();
+                _report.DataSource = listBarcode;
                 //if (GeneralHelper.ValidPrinter(GlobalConstants.printerName))
                 //{
                 //    _report.PrinterName = GlobalConstants.printerName;
@@ -128,10 +150,8 @@ namespace Inavina.Persistence.Repositories
                     rpt.AutoShowParametersPanel = false;
                     rpt.ShowPreview();
                 }
-                result = true;
             }
             catch { }
-            return result;
         }
     }
 }

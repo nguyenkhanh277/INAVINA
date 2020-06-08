@@ -13,7 +13,7 @@ namespace Inavina.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202006071632089_initial-database"; }
+            get { return "202006081648337_initial-database"; }
         }
         
         string IMigrationMetadata.Source

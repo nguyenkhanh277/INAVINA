@@ -127,6 +127,14 @@ namespace Inavina.Migrations
                 new LanguageLibrary
                 {
                     Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Danh mục",
+                    English = "Category",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
                     Vietnamese = "Chức năng",
                     English = "Function",
                     CreatedAt = DateTime.Now,
@@ -161,6 +169,14 @@ namespace Inavina.Migrations
                     Id = Guid.NewGuid().ToString(),
                     Vietnamese = "Đổi mật khẩu",
                     English = "Change password",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Ngôn ngữ",
+                    English = "Language",
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 },
@@ -647,14 +663,6 @@ namespace Inavina.Migrations
                 new LanguageLibrary
                 {
                     Id = Guid.NewGuid().ToString(),
-                    Vietnamese = "Đăng ký (F1)",
-                    English = "Regist (F1)",
-                    CreatedAt = DateTime.Now,
-                    CreatedBy = "Administrator"
-                },
-                new LanguageLibrary
-                {
-                    Id = Guid.NewGuid().ToString(),
                     Vietnamese = "Trạng thái sản xuất",
                     English = "Production Status",
                     CreatedAt = DateTime.Now,
@@ -671,8 +679,8 @@ namespace Inavina.Migrations
                 new LanguageLibrary
                 {
                     Id = Guid.NewGuid().ToString(),
-                    Vietnamese = "Trình tự công việc",
-                    English = "Work order",
+                    Vietnamese = "Kế hoạch sản xuất",
+                    English = "Production plan",
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 },

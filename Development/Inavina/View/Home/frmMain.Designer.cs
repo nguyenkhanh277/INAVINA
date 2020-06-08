@@ -46,6 +46,7 @@ namespace Inavina.View.Home
             this.btnReportProductOK = new DevExpress.XtraBars.BarButtonItem();
             this.btnReportProductNG = new DevExpress.XtraBars.BarButtonItem();
             this.btnReport = new DevExpress.XtraBars.BarButtonItem();
+            this.btnProductionPlan = new DevExpress.XtraBars.BarButtonItem();
             this.rbpHeThong = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbpDanhMuc = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -77,9 +78,10 @@ namespace Inavina.View.Home
             this.btnProductionHistory,
             this.btnReportProductOK,
             this.btnReportProductNG,
-            this.btnReport});
+            this.btnReport,
+            this.btnProductionPlan});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 39;
+            this.ribbonControl1.MaxItemId = 40;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.PageHeaderItemLinks.Add(this.txtUser);
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -234,6 +236,15 @@ namespace Inavina.View.Home
             this.btnReport.Name = "btnReport";
             this.btnReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReport_ItemClick);
             // 
+            // btnProductionPlan
+            // 
+            this.btnProductionPlan.Caption = "Kế hoạch sản xuất";
+            this.btnProductionPlan.Id = 39;
+            this.btnProductionPlan.ImageOptions.LargeImage = global::Inavina.Properties.Resources.WorkOrder;
+            this.btnProductionPlan.LargeWidth = 100;
+            this.btnProductionPlan.Name = "btnProductionPlan";
+            this.btnProductionPlan.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProductionPlan_ItemClick);
+            // 
             // rbpHeThong
             // 
             this.rbpHeThong.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -275,6 +286,7 @@ namespace Inavina.View.Home
             // ribbonPageGroup2
             // 
             this.ribbonPageGroup2.ItemLinks.Add(this.btnRegistBarcode);
+            this.ribbonPageGroup2.ItemLinks.Add(this.btnProductionPlan);
             this.ribbonPageGroup2.ItemLinks.Add(this.btnScanBarcode);
             this.ribbonPageGroup2.ItemLinks.Add(this.btnProductionHistory);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
@@ -339,6 +351,7 @@ namespace Inavina.View.Home
         private BarButtonItem btnReportProductNG;
         private BarButtonItem btnReport;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
+        private BarButtonItem btnProductionPlan;
     }
 }
 

@@ -46,7 +46,7 @@
             this.btnClose.Location = new System.Drawing.Point(265, 140);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 40);
-            this.btnClose.TabIndex = 5;
+            this.btnClose.TabIndex = 3;
             this.btnClose.Text = "Đóng (ESC)";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -59,7 +59,7 @@
             this.btnSave.Location = new System.Drawing.Point(179, 140);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 40);
-            this.btnSave.TabIndex = 4;
+            this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Lưu (F1)";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -75,7 +75,7 @@
             this.txtEnglish.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.txtEnglish.Properties.AutoHeight = false;
             this.txtEnglish.Size = new System.Drawing.Size(300, 30);
-            this.txtEnglish.TabIndex = 3;
+            this.txtEnglish.TabIndex = 1;
             // 
             // labelControl1
             // 
@@ -111,7 +111,7 @@
             this.txtVietnamese.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.txtVietnamese.Properties.AutoHeight = false;
             this.txtVietnamese.Size = new System.Drawing.Size(300, 30);
-            this.txtVietnamese.TabIndex = 1;
+            this.txtVietnamese.TabIndex = 0;
             // 
             // frmLanguageLibraryAddEdit
             // 

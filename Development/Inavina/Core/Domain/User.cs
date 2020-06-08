@@ -23,12 +23,12 @@ namespace Inavina.Core.Domain
         {
             userAuthoritys = new ObservableCollection<UserAuthority>();
             registBarcodes = new ObservableCollection<RegistBarcode>();
-            scanBarcodes = new ObservableCollection<ScanBarcode>();
+            productionPlans = new ObservableCollection<ProductionPlan>();
         }
 
         public virtual ObservableCollection<UserAuthority> userAuthoritys { get; set; }
         public virtual ObservableCollection<RegistBarcode> registBarcodes { get; set; }
-        public virtual ObservableCollection<ScanBarcode> scanBarcodes { get; set; }
+        public virtual ObservableCollection<ProductionPlan> productionPlans { get; set; }
         #endregion
     }
 }

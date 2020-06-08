@@ -55,7 +55,7 @@
             this.btnClose.Location = new System.Drawing.Point(265, 262);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 40);
-            this.btnClose.TabIndex = 9;
+            this.btnClose.TabIndex = 5;
             this.btnClose.Text = "Đóng (ESC)";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -68,7 +68,7 @@
             this.btnSave.Location = new System.Drawing.Point(179, 262);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 40);
-            this.btnSave.TabIndex = 8;
+            this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Lưu (F1)";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -84,7 +84,7 @@
             this.txtPartNo.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.txtPartNo.Properties.AutoHeight = false;
             this.txtPartNo.Size = new System.Drawing.Size(300, 30);
-            this.txtPartNo.TabIndex = 1;
+            this.txtPartNo.TabIndex = 0;
             // 
             // labelControl1
             // 
@@ -120,7 +120,7 @@
             this.txtModel.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.txtModel.Properties.AutoHeight = false;
             this.txtModel.Size = new System.Drawing.Size(300, 30);
-            this.txtModel.TabIndex = 3;
+            this.txtModel.TabIndex = 1;
             // 
             // labelControl7
             // 
@@ -177,7 +177,7 @@
             this.panelControl2.Location = new System.Drawing.Point(45, 226);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(300, 30);
-            this.panelControl2.TabIndex = 7;
+            this.panelControl2.TabIndex = 3;
             // 
             // txtNote
             // 
@@ -189,7 +189,7 @@
             this.txtNote.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.txtNote.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.txtNote.Size = new System.Drawing.Size(300, 30);
-            this.txtNote.TabIndex = 5;
+            this.txtNote.TabIndex = 2;
             // 
             // frmPartNumberAddEdit
             // 

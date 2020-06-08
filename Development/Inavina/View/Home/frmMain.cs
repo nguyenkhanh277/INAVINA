@@ -52,10 +52,20 @@ namespace Inavina.View.Home
             this.Text = LanguageTranslate.ChangeLanguageText(this.Text);
             btnUsers.Caption = LanguageTranslate.ChangeLanguageText(btnUsers.Caption);
             btnChangePassword.Caption = LanguageTranslate.ChangeLanguageText(btnChangePassword.Caption);
+            btnLanguageLibrary.Caption = LanguageTranslate.ChangeLanguageText(btnLanguageLibrary.Caption);
             btnPartNumber.Caption = LanguageTranslate.ChangeLanguageText(btnPartNumber.Caption);
+            btnMachine.Caption = LanguageTranslate.ChangeLanguageText(btnMachine.Caption);
+            btnShift.Caption = LanguageTranslate.ChangeLanguageText(btnShift.Caption);
+            btnMold.Caption = LanguageTranslate.ChangeLanguageText(btnMold.Caption);
             btnRegistBarcode.Caption = LanguageTranslate.ChangeLanguageText(btnRegistBarcode.Caption);
+            btnProductionPlan.Caption = LanguageTranslate.ChangeLanguageText(btnProductionPlan.Caption);
             btnScanBarcode.Caption = LanguageTranslate.ChangeLanguageText(btnScanBarcode.Caption);
+            btnProductionHistory.Caption = LanguageTranslate.ChangeLanguageText(btnProductionHistory.Caption);
+            btnReportProductOK.Caption = LanguageTranslate.ChangeLanguageText(btnReportProductOK.Caption);
+            btnReportProductNG.Caption = LanguageTranslate.ChangeLanguageText(btnReportProductNG.Caption);
+            btnReport.Caption = LanguageTranslate.ChangeLanguageText(btnReport.Caption);
             rbpHeThong.Text = LanguageTranslate.ChangeLanguageText(rbpHeThong.Text);
+            rbpDanhMuc.Text = LanguageTranslate.ChangeLanguageText(rbpDanhMuc.Text);
             rbpChucNang.Text = LanguageTranslate.ChangeLanguageText(rbpChucNang.Text);
             rbpBaoCao.Text = LanguageTranslate.ChangeLanguageText(rbpBaoCao.Text);
             txtUser.Caption = LanguageTranslate.ChangeLanguageText("Tài khoản") + ": " + GlobalConstants.username + "  |  " + LanguageTranslate.ChangeLanguageText("Tên đầy đủ") + ": " + GlobalConstants.fullName;
@@ -184,34 +194,29 @@ namespace Inavina.View.Home
             }
         }
 
-        private void btnScanBarcode_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnProductionPlan_ItemClick(object sender, ItemClickEventArgs e)
         {
-            XtraForm frm = this.CheckExist(typeof(ScanBarcodes.frmScanBarcodeAddEdit));
+            XtraForm frm = this.CheckExist(typeof(ProductionPlans.frmProductionPlan));
             if (frm != null)
             {
                 frm.Activate();
             }
             else
             {
-                ScanBarcodes.frmScanBarcodeAddEdit f = new ScanBarcodes.frmScanBarcodeAddEdit();
+                ProductionPlans.frmProductionPlan f = new ProductionPlans.frmProductionPlan();
                 f.MdiParent = this;
                 f.Show();
             }
         }
 
+        private void btnScanBarcode_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            
+        }
+
         private void btnProductionHistory_ItemClick(object sender, ItemClickEventArgs e)
         {
-            XtraForm frm = this.CheckExist(typeof(ScanBarcodes.frmScanBarcode));
-            if (frm != null)
-            {
-                frm.Activate();
-            }
-            else
-            {
-                ScanBarcodes.frmScanBarcode f = new ScanBarcodes.frmScanBarcode();
-                f.MdiParent = this;
-                f.Show();
-            }
+            
         }
 
         private void btnReportProductOK_ItemClick(object sender, ItemClickEventArgs e)

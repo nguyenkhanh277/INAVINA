@@ -102,8 +102,8 @@ namespace Inavina.View.Users
 
         private void LoadAuthority()
         {
-            var authorityGroups = _authorityGroupRepository.GetAll().OrderBy(_ => _.Sort);
-            var userAuthoritys = _userAuthorityRepository.Find(_ => _.UserID.Equals(_id)).OrderBy(_ => _.AuthorityGroupID);
+            var authorityGroups = _authorityGroupRepository.Find(_ => _.Status == GlobalConstants.StatusValue.Using).OrderBy(_ => _.Sort);
+            var userAuthoritys = _userAuthorityRepository.Find(_ => _.UserID.Equals(_id));
 
             dgvDuLieu.Rows.Clear();
             int check = 0;

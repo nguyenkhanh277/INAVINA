@@ -61,8 +61,8 @@ namespace Inavina.Persistence
         public virtual DbSet<Shift> Shifts { get; set; }
         public virtual DbSet<PartNumber> PartNumbers { get; set; }
         public virtual DbSet<RegistBarcode> RegistBarcodes { get; set; }
-        public virtual DbSet<ScanBarcode> ScanBarcodes { get; set; }
-        public virtual DbSet<ScanBarcodeDetail> ScanBarcodeDetails { get; set; }
+        public virtual DbSet<ProductionPlan> ScanBarcodes { get; set; }
+        public virtual DbSet<ScanBarcode> ScanBarcodeDetails { get; set; }
         public virtual DbSet<LanguageLibrary> LanguageLibrarys { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<AuthorityGroup> AuthorityGroups { get; set; }

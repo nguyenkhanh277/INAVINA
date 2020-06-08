@@ -139,7 +139,7 @@ namespace Inavina.Migrations
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         PartNo = c.String(),
-                        RegistDate = c.DateTime(),
+                        RegistDate = c.DateTime(nullable: false),
                         MachineNo = c.String(),
                         ShiftNo = c.String(),
                         MoldNo = c.String(),
@@ -157,12 +157,11 @@ namespace Inavina.Migrations
                 .Index(t => t.UserID);
             
             CreateTable(
-                "dbo.ScanBarcodeDetails",
+                "dbo.ScanBarcodes",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
-                        ScanBarcodeId = c.String(),
-                        ProducedDate = c.DateTime(),
+                        ScanDate = c.DateTime(nullable: false),
                         Barcode = c.String(),
                         PartNo = c.String(),
                         ShiftNo = c.String(),
@@ -178,14 +177,14 @@ namespace Inavina.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.ScanBarcodes",
+                "dbo.ProductionPlans",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         WorkOrder = c.String(),
                         PartNo = c.String(),
                         Model = c.String(),
-                        ExpectedDeliveryDate = c.DateTime(),
+                        ExpectedDeliveryDate = c.DateTime(nullable: false),
                         Quantity = c.Double(nullable: false),
                         UserID = c.String(maxLength: 128),
                         ProductionStatus = c.Int(nullable: false),
@@ -240,19 +239,19 @@ namespace Inavina.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.UserAuthorities", "UserID", "dbo.Users");
-            DropForeignKey("dbo.ScanBarcodes", "UserID", "dbo.Users");
             DropForeignKey("dbo.RegistBarcodes", "UserID", "dbo.Users");
+            DropForeignKey("dbo.ProductionPlans", "UserID", "dbo.Users");
             DropForeignKey("dbo.UserAuthorities", "AuthorityGroupID", "dbo.AuthorityGroups");
             DropForeignKey("dbo.ProgramFunctionAuthorities", "AuthorityGroupID", "dbo.AuthorityGroups");
-            DropIndex("dbo.ScanBarcodes", new[] { "UserID" });
+            DropIndex("dbo.ProductionPlans", new[] { "UserID" });
             DropIndex("dbo.RegistBarcodes", new[] { "UserID" });
             DropIndex("dbo.UserAuthorities", new[] { "AuthorityGroupID" });
             DropIndex("dbo.UserAuthorities", new[] { "UserID" });
             DropIndex("dbo.ProgramFunctionAuthorities", new[] { "AuthorityGroupID" });
             DropTable("dbo.Users");
             DropTable("dbo.Shifts");
+            DropTable("dbo.ProductionPlans");
             DropTable("dbo.ScanBarcodes");
-            DropTable("dbo.ScanBarcodeDetails");
             DropTable("dbo.RegistBarcodes");
             DropTable("dbo.ProgramFunctionMasters");
             DropTable("dbo.PartNumbers");

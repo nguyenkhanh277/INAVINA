@@ -8,7 +8,7 @@ namespace Inavina.Core.Domain
         #region Fields
         public string Id { get; set; }
         public string PartNo { get; set; }
-        public DateTime? RegistDate { get; set; }
+        public DateTime RegistDate { get; set; }
         public string MachineNo { get; set; }
         public string ShiftNo { get; set; }
         public string MoldNo { get; set; }

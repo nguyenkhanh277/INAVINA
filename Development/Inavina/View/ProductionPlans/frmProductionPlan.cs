@@ -15,12 +15,12 @@ using Inavina.Core.Helper;
 using Inavina.Core.Domain;
 using System.Linq.Expressions;
 
-namespace Inavina.View.Shifts
+namespace Inavina.View.ProductionPlans
 {
-    public partial class frmShift : DevExpress.XtraEditors.XtraForm
+    public partial class frmProductionPlan : DevExpress.XtraEditors.XtraForm
     {
         ProjectDataContext _projectDataContext;
-        ShiftRepository _shiftRepository;
+        ProductionPlanRepository _productionPlanRepository;
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
@@ -36,14 +36,14 @@ namespace Inavina.View.Shifts
                 btnAdd_Click(null, null);
                 return true;
             }
-            else if (e.KeyCode == Keys.F2)
+            else if (e.KeyCode == Keys.F3)
             {
                 btnEdit_Click(null, null);
                 return true;
             }
             else if (e.KeyCode == Keys.F3)
             {
-                btnDelete_Click(null, null);
+                btnCancel_Click(null, null);
                 return true;
             }
             else if (e.KeyCode == Keys.F4)
@@ -59,12 +59,12 @@ namespace Inavina.View.Shifts
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        public frmShift()
+        public frmProductionPlan()
         {
             InitializeComponent();
         }
 
-        private void frmShift_Load(object sender, EventArgs e)
+        private void frmProductionPlan_Load(object sender, EventArgs e)
         {
             LanguageTranslate.ChangeLanguageForm(this);
             LanguageTranslate.ChangeLanguageGridView(viewDuLieu);
@@ -74,19 +74,23 @@ namespace Inavina.View.Shifts
         private void Search()
         {
             _projectDataContext = new ProjectDataContext();
-            _shiftRepository = new ShiftRepository(_projectDataContext);
-            dgvDuLieu.DataSource = _shiftRepository.GetAll();
+            _productionPlanRepository = new ProductionPlanRepository(_projectDataContext);
+            List<Expression<Func<ProductionPlan, bool>>> expressions = new List<Expression<Func<ProductionPlan, bool>>>();
+            DateTime fromDate = DateTime.Parse(dtpFromDate.Value.ToString("yyyy-MM-dd 00:00:00"));
+            DateTime toDate = DateTime.Parse(dtpToDate.Value.ToString("yyyy-MM-dd 23:59:59"));
+            expressions.Add(_ => _.ExpectedDeliveryDate >= fromDate && _.ExpectedDeliveryDate <= toDate);
+            dgvDuLieu.DataSource = _productionPlanRepository.Find(expressions);
             Control();
         }
 
         private void Control()
         {
-            btnEdit.Enabled = btnDelete.Enabled = btnExcel.Enabled = (viewDuLieu.RowCount > 0);
+            btnEdit.Enabled = btnCancel.Enabled = btnExcel.Enabled = (viewDuLieu.RowCount > 0);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            frmShiftAddEdit frm = new frmShiftAddEdit();
+            frmProductionPlanAddEdit frm = new frmProductionPlanAddEdit();
             frm.ShowDialog();
             Search();
         }
@@ -95,7 +99,7 @@ namespace Inavina.View.Shifts
         {
             if (viewDuLieu.RowCount > 0)
             {
-                frmShiftAddEdit frm = new frmShiftAddEdit(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
+                frmProductionPlanAddEdit frm = new frmProductionPlanAddEdit(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
                 DialogResult dr = frm.ShowDialog();
                 if (dr == DialogResult.OK)
                 {
@@ -104,11 +108,11 @@ namespace Inavina.View.Shifts
             }
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-            if (viewDuLieu.RowCount > 0 && XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Bạn có muốn xóa thông tin này?"), LanguageTranslate.ChangeLanguageText("Xác nhận"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (viewDuLieu.RowCount > 0 && XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Bạn có muốn hủy thông tin này?"), LanguageTranslate.ChangeLanguageText("Xác nhận"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                _shiftRepository.Remove(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
+                _productionPlanRepository.Cancel(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
                 UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);
                 int result = unitOfWork.Complete();
                 if (result > 0)
@@ -117,7 +121,7 @@ namespace Inavina.View.Shifts
                 }
                 else
                 {
-                    XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Xóa thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Hủy thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }

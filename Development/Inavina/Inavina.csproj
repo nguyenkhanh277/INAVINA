@@ -38,12 +38,24 @@
       <HintPath>C:\Program Files (x86)\DevExpress 19.1\Components\Bin\Framework\DevExpress.BonusSkins.v19.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Charts.v19.1.Core, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.CodeParser.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\DevExpress 19.1\Components\Bin\Framework\DevExpress.CodeParser.v19.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\DevExpress 19.1\Components\Bin\Framework\DevExpress.DataAccess.v19.1.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Office.v19.1.Core, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Pdf.v19.1.Core, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.PivotGrid.v19.1.Core, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.RichEdit.v19.1.Core, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.RichEdit.v19.1.Export, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v19.1.UI, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\DevExpress 19.1\Components\Bin\Framework\DevExpress.Xpo.v19.1.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.XtraCharts.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGauges.v19.1.Core, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -53,6 +65,10 @@
     <Reference Include="DevExpress.XtraReports.v19.1.Extensions, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraScheduler.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraScheduler.v19.1.Core, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\DevExpress 19.1\Components\Bin\Framework\DevExpress.XtraTreeList.v19.1.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -81,8 +97,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Domain\ScanBarcodeDetail.cs" />
+    <Compile Include="Core\Domain\WorkOrder.cs" />
     <Compile Include="Core\Domain\ScanBarcode.cs" />
+    <Compile Include="Core\Domain\ProductionPlan.cs" />
     <Compile Include="Core\Domain\Shift.cs" />
     <Compile Include="Core\Domain\Mold.cs" />
     <Compile Include="Core\Domain\Machine.cs" />
@@ -96,17 +113,18 @@
     <Compile Include="Core\Domain\ProgramFunctionMaster.cs" />
     <Compile Include="Core\Domain\User.cs" />
     <Compile Include="Core\GlobalConstants.cs" />
+    <Compile Include="Core\Helper\GenerateBarcode.cs" />
     <Compile Include="Core\Helper\LanguageTranslate.cs" />
     <Compile Include="Core\Helper\GeneralHelper.cs" />
     <Compile Include="Core\Helper\Logger.cs" />
     <Compile Include="Core\Helper\SecurityHelper.cs" />
     <Compile Include="Core\Repositories\IRepository.cs" />
-    <Compile Include="Migrations\202006071632089_initial-database.cs" />
-    <Compile Include="Migrations\202006071632089_initial-database.Designer.cs">
-      <DependentUpon>202006071632089_initial-database.cs</DependentUpon>
+    <Compile Include="Migrations\202006081648337_initial-database.cs" />
+    <Compile Include="Migrations\202006081648337_initial-database.Designer.cs">
+      <DependentUpon>202006081648337_initial-database.cs</DependentUpon>
     </Compile>
-    <Compile Include="Persistence\Repositories\ScanBarcodeDetailRepository.cs" />
     <Compile Include="Persistence\Repositories\ScanBarcodeRepository.cs" />
+    <Compile Include="Persistence\Repositories\ProductionPlanRepository.cs" />
     <Compile Include="Persistence\Repositories\ShiftRepository.cs" />
     <Compile Include="Persistence\Repositories\MoldRepository.cs" />
     <Compile Include="Persistence\Repositories\MachineRepository.cs" />
@@ -149,23 +167,23 @@
     <Compile Include="View\LanguageLibrarys\frmLanguageLibraryAddEdit.Designer.cs">
       <DependentUpon>frmLanguageLibraryAddEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\RegistBarcodes\rptBarcode.cs">
+    <Compile Include="View\RegistBarcodes\rptListBarcode.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="View\RegistBarcodes\rptBarcode.Designer.cs">
-      <DependentUpon>rptBarcode.cs</DependentUpon>
+    <Compile Include="View\RegistBarcodes\rptListBarcode.Designer.cs">
+      <DependentUpon>rptListBarcode.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\ScanBarcodes\frmScanBarcode.cs">
+    <Compile Include="View\ProductionPlans\frmProductionPlan.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\ScanBarcodes\frmScanBarcode.Designer.cs">
-      <DependentUpon>frmScanBarcode.cs</DependentUpon>
+    <Compile Include="View\ProductionPlans\frmProductionPlan.Designer.cs">
+      <DependentUpon>frmProductionPlan.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\ScanBarcodes\frmScanBarcodeAddEdit.cs">
+    <Compile Include="View\ProductionPlans\frmProductionPlanAddEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\ScanBarcodes\frmScanBarcodeAddEdit.Designer.cs">
-      <DependentUpon>frmScanBarcodeAddEdit.cs</DependentUpon>
+    <Compile Include="View\ProductionPlans\frmProductionPlanAddEdit.Designer.cs">
+      <DependentUpon>frmProductionPlanAddEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Shifts\frmShift.cs">
       <SubType>Form</SubType>
@@ -269,8 +287,8 @@
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Migrations\202006071632089_initial-database.resx">
-      <DependentUpon>202006071632089_initial-database.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006081648337_initial-database.resx">
+      <DependentUpon>202006081648337_initial-database.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\AuthorityGroups\frmAuthorityGroup.resx">
       <DependentUpon>frmAuthorityGroup.cs</DependentUpon>
@@ -287,14 +305,14 @@
     <EmbeddedResource Include="View\LanguageLibrarys\frmLanguageLibraryAddEdit.resx">
       <DependentUpon>frmLanguageLibraryAddEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\RegistBarcodes\rptBarcode.resx">
-      <DependentUpon>rptBarcode.cs</DependentUpon>
+    <EmbeddedResource Include="View\RegistBarcodes\rptListBarcode.resx">
+      <DependentUpon>rptListBarcode.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\ScanBarcodes\frmScanBarcode.resx">
-      <DependentUpon>frmScanBarcode.cs</DependentUpon>
+    <EmbeddedResource Include="View\ProductionPlans\frmProductionPlan.resx">
+      <DependentUpon>frmProductionPlan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\ScanBarcodes\frmScanBarcodeAddEdit.resx">
-      <DependentUpon>frmScanBarcodeAddEdit.cs</DependentUpon>
+    <EmbeddedResource Include="View\ProductionPlans\frmProductionPlanAddEdit.resx">
+      <DependentUpon>frmProductionPlanAddEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Shifts\frmShift.resx">
       <DependentUpon>frmShift.cs</DependentUpon>
@@ -371,9 +389,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Persistence\EntityConfigurations\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="image\UpDown.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

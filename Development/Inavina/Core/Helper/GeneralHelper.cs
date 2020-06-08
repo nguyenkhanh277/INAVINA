@@ -21,6 +21,12 @@ namespace Inavina.Core.Helper
             return NumericTypes.Contains(type) || NumericTypes.Contains(Nullable.GetUnderlyingType(type));
         }
 
+        public static bool IsStringDouble(string stringNumber)
+        {
+            double number;
+            return double.TryParse(stringNumber, out number);
+        }
+
         public static void ExportExcel(DevExpress.XtraGrid.GridControl gridControl)
         {
             try

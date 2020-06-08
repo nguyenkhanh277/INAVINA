@@ -92,6 +92,10 @@ namespace Inavina.Core.Helper
                 ChangeLanguagePanelControl((PanelControl)x);
                 return;
             }
+            if (x is DateTimePicker)
+            {
+                return;
+            }
             try
             {
                 x.Text = ChangeLanguageText(x.Text.Trim());

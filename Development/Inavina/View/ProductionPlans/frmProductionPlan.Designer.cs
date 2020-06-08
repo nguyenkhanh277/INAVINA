@@ -1,6 +1,6 @@
-﻿namespace Inavina.View.ScanBarcodes
+﻿namespace Inavina.View.ProductionPlans
 {
-    partial class frmScanBarcode
+    partial class frmProductionPlan
     {
         /// <summary>
         /// Required designer variable.
@@ -28,15 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.chkAllStatus = new System.Windows.Forms.RadioButton();
-            this.chkUsing = new System.Windows.Forms.RadioButton();
-            this.chkNoUse = new System.Windows.Forms.RadioButton();
             this.btnExcel = new DevExpress.XtraEditors.SimpleButton();
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
-            this.btnHuy = new DevExpress.XtraEditors.SimpleButton();
-            this.btnScanBarcode = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.dgvDuLieu = new DevExpress.XtraGrid.GridControl();
             this.viewDuLieu = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Id = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -51,20 +46,14 @@
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.pnControl = new DevExpress.XtraEditors.PanelControl();
-            this.btnZoom = new System.Windows.Forms.Button();
+            this.btnEdit = new DevExpress.XtraEditors.SimpleButton();
+            this.btnAdd = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.dtpToDate = new System.Windows.Forms.DateTimePicker();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.dtpFromDate = new System.Windows.Forms.DateTimePicker();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
-            this.chkCompleted = new System.Windows.Forms.RadioButton();
-            this.chkHold = new System.Windows.Forms.RadioButton();
-            this.chkAllProductionStatus = new System.Windows.Forms.RadioButton();
-            this.chkNone = new System.Windows.Forms.RadioButton();
-            this.chkInProgress = new System.Windows.Forms.RadioButton();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
+            this.Status = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDuLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewDuLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
@@ -74,63 +63,7 @@
             this.pnControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
-            this.groupControl2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // groupControl1
-            // 
-            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.groupControl1.AppearanceCaption.Options.UseFont = true;
-            this.groupControl1.Controls.Add(this.chkAllStatus);
-            this.groupControl1.Controls.Add(this.chkUsing);
-            this.groupControl1.Controls.Add(this.chkNoUse);
-            this.groupControl1.Location = new System.Drawing.Point(442, 5);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(260, 40);
-            this.groupControl1.TabIndex = 8;
-            this.groupControl1.Text = "Trạng thái";
-            // 
-            // chkAllStatus
-            // 
-            this.chkAllStatus.AutoSize = true;
-            this.chkAllStatus.BackColor = System.Drawing.Color.Transparent;
-            this.chkAllStatus.Checked = true;
-            this.chkAllStatus.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.chkAllStatus.Location = new System.Drawing.Point(5, 18);
-            this.chkAllStatus.Name = "chkAllStatus";
-            this.chkAllStatus.Size = new System.Drawing.Size(63, 23);
-            this.chkAllStatus.TabIndex = 9;
-            this.chkAllStatus.TabStop = true;
-            this.chkAllStatus.Text = "Tất cả";
-            this.chkAllStatus.UseVisualStyleBackColor = false;
-            this.chkAllStatus.CheckedChanged += new System.EventHandler(this.chkAllStatus_CheckedChanged);
-            // 
-            // chkUsing
-            // 
-            this.chkUsing.AutoSize = true;
-            this.chkUsing.BackColor = System.Drawing.Color.Transparent;
-            this.chkUsing.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.chkUsing.Location = new System.Drawing.Point(74, 18);
-            this.chkUsing.Name = "chkUsing";
-            this.chkUsing.Size = new System.Drawing.Size(78, 23);
-            this.chkUsing.TabIndex = 6;
-            this.chkUsing.Text = "Sử dụng";
-            this.chkUsing.UseVisualStyleBackColor = false;
-            this.chkUsing.CheckedChanged += new System.EventHandler(this.chkUsing_CheckedChanged);
-            // 
-            // chkNoUse
-            // 
-            this.chkNoUse.AutoSize = true;
-            this.chkNoUse.BackColor = System.Drawing.Color.Transparent;
-            this.chkNoUse.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.chkNoUse.Location = new System.Drawing.Point(158, 18);
-            this.chkNoUse.Name = "chkNoUse";
-            this.chkNoUse.Size = new System.Drawing.Size(97, 23);
-            this.chkNoUse.TabIndex = 7;
-            this.chkNoUse.Text = "Ko sử dụng";
-            this.chkNoUse.UseVisualStyleBackColor = false;
-            this.chkNoUse.CheckedChanged += new System.EventHandler(this.chkNoUse_CheckedChanged);
             // 
             // btnExcel
             // 
@@ -166,35 +99,22 @@
             this.btnClose.Location = new System.Drawing.Point(1198, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 40);
-            this.btnClose.TabIndex = 5;
+            this.btnClose.TabIndex = 8;
             this.btnClose.Text = "Đóng (ESC)";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // btnHuy
+            // btnCancel
             // 
-            this.btnHuy.Appearance.BackColor = System.Drawing.Color.Red;
-            this.btnHuy.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnHuy.Appearance.Options.UseBackColor = true;
-            this.btnHuy.Appearance.Options.UseFont = true;
-            this.btnHuy.Location = new System.Drawing.Point(184, 5);
-            this.btnHuy.Name = "btnHuy";
-            this.btnHuy.Size = new System.Drawing.Size(80, 40);
-            this.btnHuy.TabIndex = 2;
-            this.btnHuy.Text = "Hủy (F3)";
-            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
-            // 
-            // btnScanBarcode
-            // 
-            this.btnScanBarcode.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(250)))));
-            this.btnScanBarcode.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnScanBarcode.Appearance.Options.UseBackColor = true;
-            this.btnScanBarcode.Appearance.Options.UseFont = true;
-            this.btnScanBarcode.Location = new System.Drawing.Point(12, 5);
-            this.btnScanBarcode.Name = "btnScanBarcode";
-            this.btnScanBarcode.Size = new System.Drawing.Size(166, 40);
-            this.btnScanBarcode.TabIndex = 0;
-            this.btnScanBarcode.Text = "Quét mã vạch (F1)";
-            this.btnScanBarcode.Click += new System.EventHandler(this.btnScanBarcode_Click);
+            this.btnCancel.Appearance.BackColor = System.Drawing.Color.Red;
+            this.btnCancel.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnCancel.Appearance.Options.UseBackColor = true;
+            this.btnCancel.Appearance.Options.UseFont = true;
+            this.btnCancel.Location = new System.Drawing.Point(184, 5);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(80, 40);
+            this.btnCancel.TabIndex = 2;
+            this.btnCancel.Text = "Hủy (F3)";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // dgvDuLieu
             // 
@@ -209,7 +129,7 @@
             this.repositoryItemButtonEdit1,
             this.repositoryItemMemoEdit1});
             this.dgvDuLieu.Size = new System.Drawing.Size(1290, 418);
-            this.dgvDuLieu.TabIndex = 4;
+            this.dgvDuLieu.TabIndex = 1;
             this.dgvDuLieu.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.viewDuLieu});
             // 
@@ -228,7 +148,8 @@
             this.ExpectedDeliveryDate,
             this.Quantity,
             this.UserID,
-            this.ProductionStatus});
+            this.ProductionStatus,
+            this.Status});
             this.viewDuLieu.DetailHeight = 284;
             this.viewDuLieu.GridControl = this.dgvDuLieu;
             this.viewDuLieu.IndicatorWidth = 40;
@@ -274,14 +195,13 @@
             this.WorkOrder.AppearanceHeader.Options.UseFont = true;
             this.WorkOrder.AppearanceHeader.Options.UseTextOptions = true;
             this.WorkOrder.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.WorkOrder.Caption = "Trình tự công việc";
+            this.WorkOrder.Caption = "Kế hoạch sản xuất";
             this.WorkOrder.ColumnEdit = this.repositoryItemMemoEdit1;
             this.WorkOrder.FieldName = "WorkOrder";
-            this.WorkOrder.MinWidth = 200;
             this.WorkOrder.Name = "WorkOrder";
             this.WorkOrder.Visible = true;
             this.WorkOrder.VisibleIndex = 0;
-            this.WorkOrder.Width = 200;
+            this.WorkOrder.Width = 223;
             // 
             // PartNo
             // 
@@ -316,8 +236,6 @@
             this.Model.MaxWidth = 200;
             this.Model.MinWidth = 200;
             this.Model.Name = "Model";
-            this.Model.Visible = true;
-            this.Model.VisibleIndex = 2;
             this.Model.Width = 200;
             // 
             // ExpectedDeliveryDate
@@ -340,25 +258,27 @@
             this.ExpectedDeliveryDate.MinWidth = 200;
             this.ExpectedDeliveryDate.Name = "ExpectedDeliveryDate";
             this.ExpectedDeliveryDate.Visible = true;
-            this.ExpectedDeliveryDate.VisibleIndex = 3;
+            this.ExpectedDeliveryDate.VisibleIndex = 2;
             this.ExpectedDeliveryDate.Width = 200;
             // 
             // Quantity
             // 
             this.Quantity.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.Quantity.AppearanceCell.Options.UseFont = true;
+            this.Quantity.AppearanceCell.Options.UseTextOptions = true;
+            this.Quantity.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.Quantity.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.Quantity.AppearanceHeader.Options.UseFont = true;
             this.Quantity.AppearanceHeader.Options.UseTextOptions = true;
             this.Quantity.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.Quantity.Caption = "Số lượng";
             this.Quantity.FieldName = "Quantity";
-            this.Quantity.MaxWidth = 200;
-            this.Quantity.MinWidth = 200;
+            this.Quantity.MaxWidth = 150;
+            this.Quantity.MinWidth = 150;
             this.Quantity.Name = "Quantity";
             this.Quantity.Visible = true;
-            this.Quantity.VisibleIndex = 4;
-            this.Quantity.Width = 200;
+            this.Quantity.VisibleIndex = 3;
+            this.Quantity.Width = 150;
             // 
             // UserID
             // 
@@ -379,6 +299,8 @@
             // 
             this.ProductionStatus.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ProductionStatus.AppearanceCell.Options.UseFont = true;
+            this.ProductionStatus.AppearanceCell.Options.UseTextOptions = true;
+            this.ProductionStatus.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.ProductionStatus.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.ProductionStatus.AppearanceHeader.Options.UseFont = true;
             this.ProductionStatus.AppearanceHeader.Options.UseTextOptions = true;
@@ -386,12 +308,12 @@
             this.ProductionStatus.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.ProductionStatus.Caption = "Trạng thái sản xuất";
             this.ProductionStatus.FieldName = "ProductionStatus";
-            this.ProductionStatus.MaxWidth = 200;
-            this.ProductionStatus.MinWidth = 200;
+            this.ProductionStatus.MaxWidth = 150;
+            this.ProductionStatus.MinWidth = 150;
             this.ProductionStatus.Name = "ProductionStatus";
             this.ProductionStatus.Visible = true;
-            this.ProductionStatus.VisibleIndex = 5;
-            this.ProductionStatus.Width = 200;
+            this.ProductionStatus.VisibleIndex = 4;
+            this.ProductionStatus.Width = 150;
             // 
             // repositoryItemCheckEdit1
             // 
@@ -410,33 +332,42 @@
             // 
             // pnControl
             // 
-            this.pnControl.Controls.Add(this.btnZoom);
+            this.pnControl.Controls.Add(this.btnEdit);
+            this.pnControl.Controls.Add(this.btnAdd);
             this.pnControl.Controls.Add(this.panelControl2);
-            this.pnControl.Controls.Add(this.groupControl2);
-            this.pnControl.Controls.Add(this.groupControl1);
             this.pnControl.Controls.Add(this.btnExcel);
             this.pnControl.Controls.Add(this.btnRefresh);
             this.pnControl.Controls.Add(this.btnClose);
-            this.pnControl.Controls.Add(this.btnHuy);
-            this.pnControl.Controls.Add(this.btnScanBarcode);
+            this.pnControl.Controls.Add(this.btnCancel);
             this.pnControl.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnControl.Location = new System.Drawing.Point(0, 0);
             this.pnControl.Name = "pnControl";
             this.pnControl.Size = new System.Drawing.Size(1290, 50);
-            this.pnControl.TabIndex = 5;
+            this.pnControl.TabIndex = 0;
             // 
-            // btnZoom
+            // btnEdit
             // 
-            this.btnZoom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnZoom.BackgroundImage = global::Inavina.Properties.Resources.UpDown;
-            this.btnZoom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnZoom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnZoom.Location = new System.Drawing.Point(1094, 11);
-            this.btnZoom.Name = "btnZoom";
-            this.btnZoom.Size = new System.Drawing.Size(28, 28);
-            this.btnZoom.TabIndex = 19;
-            this.btnZoom.UseVisualStyleBackColor = false;
-            this.btnZoom.Click += new System.EventHandler(this.btnZoom_Click);
+            this.btnEdit.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnEdit.Appearance.Options.UseFont = true;
+            this.btnEdit.Location = new System.Drawing.Point(98, 5);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(80, 40);
+            this.btnEdit.TabIndex = 1;
+            this.btnEdit.Text = "Sửa (F2)";
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(250)))));
+            this.btnAdd.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnAdd.Appearance.Options.UseBackColor = true;
+            this.btnAdd.Appearance.Options.UseFont = true;
+            this.btnAdd.Location = new System.Drawing.Point(12, 5);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(80, 40);
+            this.btnAdd.TabIndex = 0;
+            this.btnAdd.Text = "Thêm (F1)";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // panelControl2
             // 
@@ -444,21 +375,20 @@
             this.panelControl2.Controls.Add(this.labelControl1);
             this.panelControl2.Controls.Add(this.dtpFromDate);
             this.panelControl2.Controls.Add(this.labelControl3);
-            this.panelControl2.Location = new System.Drawing.Point(708, 5);
+            this.panelControl2.Location = new System.Drawing.Point(442, 5);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(380, 40);
-            this.panelControl2.TabIndex = 10;
+            this.panelControl2.TabIndex = 6;
             // 
             // dtpToDate
             // 
             this.dtpToDate.CustomFormat = "dd/MM/yyyy";
-            this.dtpToDate.Enabled = false;
             this.dtpToDate.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.dtpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpToDate.Location = new System.Drawing.Point(258, 7);
             this.dtpToDate.Name = "dtpToDate";
             this.dtpToDate.Size = new System.Drawing.Size(115, 27);
-            this.dtpToDate.TabIndex = 7;
+            this.dtpToDate.TabIndex = 1;
             // 
             // labelControl1
             // 
@@ -474,13 +404,12 @@
             // dtpFromDate
             // 
             this.dtpFromDate.CustomFormat = "dd/MM/yyyy";
-            this.dtpFromDate.Enabled = false;
             this.dtpFromDate.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpFromDate.Location = new System.Drawing.Point(72, 7);
             this.dtpFromDate.Name = "dtpFromDate";
             this.dtpFromDate.Size = new System.Drawing.Size(115, 27);
-            this.dtpFromDate.TabIndex = 5;
+            this.dtpFromDate.TabIndex = 0;
             // 
             // labelControl3
             // 
@@ -493,89 +422,25 @@
             this.labelControl3.TabIndex = 4;
             this.labelControl3.Text = "Từ ngày";
             // 
-            // groupControl2
+            // Status
             // 
-            this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.groupControl2.AppearanceCaption.Options.UseFont = true;
-            this.groupControl2.Controls.Add(this.chkCompleted);
-            this.groupControl2.Controls.Add(this.chkHold);
-            this.groupControl2.Controls.Add(this.chkAllProductionStatus);
-            this.groupControl2.Controls.Add(this.chkNone);
-            this.groupControl2.Controls.Add(this.chkInProgress);
-            this.groupControl2.Location = new System.Drawing.Point(442, 51);
-            this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(445, 40);
-            this.groupControl2.TabIndex = 9;
-            this.groupControl2.Text = "Trạng thái sản xuất";
+            this.Status.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Status.AppearanceCell.Options.UseFont = true;
+            this.Status.AppearanceCell.Options.UseTextOptions = true;
+            this.Status.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.Status.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.Status.AppearanceHeader.Options.UseFont = true;
+            this.Status.AppearanceHeader.Options.UseTextOptions = true;
+            this.Status.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.Status.Caption = "Trạng thái";
+            this.Status.FieldName = "Status";
+            this.Status.MaxWidth = 75;
+            this.Status.MinWidth = 75;
+            this.Status.Name = "Status";
+            this.Status.Visible = true;
+            this.Status.VisibleIndex = 6;
             // 
-            // chkCompleted
-            // 
-            this.chkCompleted.AutoSize = true;
-            this.chkCompleted.BackColor = System.Drawing.Color.Transparent;
-            this.chkCompleted.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.chkCompleted.Location = new System.Drawing.Point(275, 18);
-            this.chkCompleted.Name = "chkCompleted";
-            this.chkCompleted.Size = new System.Drawing.Size(78, 23);
-            this.chkCompleted.TabIndex = 10;
-            this.chkCompleted.Text = "Đã xong";
-            this.chkCompleted.UseVisualStyleBackColor = false;
-            this.chkCompleted.CheckedChanged += new System.EventHandler(this.chkCompleted_CheckedChanged);
-            // 
-            // chkHold
-            // 
-            this.chkHold.AutoSize = true;
-            this.chkHold.BackColor = System.Drawing.Color.Transparent;
-            this.chkHold.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.chkHold.Location = new System.Drawing.Point(365, 18);
-            this.chkHold.Name = "chkHold";
-            this.chkHold.Size = new System.Drawing.Size(73, 23);
-            this.chkHold.TabIndex = 11;
-            this.chkHold.Text = "Bảo lưu";
-            this.chkHold.UseVisualStyleBackColor = false;
-            this.chkHold.CheckedChanged += new System.EventHandler(this.chkHold_CheckedChanged);
-            // 
-            // chkAllProductionStatus
-            // 
-            this.chkAllProductionStatus.AutoSize = true;
-            this.chkAllProductionStatus.BackColor = System.Drawing.Color.Transparent;
-            this.chkAllProductionStatus.Checked = true;
-            this.chkAllProductionStatus.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.chkAllProductionStatus.Location = new System.Drawing.Point(5, 18);
-            this.chkAllProductionStatus.Name = "chkAllProductionStatus";
-            this.chkAllProductionStatus.Size = new System.Drawing.Size(63, 23);
-            this.chkAllProductionStatus.TabIndex = 9;
-            this.chkAllProductionStatus.TabStop = true;
-            this.chkAllProductionStatus.Text = "Tất cả";
-            this.chkAllProductionStatus.UseVisualStyleBackColor = false;
-            this.chkAllProductionStatus.CheckedChanged += new System.EventHandler(this.chkAllProductionStatus_CheckedChanged);
-            // 
-            // chkNone
-            // 
-            this.chkNone.AutoSize = true;
-            this.chkNone.BackColor = System.Drawing.Color.Transparent;
-            this.chkNone.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.chkNone.Location = new System.Drawing.Point(74, 18);
-            this.chkNone.Name = "chkNone";
-            this.chkNone.Size = new System.Drawing.Size(91, 23);
-            this.chkNone.TabIndex = 6;
-            this.chkNone.Text = "Chưa xử lý";
-            this.chkNone.UseVisualStyleBackColor = false;
-            this.chkNone.CheckedChanged += new System.EventHandler(this.chkNone_CheckedChanged);
-            // 
-            // chkInProgress
-            // 
-            this.chkInProgress.AutoSize = true;
-            this.chkInProgress.BackColor = System.Drawing.Color.Transparent;
-            this.chkInProgress.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.chkInProgress.Location = new System.Drawing.Point(171, 18);
-            this.chkInProgress.Name = "chkInProgress";
-            this.chkInProgress.Size = new System.Drawing.Size(92, 23);
-            this.chkInProgress.TabIndex = 7;
-            this.chkInProgress.Text = "Đang xử lý";
-            this.chkInProgress.UseVisualStyleBackColor = false;
-            this.chkInProgress.CheckedChanged += new System.EventHandler(this.chkInProgress_CheckedChanged);
-            // 
-            // frmScanBarcode
+            // frmProductionPlan
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -585,14 +450,11 @@
             this.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "frmScanBarcode";
+            this.Name = "frmProductionPlan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Lịch sử sản xuất";
+            this.Text = "Kế hoạch sản xuất";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.frmScanBarcode_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
-            this.groupControl1.PerformLayout();
+            this.Load += new System.EventHandler(this.frmProductionPlan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDuLieu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewDuLieu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
@@ -603,9 +465,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
-            this.groupControl2.ResumeLayout(false);
-            this.groupControl2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -613,8 +472,7 @@
         #endregion
 
         //private System.Windows.Forms.Panel radPanel1;
-        private DevExpress.XtraEditors.SimpleButton btnHuy;
-        private DevExpress.XtraEditors.SimpleButton btnScanBarcode;
+        private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.SimpleButton btnExcel;
         private DevExpress.XtraEditors.SimpleButton btnRefresh;
         private DevExpress.XtraEditors.SimpleButton btnClose;
@@ -627,26 +485,18 @@
         private DevExpress.XtraGrid.Columns.GridColumn WorkOrder;
         private DevExpress.XtraGrid.Columns.GridColumn ExpectedDeliveryDate;
         private DevExpress.XtraGrid.Columns.GridColumn PartNo;
-        private DevExpress.XtraEditors.GroupControl groupControl1;
-        private System.Windows.Forms.RadioButton chkUsing;
-        private System.Windows.Forms.RadioButton chkNoUse;
-        private System.Windows.Forms.RadioButton chkAllStatus;
         private DevExpress.XtraEditors.PanelControl pnControl;
         private DevExpress.XtraGrid.Columns.GridColumn Model;
         private DevExpress.XtraGrid.Columns.GridColumn Quantity;
         private DevExpress.XtraGrid.Columns.GridColumn ProductionStatus;
         private DevExpress.XtraGrid.Columns.GridColumn UserID;
-        private DevExpress.XtraEditors.GroupControl groupControl2;
-        private System.Windows.Forms.RadioButton chkCompleted;
-        private System.Windows.Forms.RadioButton chkHold;
-        private System.Windows.Forms.RadioButton chkAllProductionStatus;
-        private System.Windows.Forms.RadioButton chkNone;
-        private System.Windows.Forms.RadioButton chkInProgress;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private System.Windows.Forms.DateTimePicker dtpToDate;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private System.Windows.Forms.DateTimePicker dtpFromDate;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private System.Windows.Forms.Button btnZoom;
+        private DevExpress.XtraEditors.SimpleButton btnEdit;
+        private DevExpress.XtraEditors.SimpleButton btnAdd;
+        private DevExpress.XtraGrid.Columns.GridColumn Status;
     }
 }

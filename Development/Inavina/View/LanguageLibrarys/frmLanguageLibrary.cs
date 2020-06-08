@@ -17,7 +17,7 @@ namespace Inavina.View.LanguageLibrarys
 {
     public partial class frmLanguageLibrary : DevExpress.XtraEditors.XtraForm
     {
-        ProjectDataContext _projectDataContext = new ProjectDataContext();
+        ProjectDataContext _projectDataContext;
         LanguageLibraryRepository _languageLibraryRepository;
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
@@ -64,7 +64,6 @@ namespace Inavina.View.LanguageLibrarys
 
         private void frmLanguageLibrary_Load(object sender, EventArgs e)
         {
-            _languageLibraryRepository = new LanguageLibraryRepository(_projectDataContext);
             LanguageTranslate.ChangeLanguageForm(this);
             LanguageTranslate.ChangeLanguageGridView(viewDuLieu);
             Search();
@@ -72,6 +71,8 @@ namespace Inavina.View.LanguageLibrarys
 
         private void Search()
         {
+            _projectDataContext = new ProjectDataContext();
+            _languageLibraryRepository = new LanguageLibraryRepository(_projectDataContext);
             dgvDuLieu.DataSource = _languageLibraryRepository.GetAll();
             Control();
         }
@@ -90,17 +91,20 @@ namespace Inavina.View.LanguageLibrarys
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            frmLanguageLibraryAddEdit frm = new frmLanguageLibraryAddEdit(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
-            DialogResult dr = frm.ShowDialog();
-            if (dr == DialogResult.OK)
+            if (viewDuLieu.RowCount > 0)
             {
-                Search();
+                frmLanguageLibraryAddEdit frm = new frmLanguageLibraryAddEdit(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
+                DialogResult dr = frm.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    Search();
+                }
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Bạn có muốn xóa thông tin này?"), LanguageTranslate.ChangeLanguageText("Xác nhận"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (viewDuLieu.RowCount > 0 && XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Bạn có muốn xóa thông tin này?"), LanguageTranslate.ChangeLanguageText("Xác nhận"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 _languageLibraryRepository.Remove(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
                 UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);

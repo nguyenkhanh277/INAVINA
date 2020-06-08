@@ -9,11 +9,11 @@ using System.Linq.Expressions;
 
 namespace Inavina.Persistence.Repositories
 {
-    public class ScanBarcodeDetailRepository : Repository<ScanBarcodeDetail>
+    public class ProductionPlanRepository : Repository<ProductionPlan>
     {
         public string id = "";
 
-        public ScanBarcodeDetailRepository(ProjectDataContext projectDataContext) : base(projectDataContext)
+        public ProductionPlanRepository(ProjectDataContext projectDataContext) : base(projectDataContext)
         {
         }
 
@@ -22,33 +22,33 @@ namespace Inavina.Persistence.Repositories
             get { return Context as ProjectDataContext; }
         }
 
-        public void Save(ScanBarcodeDetail scanBarcodeDetail)
+        public void Save(ProductionPlan productionPlan)
         {
-            if (String.IsNullOrEmpty(scanBarcodeDetail.Id))
+            if (String.IsNullOrEmpty(productionPlan.Id))
             {
-                scanBarcodeDetail.Id = GetAutoID();
-                scanBarcodeDetail.UserID = GlobalConstants.userID;
-                scanBarcodeDetail.CreatedAt = DateTime.Now;
-                scanBarcodeDetail.CreatedBy = GlobalConstants.username;
-                Add(scanBarcodeDetail);
-                id = scanBarcodeDetail.Id;
+                productionPlan.Id = GetAutoID();
+                productionPlan.UserID = GlobalConstants.userID;
+                productionPlan.CreatedAt = DateTime.Now;
+                productionPlan.CreatedBy = GlobalConstants.username;
+                Add(productionPlan);
+                id = productionPlan.Id;
             }
             else
             {
-                Update(scanBarcodeDetail);
+                Update(productionPlan);
             }
         }
 
-        public void Update(ScanBarcodeDetail scanBarcodeDetail)
+        public void Update(ProductionPlan productionPlan)
         {
             error = false;
             errorMessage = "";
             try
             {
-                var raw = FirstOrDefault(_ => _.Id.Equals(scanBarcodeDetail.Id));
+                var raw = FirstOrDefault(_ => _.Id.Equals(productionPlan.Id));
                 if (raw != null)
                 {
-                    raw.CollectInformation(scanBarcodeDetail);
+                    raw.CollectInformation(productionPlan);
                     raw.EditedAt = DateTime.Now;
                     raw.EditedBy = GlobalConstants.username;
                     id = raw.Id;
@@ -67,12 +67,12 @@ namespace Inavina.Persistence.Repositories
             errorMessage = "";
             try
             {
-                var scanBarcodeDetail = FirstOrDefault(_ => _.Id.Equals(id));
-                if (scanBarcodeDetail != null)
+                var productionPlan = FirstOrDefault(_ => _.Id.Equals(id));
+                if (productionPlan != null)
                 {
-                    scanBarcodeDetail.Status = GlobalConstants.StatusValue.NoUse;
-                    scanBarcodeDetail.EditedAt = DateTime.Now;
-                    scanBarcodeDetail.EditedBy = GlobalConstants.username;
+                    productionPlan.Status = GlobalConstants.StatusValue.NoUse;
+                    productionPlan.EditedAt = DateTime.Now;
+                    productionPlan.EditedBy = GlobalConstants.username;
                 }
             }
             catch (Exception ex)

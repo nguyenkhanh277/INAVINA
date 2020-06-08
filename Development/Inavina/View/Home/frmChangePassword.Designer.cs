@@ -53,7 +53,7 @@
             this.txtNewPassword.Properties.AutoHeight = false;
             this.txtNewPassword.Properties.UseSystemPasswordChar = true;
             this.txtNewPassword.Size = new System.Drawing.Size(300, 30);
-            this.txtNewPassword.TabIndex = 3;
+            this.txtNewPassword.TabIndex = 1;
             // 
             // labelControl3
             // 
@@ -79,7 +79,7 @@
             this.txtOldPassword.Properties.AutoHeight = false;
             this.txtOldPassword.Properties.UseSystemPasswordChar = true;
             this.txtOldPassword.Size = new System.Drawing.Size(300, 30);
-            this.txtOldPassword.TabIndex = 1;
+            this.txtOldPassword.TabIndex = 0;
             // 
             // labelControl1
             // 
@@ -104,7 +104,7 @@
             this.txtConfirmPassword.Properties.AutoHeight = false;
             this.txtConfirmPassword.Properties.UseSystemPasswordChar = true;
             this.txtConfirmPassword.Size = new System.Drawing.Size(300, 30);
-            this.txtConfirmPassword.TabIndex = 5;
+            this.txtConfirmPassword.TabIndex = 2;
             // 
             // labelControl2
             // 
@@ -125,7 +125,7 @@
             this.btnClose.Location = new System.Drawing.Point(265, 203);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 40);
-            this.btnClose.TabIndex = 7;
+            this.btnClose.TabIndex = 4;
             this.btnClose.Text = "Đóng (ESC)";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -138,7 +138,7 @@
             this.btnSave.Location = new System.Drawing.Point(179, 203);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 40);
-            this.btnSave.TabIndex = 6;
+            this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Lưu (F1)";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 

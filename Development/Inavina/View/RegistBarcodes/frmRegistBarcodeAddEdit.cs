@@ -43,7 +43,6 @@ namespace Inavina.View.RegistBarcodes
         }
 
         string _id = "";
-        bool _loaded = false;
         public frmRegistBarcodeAddEdit()
         {
             InitializeComponent();
@@ -67,7 +66,6 @@ namespace Inavina.View.RegistBarcodes
             LoadMachineData();
             LoadShiftData();
             LoadMoldData();
-            _loaded = true;
             if (String.IsNullOrEmpty(_id))
             {
                 Clear();
@@ -78,16 +76,16 @@ namespace Inavina.View.RegistBarcodes
             }
         }
 
+        private void frmRegistBarcodeAddEdit_Shown(object sender, EventArgs e)
+        {
+            txtQuantity.Focus();
+        }
+
         private void Clear()
         {
             dtpRegistDate.Value = DateTime.Now;
-            GetSEQ();
-            GenerateBarcode();
-        }
-
-        private void GetSEQ()
-        {
-            txtSEQ.Text = _registBarcodeRepository.GetSEQ(dtpRegistDate.Value, cbbShift.Text.Trim());
+            txtQuantity.Text = "0";
+            txtQuantity.Focus();
         }
 
         private void LoadPartNumberData()
@@ -112,75 +110,6 @@ namespace Inavina.View.RegistBarcodes
         {
             cbbMold.DataSource = _moldRepository.GetAll().ToList();
             cbbMold.SelectedIndex = 0;
-        }
-
-        private void GenerateBarcode()
-        {
-            if (_loaded)
-            {
-                GetSEQ();
-                if (!CheckDataWhenGenerateBarcode())
-                {
-                    txtBarcode.Text = "";
-                    txtBarcode.BackColor = Color.Red;
-                }
-                else
-                {
-                    txtBarcode.Text = String.Format("{0}{1}{2}{3}{4}{5}",
-                        cbbPartNumber.Text.Trim(),
-                        dtpRegistDate.Value.ToString("yyMMdd"),
-                        cbbMachine.Text.Trim(),
-                        cbbShift.Text.Trim(),
-                        cbbMold.Text.Trim(),
-                        txtSEQ.Text.Trim());
-                    txtBarcode.BackColor = Color.White;
-                }
-            }
-        }
-
-        private void cbbPartNumber_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            GenerateBarcode();
-        }
-
-        private void cbbMachine_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            GenerateBarcode();
-        }
-
-        private void cbbShift_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            GenerateBarcode();
-        }
-
-        private void cbbMold_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            GenerateBarcode();
-        }
-
-        private bool CheckDataWhenGenerateBarcode()
-        {
-            if (cbbPartNumber.SelectedValue == null || String.IsNullOrEmpty(cbbPartNumber.Text.Trim()))
-            {
-                return false;
-            }
-            else if (cbbMachine.SelectedValue == null || String.IsNullOrEmpty(cbbMachine.Text.Trim()))
-            {
-                return false;
-            }
-            else if (cbbMold.SelectedValue == null || String.IsNullOrEmpty(cbbMold.Text.Trim()))
-            {
-                return false;
-            }
-            else if (cbbShift.SelectedValue == null || String.IsNullOrEmpty(cbbShift.Text.Trim()))
-            {
-                return false;
-            }
-            else if (txtSEQ.Text.Trim() == "")
-            {
-                return false;
-            }
-            return true;
         }
 
         private bool CheckData()
@@ -209,21 +138,10 @@ namespace Inavina.View.RegistBarcodes
                 cbbShift.Focus();
                 return false;
             }
-            else if (txtSEQ.Text.Trim() == "")
+            else if (txtQuantity.Text.Trim() == "0")
             {
                 XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtSEQ.Focus();
-                return false;
-            }
-            RegistBarcode registBarcode = _registBarcodeRepository.FirstOrDefault(_ => _.Barcode.Equals(txtBarcode.Text.Trim()));
-            if (registBarcode != null &&
-                (
-                    String.IsNullOrEmpty(_id) ||
-                    (!String.IsNullOrEmpty(_id) && txtBarcode.Text.Trim() != registBarcode.Barcode)
-                ))
-            {
-                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Dữ liệu đã tồn tại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                cbbPartNumber.Focus();
+                txtQuantity.Focus();
                 return false;
             }
             return true;
@@ -236,32 +154,54 @@ namespace Inavina.View.RegistBarcodes
                 if (!CheckData()) return;
                 //Table RegistBarcode
                 RegistBarcode registBarcode = new RegistBarcode();
-                registBarcode.Id = _id;
-                registBarcode.PartNo = cbbPartNumber.Text.Trim();
-                registBarcode.RegistDate = dtpRegistDate.Value;
-                registBarcode.MachineNo = cbbMachine.Text.Trim();
-                registBarcode.MoldNo = cbbMold.Text.Trim();
-                registBarcode.ShiftNo = cbbShift.Text.Trim();
-                registBarcode.SEQ = txtSEQ.Text.Trim();
-                registBarcode.Barcode = txtBarcode.Text.Trim();
-                registBarcode.Status = GlobalConstants.StatusValue.Using;
-                _registBarcodeRepository.Save(registBarcode);
+                int seq = int.Parse(_registBarcodeRepository.GetSEQ(dtpRegistDate.Value, cbbShift.Text.Trim()));
+                string barcode = "";
+                DataTable listBarcode = new DataTable();
+                listBarcode.Columns.Add("Barcode", typeof(string));
+                listBarcode.Columns.Add("PartNo", typeof(string));
+                listBarcode.Columns.Add("DateShift", typeof(string));
+                listBarcode.Columns.Add("MoldNoSEQ", typeof(string));
+                listBarcode.Columns.Add("VN", typeof(string));
+                for (int i = 0; i < int.Parse(txtQuantity.Text.Trim()); i++)
+                {
+                    //Generate barcode
+                    seq++;
+                    barcode = String.Format("{0}{1}{2}{3}{4}{5}",
+                        cbbPartNumber.Text.Trim(),
+                        dtpRegistDate.Value.ToString("yyMMdd"),
+                        cbbMachine.Text.Trim(),
+                        cbbShift.Text.Trim(),
+                        cbbMold.Text.Trim(),
+                        seq.ToString("0000"));
+                    //Set list barcode
+                    listBarcode.Rows.Add(new string[] {
+                        barcode,
+                        cbbPartNumber.Text.Trim(),
+                        dtpRegistDate.Value.ToString("yyMMdd") + cbbShift.Text.Trim(),
+                        cbbMold.Text.Trim() + "SEQ" + seq.ToString("0000"),
+                        "VN001200"
+                    });
+                    //Insert data
+                    registBarcode = new RegistBarcode();
+                    registBarcode.Id = _id;
+                    registBarcode.PartNo = cbbPartNumber.Text.Trim();
+                    registBarcode.RegistDate = dtpRegistDate.Value;
+                    registBarcode.MachineNo = cbbMachine.Text.Trim();
+                    registBarcode.MoldNo = cbbMold.Text.Trim();
+                    registBarcode.ShiftNo = cbbShift.Text.Trim();
+                    registBarcode.SEQ = seq.ToString("0000");
+                    registBarcode.Barcode = barcode;
+                    registBarcode.Status = GlobalConstants.StatusValue.Using;
+                    _registBarcodeRepository.Save(registBarcode);
+                }
                 UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);
                 int result = unitOfWork.Complete();
                 if (result > 0)
                 {
                     if (String.IsNullOrEmpty(_id))
                     {
-                        if (_registBarcodeRepository.PrintBarcode(txtBarcode.Text.Trim()))
-                        {
-                            Clear();
-                        }
-                        else
-                        {
-                            _registBarcodeRepository.Remove(_registBarcodeRepository.id);
-                            unitOfWork.Complete();
-                            XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("In thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
+                        _registBarcodeRepository.PrintListBarcode(listBarcode);
+                        Clear();
                     }
                     else
                     {
@@ -294,11 +234,8 @@ namespace Inavina.View.RegistBarcodes
             DialogResult dr = frm.ShowDialog();
             if (dr == DialogResult.OK && frm.Tag != null)
             {
-                _loaded = false;
                 LoadPartNumberData();
-                _loaded = true;
                 cbbPartNumber.Text = (string)frm.Tag;
-                GenerateBarcode();
             }
         }
 
@@ -308,11 +245,8 @@ namespace Inavina.View.RegistBarcodes
             DialogResult dr = frm.ShowDialog();
             if (dr == DialogResult.OK && frm.Tag != null)
             {
-                _loaded = false;
                 LoadMachineData();
-                _loaded = true;
                 cbbMachine.Text = (string)frm.Tag;
-                GenerateBarcode();
             }
         }
 
@@ -322,11 +256,8 @@ namespace Inavina.View.RegistBarcodes
             DialogResult dr = frm.ShowDialog();
             if (dr == DialogResult.OK && frm.Tag != null)
             {
-                _loaded = false;
                 LoadShiftData();
-                _loaded = true;
                 cbbShift.Text = (string)frm.Tag;
-                GenerateBarcode();
             }
         }
 
@@ -336,12 +267,22 @@ namespace Inavina.View.RegistBarcodes
             DialogResult dr = frm.ShowDialog();
             if (dr == DialogResult.OK && frm.Tag != null)
             {
-                _loaded = false;
                 LoadMoldData();
-                _loaded = true;
                 cbbMold.Text = (string)frm.Tag;
-                GenerateBarcode();
             }
+        }
+
+        private void txtQuantity_EditValueChanged(object sender, EventArgs e)
+        {
+            if (!GeneralHelper.IsStringDouble(txtQuantity.Text.Trim()))
+                txtQuantity.Text = "0";
+            txtQuantity.Text = double.Parse(txtQuantity.Text.Trim()).ToString("N0");
+            txtQuantity.Select(txtQuantity.Text.Length, 0);
+        }
+
+        private void txtQuantity_Click(object sender, EventArgs e)
+        {
+            txtQuantity.SelectAll();
         }
     }
 }

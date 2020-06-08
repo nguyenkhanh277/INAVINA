@@ -21,9 +21,8 @@ namespace Inavina.View.Users
 {
     public partial class frmUsers : DevExpress.XtraEditors.XtraForm
     {
-        ProjectDataContext _projectDataContext = new ProjectDataContext();
+        ProjectDataContext _projectDataContext;
         UserRepository _userRepository;
-        private object predicate;
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
@@ -79,7 +78,6 @@ namespace Inavina.View.Users
 
         private void frmUsers_Load(object sender, EventArgs e)
         {
-            _userRepository = new UserRepository(_projectDataContext);
             LanguageTranslate.ChangeLanguageForm(this);
             LanguageTranslate.ChangeLanguageGridView(viewDuLieu);
             btnProgram.Visible = (GlobalConstants.username.ToUpper() == "ADMIN");
@@ -88,20 +86,9 @@ namespace Inavina.View.Users
 
         private void Search()
         {
-            List<Expression<Func<User, bool>>> expressions = new List<Expression<Func<User, bool>>>();
-            if (!chkAllGender.Checked)
-            {
-                GlobalConstants.GenderValue genderValue;
-                Enum.TryParse<GlobalConstants.GenderValue>((chkMale.Checked ? GlobalConstants.GenderValue.Male.ToString() : GlobalConstants.GenderValue.Female.ToString()), out genderValue);
-                expressions.Add(_ => _.Gender == genderValue);
-            }
-            if (!chkAllStatus.Checked)
-            {
-                GlobalConstants.StatusValue statusValue;
-                Enum.TryParse<GlobalConstants.StatusValue>((chkUsing.Checked ? GlobalConstants.StatusValue.Using.ToString() : GlobalConstants.StatusValue.NoUse.ToString()), out statusValue);
-                expressions.Add(_ => _.Status == statusValue);
-            }
-            dgvDuLieu.DataSource = _userRepository.Find(expressions);
+            _projectDataContext = new ProjectDataContext();
+            _userRepository = new UserRepository(_projectDataContext);
+            dgvDuLieu.DataSource = _userRepository.GetAll();
             Control();
         }
 
@@ -119,17 +106,20 @@ namespace Inavina.View.Users
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            frmUsersAddEdit frm = new frmUsersAddEdit(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
-            DialogResult dr = frm.ShowDialog();
-            if (dr == DialogResult.OK)
+            if (viewDuLieu.RowCount > 0)
             {
-                Search();
+                frmUsersAddEdit frm = new frmUsersAddEdit(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
+                DialogResult dr = frm.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    Search();
+                }
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Bạn có muốn xóa thông tin này?"), LanguageTranslate.ChangeLanguageText("Xác nhận"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (viewDuLieu.RowCount > 0 && XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Bạn có muốn xóa thông tin này?"), LanguageTranslate.ChangeLanguageText("Xác nhận"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 _userRepository.Remove(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
                 UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);
@@ -189,36 +179,6 @@ namespace Inavina.View.Users
         {
             if (e.RowHandle >= 0)
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
-        }
-
-        private void chkAllStatus_CheckedChanged(object sender, EventArgs e)
-        {
-            Search();
-        }
-
-        private void chkUsing_CheckedChanged(object sender, EventArgs e)
-        {
-            Search();
-        }
-
-        private void chkNoUse_CheckedChanged(object sender, EventArgs e)
-        {
-            Search();
-        }
-
-        private void chkAllGender_CheckedChanged(object sender, EventArgs e)
-        {
-            Search();
-        }
-
-        private void chkMale_CheckedChanged(object sender, EventArgs e)
-        {
-            Search();
-        }
-
-        private void chkFemale_CheckedChanged(object sender, EventArgs e)
-        {
-            Search();
         }
     }
 }

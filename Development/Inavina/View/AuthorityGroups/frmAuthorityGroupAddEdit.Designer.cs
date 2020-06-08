@@ -59,7 +59,7 @@
             this.btnClose.Location = new System.Drawing.Point(265, 138);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 40);
-            this.btnClose.TabIndex = 5;
+            this.btnClose.TabIndex = 3;
             this.btnClose.Text = "Đóng (ESC)";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -72,7 +72,7 @@
             this.btnSave.Location = new System.Drawing.Point(179, 138);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 40);
-            this.btnSave.TabIndex = 4;
+            this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Lưu (F1)";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -99,7 +99,7 @@
             this.txtAuthorityGroupName.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.txtAuthorityGroupName.Properties.AutoHeight = false;
             this.txtAuthorityGroupName.Size = new System.Drawing.Size(300, 30);
-            this.txtAuthorityGroupName.TabIndex = 1;
+            this.txtAuthorityGroupName.TabIndex = 0;
             // 
             // labelControl7
             // 
@@ -145,7 +145,7 @@
             this.panelControl2.Location = new System.Drawing.Point(45, 102);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(300, 30);
-            this.panelControl2.TabIndex = 3;
+            this.panelControl2.TabIndex = 1;
             // 
             // dgvDuLieu
             // 
@@ -176,7 +176,7 @@
             this.dgvDuLieu.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.dgvDuLieu.RowTemplate.Height = 40;
             this.dgvDuLieu.Size = new System.Drawing.Size(608, 544);
-            this.dgvDuLieu.TabIndex = 6;
+            this.dgvDuLieu.TabIndex = 4;
             // 
             // Assign
             // 

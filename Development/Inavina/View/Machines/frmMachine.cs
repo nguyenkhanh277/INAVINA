@@ -19,7 +19,7 @@ namespace Inavina.View.Machines
 {
     public partial class frmMachine : DevExpress.XtraEditors.XtraForm
     {
-        ProjectDataContext _projectDataContext = new ProjectDataContext();
+        ProjectDataContext _projectDataContext;
         MachineRepository _machineRepository;
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
@@ -66,7 +66,6 @@ namespace Inavina.View.Machines
 
         private void frmMachine_Load(object sender, EventArgs e)
         {
-            _machineRepository = new MachineRepository(_projectDataContext);
             LanguageTranslate.ChangeLanguageForm(this);
             LanguageTranslate.ChangeLanguageGridView(viewDuLieu);
             Search();
@@ -74,14 +73,9 @@ namespace Inavina.View.Machines
 
         private void Search()
         {
-            List<Expression<Func<Machine, bool>>> expressions = new List<Expression<Func<Machine, bool>>>();
-            if (!chkAllStatus.Checked)
-            {
-                GlobalConstants.StatusValue statusValue;
-                Enum.TryParse<GlobalConstants.StatusValue>((chkUsing.Checked ? GlobalConstants.StatusValue.Using.ToString() : GlobalConstants.StatusValue.NoUse.ToString()), out statusValue);
-                expressions.Add(_ => _.Status == statusValue);
-            }
-            dgvDuLieu.DataSource = _machineRepository.Find(expressions);
+            _projectDataContext = new ProjectDataContext();
+            _machineRepository = new MachineRepository(_projectDataContext);
+            dgvDuLieu.DataSource = _machineRepository.GetAll();
             Control();
         }
 
@@ -99,17 +93,20 @@ namespace Inavina.View.Machines
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            frmMachineAddEdit frm = new frmMachineAddEdit(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
-            DialogResult dr = frm.ShowDialog();
-            if (dr == DialogResult.OK)
+            if (viewDuLieu.RowCount > 0)
             {
-                Search();
+                frmMachineAddEdit frm = new frmMachineAddEdit(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
+                DialogResult dr = frm.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    Search();
+                }
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Bạn có muốn xóa thông tin này?"), LanguageTranslate.ChangeLanguageText("Xác nhận"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (viewDuLieu.RowCount > 0 && XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Bạn có muốn xóa thông tin này?"), LanguageTranslate.ChangeLanguageText("Xác nhận"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 _machineRepository.Remove(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
                 UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);
@@ -157,21 +154,6 @@ namespace Inavina.View.Machines
         {
             if (e.RowHandle >= 0)
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
-        }
-
-        private void chkAllStatus_CheckedChanged(object sender, EventArgs e)
-        {
-            Search();
-        }
-
-        private void chkUsing_CheckedChanged(object sender, EventArgs e)
-        {
-            Search();
-        }
-
-        private void chkNoUse_CheckedChanged(object sender, EventArgs e)
-        {
-            Search();
         }
     }
 }
