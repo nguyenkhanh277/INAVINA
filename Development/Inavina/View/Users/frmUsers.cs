@@ -13,6 +13,9 @@ using Inavina.Core;
 using Inavina.Persistence.Repositories;
 using Inavina.View.AuthorityGroups;
 using Inavina.View.ProgramFunctionMasters;
+using Inavina.Core.Helper;
+using System.Linq.Expressions;
+using Inavina.Core.Domain;
 
 namespace Inavina.View.Users
 {
@@ -20,6 +23,7 @@ namespace Inavina.View.Users
     {
         ProjectDataContext _projectDataContext = new ProjectDataContext();
         UserRepository _userRepository;
+        private object predicate;
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
@@ -76,22 +80,28 @@ namespace Inavina.View.Users
         private void frmUsers_Load(object sender, EventArgs e)
         {
             _userRepository = new UserRepository(_projectDataContext);
+            LanguageTranslate.ChangeLanguageForm(this);
+            LanguageTranslate.ChangeLanguageGridView(viewDuLieu);
+            btnProgram.Visible = (GlobalConstants.username.ToUpper() == "ADMIN");
             Search();
         }
 
         private void Search()
         {
-            Dictionary<UserRepository.SearchConditions, object> conditions = new Dictionary<UserRepository.SearchConditions, object>();
-            if (!chkAllStatus.Checked)
-            {
-                conditions.Add(UserRepository.SearchConditions.Status, chkUsing.Checked ? GlobalConstants.StatusValue.Using : GlobalConstants.StatusValue.NoUse);
-            }
+            List<Expression<Func<User, bool>>> expressions = new List<Expression<Func<User, bool>>>();
             if (!chkAllGender.Checked)
             {
-                conditions.Add(UserRepository.SearchConditions.Gender, chkMale.Checked ? GlobalConstants.GenderValue.Male : GlobalConstants.GenderValue.Female);
+                GlobalConstants.GenderValue genderValue;
+                Enum.TryParse<GlobalConstants.GenderValue>((chkMale.Checked ? GlobalConstants.GenderValue.Male.ToString() : GlobalConstants.GenderValue.Female.ToString()), out genderValue);
+                expressions.Add(_ => _.Gender == genderValue);
             }
-            conditions.Add(UserRepository.SearchConditions.SortUsername_Desc, false);
-            dgvDuLieu.DataSource = _userRepository.GetAll(conditions);
+            if (!chkAllStatus.Checked)
+            {
+                GlobalConstants.StatusValue statusValue;
+                Enum.TryParse<GlobalConstants.StatusValue>((chkUsing.Checked ? GlobalConstants.StatusValue.Using.ToString() : GlobalConstants.StatusValue.NoUse.ToString()), out statusValue);
+                expressions.Add(_ => _.Status == statusValue);
+            }
+            dgvDuLieu.DataSource = _userRepository.Find(expressions);
             Control();
         }
 
@@ -119,9 +129,9 @@ namespace Inavina.View.Users
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (XtraMessageBox.Show("Do you want to delete this item?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Bạn có muốn xóa thông tin này?"), LanguageTranslate.ChangeLanguageText("Xác nhận"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                _userRepository.Delete(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
+                _userRepository.Remove(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
                 UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);
                 int result = unitOfWork.Complete();
                 if (result > 0)
@@ -130,7 +140,7 @@ namespace Inavina.View.Users
                 }
                 else
                 {
-                    XtraMessageBox.Show("Delete failed.", "Notification");
+                    XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Xóa thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
@@ -138,7 +148,7 @@ namespace Inavina.View.Users
 
         private void btnExcel_Click(object sender, EventArgs e)
         {
-            GlobalConstants.ExportExcel(dgvDuLieu);
+            GeneralHelper.ExportExcel(dgvDuLieu);
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -179,6 +189,36 @@ namespace Inavina.View.Users
         {
             if (e.RowHandle >= 0)
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
+        }
+
+        private void chkAllStatus_CheckedChanged(object sender, EventArgs e)
+        {
+            Search();
+        }
+
+        private void chkUsing_CheckedChanged(object sender, EventArgs e)
+        {
+            Search();
+        }
+
+        private void chkNoUse_CheckedChanged(object sender, EventArgs e)
+        {
+            Search();
+        }
+
+        private void chkAllGender_CheckedChanged(object sender, EventArgs e)
+        {
+            Search();
+        }
+
+        private void chkMale_CheckedChanged(object sender, EventArgs e)
+        {
+            Search();
+        }
+
+        private void chkFemale_CheckedChanged(object sender, EventArgs e)
+        {
+            Search();
         }
     }
 }

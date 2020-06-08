@@ -12,6 +12,7 @@ using Inavina.Persistence;
 using Inavina.Persistence.Repositories;
 using Inavina.Core.Domain;
 using Inavina.Core;
+using Inavina.Core.Helper;
 
 namespace Inavina.View.AuthorityGroups
 {
@@ -21,7 +22,6 @@ namespace Inavina.View.AuthorityGroups
         AuthorityGroupRepository _authorityGroupRepository;
         ProgramFunctionMasterRepository _programFunctionMasterRepository;
         ProgramFunctionAuthorityRepository _programFunctionAuthorityRepository;
-        IEnumerable<ProgramFunctionAuthority> _oldProgramFunctionAuthority;
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
@@ -29,18 +29,27 @@ namespace Inavina.View.AuthorityGroups
             _projectDataContext.Dispose();
         }
 
-        int? _id = -1;
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            KeyEventArgs e = new KeyEventArgs(keyData);
+            if (e.KeyCode == Keys.F1)
+            {
+                btnSave_Click(null, null);
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        string _id = "";
 
         public frmAuthorityGroupAddEdit()
         {
             InitializeComponent();
-            this.Text = "Add Authority Group";
         }
 
-        public frmAuthorityGroupAddEdit(int? id)
+        public frmAuthorityGroupAddEdit(string id)
         {
             InitializeComponent();
-            this.Text = "Edit Authority Group";
             _id = id;
         }
 
@@ -49,7 +58,9 @@ namespace Inavina.View.AuthorityGroups
             _authorityGroupRepository = new AuthorityGroupRepository(_projectDataContext);
             _programFunctionMasterRepository = new ProgramFunctionMasterRepository(_projectDataContext);
             _programFunctionAuthorityRepository = new ProgramFunctionAuthorityRepository(_projectDataContext);
-            if (_id == -1)
+            LanguageTranslate.ChangeLanguageForm(this);
+            LanguageTranslate.ChangeLanguageDataGridView(dgvDuLieu);
+            if (String.IsNullOrEmpty(_id))
             {
                 Clear();
             }
@@ -64,33 +75,28 @@ namespace Inavina.View.AuthorityGroups
         {
             txtAuthorityGroupName.Text = "";
             chkUsing.Checked = true;
+            txtAuthorityGroupName.Focus();
         }
 
         private void GetData()
         {
             //Get Data Table AuthorityGroup
-            AuthorityGroup authorityGroup = _authorityGroupRepository.GetInfo(_id);
+            AuthorityGroup authorityGroup = _authorityGroupRepository.Get(_id);
             txtAuthorityGroupName.Text = authorityGroup.AuthorityGroupName;
             chkUsing.Checked = (authorityGroup.Status == GlobalConstants.StatusValue.Using);
         }
 
         private void LoadProgramFunction()
         {
-            Dictionary<ProgramFunctionMasterRepository.SearchConditions, object> conditionsMaster = new Dictionary<ProgramFunctionMasterRepository.SearchConditions, object>();
-            conditionsMaster.Add(ProgramFunctionMasterRepository.SearchConditions.SortProgramName_Desc, false);
-            var programFunctionMasters = _programFunctionMasterRepository.GetAll(conditionsMaster);
-
-            Dictionary<ProgramFunctionAuthorityRepository.SearchConditions, object> conditions = new Dictionary<ProgramFunctionAuthorityRepository.SearchConditions, object>();
-            conditions.Add(ProgramFunctionAuthorityRepository.SearchConditions.AuthorityGroupID, _id);
-            conditions.Add(ProgramFunctionAuthorityRepository.SearchConditions.SortProgramName_Desc, false);
-            _oldProgramFunctionAuthority = _programFunctionAuthorityRepository.GetAll(conditions);
+            var programFunctionMasters = _programFunctionMasterRepository.GetAll().OrderBy(_ => _.ProgramName).ThenBy(_ => _.FunctionName);
+            var oldProgramFunctionAuthority = _programFunctionAuthorityRepository.Find(_ => _.AuthorityGroupID.Equals(_id));
 
             dgvDuLieu.Rows.Clear();
             int check = 0;
             foreach (var programFunctionMaster in programFunctionMasters)
             {
                 check = 0;
-                foreach (var programFunctionAuthority in _oldProgramFunctionAuthority)
+                foreach (var programFunctionAuthority in oldProgramFunctionAuthority)
                 {
                     if (programFunctionAuthority.ProgramName == programFunctionMaster.ProgramName &&
                         programFunctionAuthority.FunctionName == programFunctionMaster.FunctionName)
@@ -104,24 +110,39 @@ namespace Inavina.View.AuthorityGroups
             }
         }
 
+        private bool CheckData()
+        {
+            if (txtAuthorityGroupName.Text.Trim() == "")
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtAuthorityGroupName.Focus();
+                return false;
+            }
+            AuthorityGroup authorityGroup = _authorityGroupRepository.FirstOrDefault(_ => _.AuthorityGroupName.Equals(txtAuthorityGroupName.Text.Trim()));
+            if (authorityGroup != null &&
+                (
+                    String.IsNullOrEmpty(_id) ||
+                    (!String.IsNullOrEmpty(_id) && txtAuthorityGroupName.Text.Trim() != authorityGroup.AuthorityGroupName)
+                ))
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Dữ liệu đã tồn tại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtAuthorityGroupName.Focus();
+                return false;
+            }
+            return true;
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
+                if (!CheckData()) return;
                 //Table AuthorityGroup
                 AuthorityGroup authorityGroup = new AuthorityGroup();
-                if (_id == -1)
-                {
-                    authorityGroup.Id = null;
-                }
-                else
-                {
-                    authorityGroup.Id = _id;
-                }
                 authorityGroup.AuthorityGroupName = txtAuthorityGroupName.Text.Trim();
                 authorityGroup.Status = (chkUsing.Checked ? GlobalConstants.StatusValue.Using : GlobalConstants.StatusValue.NoUse);
                 _authorityGroupRepository.Save(authorityGroup);
-                if (_authorityGroupRepository.id != -1)
+                if (!String.IsNullOrEmpty(_authorityGroupRepository.id))
                 {
                     for (int i = 0; i < dgvDuLieu.RowCount; i++)
                     {
@@ -143,9 +164,9 @@ namespace Inavina.View.AuthorityGroups
                 int result = unitOfWork.Complete();
                 if (result > 0)
                 {
-                    if (_id == -1)
+                    if (String.IsNullOrEmpty(_id))
                     {
-                        XtraMessageBox.Show("Save successfully.", "Notification");
+                        XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thành công"), LanguageTranslate.ChangeLanguageText("Thông báo"));
                         Clear();
                     }
                     else
@@ -156,13 +177,13 @@ namespace Inavina.View.AuthorityGroups
                 }
                 else
                 {
-                    XtraMessageBox.Show("Save failed.", "Notification");
+                    XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Save failed.", "Notification");
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
         }

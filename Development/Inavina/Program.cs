@@ -14,6 +14,9 @@ namespace Inavina
         [STAThread]
         static void Main()
         {
+            DevExpress.Skins.SkinManager.EnableFormSkins();
+            DevExpress.UserSkins.BonusSkins.Register();
+            DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(Properties.Settings.Default.Theme);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Login();

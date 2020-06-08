@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using Inavina.Core.Helper;
 using Inavina.Persistence;
 
 namespace Inavina.Core.Domain
@@ -41,10 +42,9 @@ namespace Inavina.Core.Domain
                             if (!date.Equals(DateTime.MinValue))
                                 prop.SetValue(this, val);
                         }
-                        else if (GlobalConstants.IsNumericType(prop.PropertyType))
+                        else if (GeneralHelper.IsNumericType(prop.PropertyType))
                         {
                             Type type = prop.PropertyType;
-
                             if ((val.ToString() != "0" && withoutZeroValue) || !withoutZeroValue)
                             {
                                 prop.SetValue(this, src.GetProperty(prop.Name).GetValue(model));
@@ -52,7 +52,7 @@ namespace Inavina.Core.Domain
                         }
                         else
                         {
-                            if (this.GetType().GetProperties().Where(x => x.Name == prop.Name && x.GetType() == prop.GetType()).Any())
+                            if (this.GetType().GetProperties().Where(_ => _.Name == prop.Name && _.GetType() == prop.GetType()).Any())
                             {
                                 if ((val != null && withoutNullValue) || !withoutNullValue)
                                     prop.SetValue(this, src.GetProperty(prop.Name).GetValue(model));

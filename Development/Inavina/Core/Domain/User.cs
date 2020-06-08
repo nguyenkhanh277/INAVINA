@@ -17,5 +17,18 @@ namespace Inavina.Core.Domain
         public string Note { get; set; }
         public GlobalConstants.StatusValue Status { get; set; }
         #endregion
+
+        #region FK
+        public User()
+        {
+            userAuthoritys = new ObservableCollection<UserAuthority>();
+            registBarcodes = new ObservableCollection<RegistBarcode>();
+            scanBarcodes = new ObservableCollection<ScanBarcode>();
+        }
+
+        public virtual ObservableCollection<UserAuthority> userAuthoritys { get; set; }
+        public virtual ObservableCollection<RegistBarcode> registBarcodes { get; set; }
+        public virtual ObservableCollection<ScanBarcode> scanBarcodes { get; set; }
+        #endregion
     }
 }

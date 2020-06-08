@@ -11,6 +11,9 @@ using DevExpress.XtraEditors;
 using Inavina.Persistence;
 using Inavina.Core;
 using Inavina.Persistence.Repositories;
+using Inavina.Core.Helper;
+using Inavina.Core.Domain;
+using System.Linq.Expressions;
 
 namespace Inavina.View.ProgramFunctionMasters
 {
@@ -64,18 +67,21 @@ namespace Inavina.View.ProgramFunctionMasters
         private void frmProgramFunctionMaster_Load(object sender, EventArgs e)
         {
             _programFunctionMasterRepository = new ProgramFunctionMasterRepository(_projectDataContext);
+            LanguageTranslate.ChangeLanguageForm(this);
+            LanguageTranslate.ChangeLanguageGridView(viewDuLieu);
             Search();
         }
 
         private void Search()
         {
-            Dictionary<ProgramFunctionMasterRepository.SearchConditions, object> conditions = new Dictionary<ProgramFunctionMasterRepository.SearchConditions, object>();
+            List<Expression<Func<ProgramFunctionMaster, bool>>> expressions = new List<Expression<Func<ProgramFunctionMaster, bool>>>();
             if (!chkAllStatus.Checked)
             {
-                conditions.Add(ProgramFunctionMasterRepository.SearchConditions.Status, chkUsing.Checked ? GlobalConstants.StatusValue.Using : GlobalConstants.StatusValue.NoUse);
+                GlobalConstants.StatusValue statusValue;
+                Enum.TryParse<GlobalConstants.StatusValue>((chkUsing.Checked ? GlobalConstants.StatusValue.Using.ToString() : GlobalConstants.StatusValue.NoUse.ToString()), out statusValue);
+                expressions.Add(_ => _.Status == statusValue);
             }
-            conditions.Add(ProgramFunctionMasterRepository.SearchConditions.SortProgramName_Desc, false);
-            dgvDuLieu.DataSource = _programFunctionMasterRepository.GetAll(conditions);
+            dgvDuLieu.DataSource = _programFunctionMasterRepository.Find(expressions);
             Control();
         }
 
@@ -103,9 +109,9 @@ namespace Inavina.View.ProgramFunctionMasters
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (XtraMessageBox.Show("Do you want to delete this item?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Bạn có muốn xóa thông tin này?"), LanguageTranslate.ChangeLanguageText("Xác nhận"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                _programFunctionMasterRepository.Delete(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
+                _programFunctionMasterRepository.Remove(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
                 UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);
                 int result = unitOfWork.Complete();
                 if (result > 0)
@@ -114,7 +120,7 @@ namespace Inavina.View.ProgramFunctionMasters
                 }
                 else
                 {
-                    XtraMessageBox.Show("Delete failed.", "Notification");
+                    XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Xóa thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
@@ -122,7 +128,7 @@ namespace Inavina.View.ProgramFunctionMasters
 
         private void btnExcel_Click(object sender, EventArgs e)
         {
-            GlobalConstants.ExportExcel(dgvDuLieu);
+            GeneralHelper.ExportExcel(dgvDuLieu);
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -151,6 +157,21 @@ namespace Inavina.View.ProgramFunctionMasters
         {
             if (e.RowHandle >= 0)
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
+        }
+
+        private void chkAllStatus_CheckedChanged(object sender, EventArgs e)
+        {
+            Search();
+        }
+
+        private void chkUsing_CheckedChanged(object sender, EventArgs e)
+        {
+            Search();
+        }
+
+        private void chkNoUse_CheckedChanged(object sender, EventArgs e)
+        {
+            Search();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Inavina.Core.Domain
         #region Fields
         public string Id { get; set; }
         public string UserID { get; set; }
-        public int? AuthorityGroupID { get; set; }
+        public string AuthorityGroupID { get; set; }
         #endregion
     }
 }

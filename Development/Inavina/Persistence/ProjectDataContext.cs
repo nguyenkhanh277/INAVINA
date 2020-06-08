@@ -56,6 +56,14 @@ namespace Inavina.Persistence
         #endregion
 
         #region Tables
+        public virtual DbSet<Machine> Machines { get; set; }
+        public virtual DbSet<Mold> Molds { get; set; }
+        public virtual DbSet<Shift> Shifts { get; set; }
+        public virtual DbSet<PartNumber> PartNumbers { get; set; }
+        public virtual DbSet<RegistBarcode> RegistBarcodes { get; set; }
+        public virtual DbSet<ScanBarcode> ScanBarcodes { get; set; }
+        public virtual DbSet<ScanBarcodeDetail> ScanBarcodeDetails { get; set; }
+        public virtual DbSet<LanguageLibrary> LanguageLibrarys { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<AuthorityGroup> AuthorityGroups { get; set; }
         public virtual DbSet<ProgramFunctionMaster> ProgramFunctionMasters { get; set; }

@@ -12,7 +12,6 @@ namespace Inavina.Core.Helper
     /// </summary>
     public class SecurityHelper
     {
-
         public static String CreateSalt(int size)
         {
             if (size <= 0) return "";

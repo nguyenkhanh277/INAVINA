@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using Inavina.Persistence;
 using Inavina.Persistence.Repositories;
 using Inavina.Core;
+using Inavina.Core.Helper;
 
 namespace Inavina.View.Home
 {
@@ -18,6 +19,7 @@ namespace Inavina.View.Home
     {
         ProjectDataContext _projectDataContext = new ProjectDataContext();
         UserRepository _userRepository;
+        LanguageLibraryRepository _languageLibraryRepository;
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
@@ -32,10 +34,14 @@ namespace Inavina.View.Home
 
         private void frmSignIn_Load(object sender, EventArgs e)
         {
-            GlobalConstants.Language = Properties.Settings.Default.Language;
-            LoadLanguage(GlobalConstants.Language);
-            lblTieuDe.Text = Properties.Settings.Default.Company;
             _userRepository = new UserRepository(_projectDataContext);
+            _languageLibraryRepository = new LanguageLibraryRepository(_projectDataContext);
+            GlobalConstants.printerName = Properties.Settings.Default.PrinterName;
+            GlobalConstants.languageLibrary = _languageLibraryRepository.GetAll().ToList();
+            GlobalConstants.language = Properties.Settings.Default.Language;
+            LoadLanguage(GlobalConstants.language);
+            LanguageTranslate.ChangeLanguageForm(this);
+            lblTieuDe.Text = Properties.Settings.Default.Company;
             chkKeepMeSignedIn.Checked = Properties.Settings.Default.KeepMeSignedIn;
             if (chkKeepMeSignedIn.Checked)
             {
@@ -44,14 +50,33 @@ namespace Inavina.View.Home
             }
         }
 
-        private void btnSignIn_Click(object sender, EventArgs e)
+        private bool CheckData()
         {
+            if (txtUsername.Text.Trim() == "")
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtUsername.Focus();
+                return false;
+            }
+            else if (txtPassword.Text.Trim() == "")
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtPassword.Focus();
+                return false;
+            }
             _userRepository.CheckSecurity(txtUsername.Text.Trim(), txtPassword.Text.Trim());
             if (_userRepository.error)
             {
-                XtraMessageBox.Show(_userRepository.errorMessage, "Notification");
-                return;
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText(_userRepository.errorMessage), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtPassword.Focus();
+                return false;
             }
+            return true;
+        }
+
+        private void btnSignIn_Click(object sender, EventArgs e)
+        {
+            if (!CheckData()) return;
             Properties.Settings.Default.KeepMeSignedIn = chkKeepMeSignedIn.Checked;
             if (chkKeepMeSignedIn.Checked)
             {
@@ -87,8 +112,8 @@ namespace Inavina.View.Home
 
         private void LoadLanguage(int language)
         {
-            GlobalConstants.Language = language;
-            Properties.Settings.Default.Language = GlobalConstants.Language;
+            GlobalConstants.language = language;
+            Properties.Settings.Default.Language = GlobalConstants.language;
             Properties.Settings.Default.Save();
             if (language == (int)GlobalConstants.LanguageValue.English)
             {
@@ -100,17 +125,24 @@ namespace Inavina.View.Home
                 picVietnamese.BackColor = Color.Yellow;
                 picEnglish.BackColor = Color.Transparent;
             }
-            //NgonNgu.DoiNgonNguForm(this);
         }
 
         private void picVietnamese_Click(object sender, EventArgs e)
         {
             LoadLanguage((int)GlobalConstants.LanguageValue.Vietnamese);
+            LanguageTranslate.switchLanguage = true;
+            LanguageTranslate.ChangeLanguageForm(this);
+            LanguageTranslate.switchLanguage = false;
+            lblTieuDe.Text = Properties.Settings.Default.Company;
         }
 
         private void picEnglish_Click(object sender, EventArgs e)
         {
             LoadLanguage((int)GlobalConstants.LanguageValue.English);
+            LanguageTranslate.switchLanguage = true;
+            LanguageTranslate.ChangeLanguageForm(this);
+            LanguageTranslate.switchLanguage = false;
+            lblTieuDe.Text = Properties.Settings.Default.Company;
         }
     }
 }

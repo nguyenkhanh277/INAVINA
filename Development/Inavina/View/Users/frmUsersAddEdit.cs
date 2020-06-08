@@ -12,6 +12,7 @@ using Inavina.Persistence;
 using Inavina.Persistence.Repositories;
 using Inavina.Core.Domain;
 using Inavina.Core;
+using Inavina.Core.Helper;
 
 namespace Inavina.View.Users
 {
@@ -28,18 +29,27 @@ namespace Inavina.View.Users
             _projectDataContext.Dispose();
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            KeyEventArgs e = new KeyEventArgs(keyData);
+            if (e.KeyCode == Keys.F1)
+            {
+                btnSave_Click(null, null);
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
         string _id = "";
 
         public frmUsersAddEdit()
         {
             InitializeComponent();
-            this.Text = "Add User";
         }
 
         public frmUsersAddEdit(string id)
         {
             InitializeComponent();
-            this.Text = "Edit User";
             _id = id;
         }
 
@@ -48,6 +58,8 @@ namespace Inavina.View.Users
             _userRepository = new UserRepository(_projectDataContext);
             _authorityGroupRepository = new AuthorityGroupRepository(_projectDataContext);
             _userAuthorityRepository = new UserAuthorityRepository(_projectDataContext);
+            LanguageTranslate.ChangeLanguageForm(this);
+            LanguageTranslate.ChangeLanguageDataGridView(dgvDuLieu);
             if (String.IsNullOrEmpty(_id))
             {
                 Clear();
@@ -70,12 +82,13 @@ namespace Inavina.View.Users
             chkMale.Checked = true;
             txtNote.Text = "";
             chkUsing.Checked = true;
+            txtUsername.Focus();
         }
 
         private void GetData()
         {
             //Get Data Table User
-            User user = _userRepository.GetInfo(_id);
+            User user = _userRepository.Get(_id);
             txtUsername.Text = user.Username;
             txtPassword.Text = "";
             txtPassword.Enabled = false;
@@ -89,14 +102,8 @@ namespace Inavina.View.Users
 
         private void LoadAuthority()
         {
-            Dictionary<AuthorityGroupRepository.SearchConditions, object> conditionsMaster = new Dictionary<AuthorityGroupRepository.SearchConditions, object>();
-            conditionsMaster.Add(AuthorityGroupRepository.SearchConditions.SortId_Desc, false);
-            var authorityGroups = _authorityGroupRepository.GetAll(conditionsMaster);
-
-            Dictionary<UserAuthorityRepository.SearchConditions, object> conditions = new Dictionary<UserAuthorityRepository.SearchConditions, object>();
-            conditions.Add(UserAuthorityRepository.SearchConditions.UserID, _id);
-            conditions.Add(UserAuthorityRepository.SearchConditions.SortAuthorityGroupID_Desc, false);
-            var userAuthoritys = _userAuthorityRepository.GetAll(conditions);
+            var authorityGroups = _authorityGroupRepository.GetAll().OrderBy(_ => _.Sort);
+            var userAuthoritys = _userAuthorityRepository.Find(_ => _.UserID.Equals(_id)).OrderBy(_ => _.AuthorityGroupID);
 
             dgvDuLieu.Rows.Clear();
             int check = 0;
@@ -116,10 +123,45 @@ namespace Inavina.View.Users
             }
         }
 
+        private bool CheckData()
+        {
+            if (txtUsername.Text.Trim() == "")
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtUsername.Focus();
+                return false;
+            }
+            else if (txtPassword.Text.Trim() == "")
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtPassword.Focus();
+                return false;
+            }
+            else if (txtFullName.Text.Trim() == "")
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtFullName.Focus();
+                return false;
+            }
+            User user = _userRepository.FirstOrDefault(_ => _.Username.Equals(txtUsername.Text.Trim()));
+            if(user != null &&
+                (
+                    String.IsNullOrEmpty(_id) ||
+                    (!String.IsNullOrEmpty(_id) && txtUsername.Text.Trim() != user.Username)
+                ))
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Dữ liệu đã tồn tại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtFullName.Focus();
+                return false;
+            }
+            return true;
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
+                if (!CheckData()) return;
                 //Table User
                 User user = new User();
                 user.Id = _id;
@@ -140,7 +182,7 @@ namespace Inavina.View.Users
                         if (dgvDuLieu.Rows[i].Cells["Assign"].Value.ToString() == "1")
                         {
                             UserAuthority userAuthority = new UserAuthority();
-                            userAuthority.AuthorityGroupID = int.Parse(dgvDuLieu.Rows[i].Cells["Id"].Value.ToString());
+                            userAuthority.AuthorityGroupID = dgvDuLieu.Rows[i].Cells["Id"].Value.ToString();
                             userAuthority.UserID = _userRepository.id;
                             _userAuthorityRepository.Save(userAuthority);
                         }
@@ -152,7 +194,7 @@ namespace Inavina.View.Users
                 {
                     if (String.IsNullOrEmpty(_id))
                     {
-                        XtraMessageBox.Show("Save successfully.", "Notification");
+                        XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thành công"), LanguageTranslate.ChangeLanguageText("Thông báo"));
                         Clear();
                     }
                     else
@@ -163,16 +205,15 @@ namespace Inavina.View.Users
                 }
                 else
                 {
-                    XtraMessageBox.Show("Save failed.", "Notification");
+                    XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("Save failed.", "Notification");
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
         }
 
         private void btnClose_Click(object sender, EventArgs e)
