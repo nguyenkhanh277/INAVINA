@@ -97,6 +97,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Domain\ReportSynthetic.cs" />
     <Compile Include="Core\Domain\WorkOrder.cs" />
     <Compile Include="Core\Domain\ScanBarcode.cs" />
     <Compile Include="Core\Domain\ProductionPlan.cs" />
@@ -166,6 +167,30 @@
     </Compile>
     <Compile Include="View\LanguageLibrarys\frmLanguageLibraryAddEdit.Designer.cs">
       <DependentUpon>frmLanguageLibraryAddEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\frmReportSyntheticView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Reports\frmReportSyntheticView.Designer.cs">
+      <DependentUpon>frmReportSyntheticView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScanBarcodes\frmProductionHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ScanBarcodes\frmProductionHistory.Designer.cs">
+      <DependentUpon>frmProductionHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\frmProductReportNG.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Reports\frmProductReportNG.Designer.cs">
+      <DependentUpon>frmProductReportNG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\frmProductReportOK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Reports\frmProductReportOK.Designer.cs">
+      <DependentUpon>frmProductReportOK.cs</DependentUpon>
     </Compile>
     <Compile Include="View\RegistBarcodes\rptListBarcode.cs">
       <SubType>Component</SubType>
@@ -304,6 +329,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\LanguageLibrarys\frmLanguageLibraryAddEdit.resx">
       <DependentUpon>frmLanguageLibraryAddEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\frmReportSyntheticView.resx">
+      <DependentUpon>frmReportSyntheticView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ScanBarcodes\frmProductionHistory.resx">
+      <DependentUpon>frmProductionHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\frmProductReportNG.resx">
+      <DependentUpon>frmProductReportNG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Reports\frmProductReportOK.resx">
+      <DependentUpon>frmProductReportOK.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\RegistBarcodes\rptListBarcode.resx">
       <DependentUpon>rptListBarcode.cs</DependentUpon>

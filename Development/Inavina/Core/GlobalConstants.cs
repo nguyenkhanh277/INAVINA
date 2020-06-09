@@ -20,7 +20,7 @@ namespace Inavina.Core
         public enum GenderValue { Female, Male }
         public enum StatusValue { NoUse, Using }
         public enum ProductionStatusValue { None, InProgress, Completed, Hold }
-        public enum ResultStatusValue { None, OK, NG }
+        public enum ResultStatusValue { NG, OK, Duplicate, NotFound }
         public enum LanguageValue { Vietnamese, English }
         #endregion
     }

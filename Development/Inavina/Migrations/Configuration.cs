@@ -19,7 +19,7 @@ namespace Inavina.Migrations
 
         protected override void Seed(ProjectDataContext projectDataContext)
         {
-            FirstUpdate(projectDataContext);
+            //FirstUpdate(projectDataContext);
             AddOrUpdateLanguageLibrary(projectDataContext);
         }
 
@@ -28,6 +28,78 @@ namespace Inavina.Migrations
             #region LanguageLibrary
             var languageLibrarys = new List<LanguageLibrary>
             {
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Số lượng mã vạch đã in",
+                    English = "Number of barcodes printed",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "SL sản phẩm đã sản xuất",
+                    English = "Number of products produced",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Số lượng sản phẩm OK",
+                    English = "Quantity of products OK",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Số lượng sản phẩm NG",
+                    English = "Quantity of products NG",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Ngày",
+                    English = "DateTime",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Ngày sản xuất",
+                    English = "Produced date",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Kết quả sản xuất",
+                    English = "Produced result",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Từ ngày",
+                    English = "FromDate",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Đến ngày",
+                    English = "ToDate",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
                 new LanguageLibrary
                 {
                     Id = Guid.NewGuid().ToString(),
@@ -1036,6 +1108,5 @@ namespace Inavina.Migrations
                 projectDataContext.Molds.Add(mold);
             #endregion
         }
-
     }
 }

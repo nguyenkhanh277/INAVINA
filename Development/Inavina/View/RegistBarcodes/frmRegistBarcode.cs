@@ -14,7 +14,6 @@ using Inavina.Persistence.Repositories;
 using Inavina.Core.Helper;
 using Inavina.Core.Domain;
 using System.Linq.Expressions;
-using DevExpress.XtraGrid.Views.Grid;
 
 namespace Inavina.View.RegistBarcodes
 {
@@ -43,7 +42,7 @@ namespace Inavina.View.RegistBarcodes
             }
             else if (e.KeyCode == Keys.F3)
             {
-                btnHuy_Click(null, null);
+                btnCancel_Click(null, null);
                 return true;
             }
             else if (e.KeyCode == Keys.F4)
@@ -87,7 +86,7 @@ namespace Inavina.View.RegistBarcodes
 
         private void Control()
         {
-            btnRePrint.Enabled = btnHuy.Enabled = btnExcel.Enabled = (viewDuLieu.RowCount > 0);
+            btnRePrint.Enabled = btnCancel.Enabled = btnExcel.Enabled = (viewDuLieu.RowCount > 0);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -118,7 +117,7 @@ namespace Inavina.View.RegistBarcodes
             }
         }
 
-        private void btnHuy_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             if (viewDuLieu.RowCount > 0 && XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Bạn có muốn hủy thông tin này?"), LanguageTranslate.ChangeLanguageText("Xác nhận"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
@@ -174,7 +173,7 @@ namespace Inavina.View.RegistBarcodes
         {
             if (e.RowHandle >= 0)
             {
-                GridView view = sender as GridView;
+                DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
                 if (view.GetRowCellValue(e.RowHandle, "Status").ToString() == "NoUse")
                 {
                     e.Appearance.ForeColor = Color.Red;

@@ -185,7 +185,7 @@ namespace Inavina.View.RegistBarcodes
                     registBarcode = new RegistBarcode();
                     registBarcode.Id = _id;
                     registBarcode.PartNo = cbbPartNumber.Text.Trim();
-                    registBarcode.RegistDate = dtpRegistDate.Value;
+                    registBarcode.RegistDate = dtpRegistDate.Value.Date;
                     registBarcode.MachineNo = cbbMachine.Text.Trim();
                     registBarcode.MoldNo = cbbMold.Text.Trim();
                     registBarcode.ShiftNo = cbbShift.Text.Trim();

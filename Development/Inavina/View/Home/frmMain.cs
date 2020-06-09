@@ -61,9 +61,9 @@ namespace Inavina.View.Home
             btnProductionPlan.Caption = LanguageTranslate.ChangeLanguageText(btnProductionPlan.Caption);
             btnScanBarcode.Caption = LanguageTranslate.ChangeLanguageText(btnScanBarcode.Caption);
             btnProductionHistory.Caption = LanguageTranslate.ChangeLanguageText(btnProductionHistory.Caption);
-            btnReportProductOK.Caption = LanguageTranslate.ChangeLanguageText(btnReportProductOK.Caption);
-            btnReportProductNG.Caption = LanguageTranslate.ChangeLanguageText(btnReportProductNG.Caption);
-            btnReport.Caption = LanguageTranslate.ChangeLanguageText(btnReport.Caption);
+            btnProductReportOK.Caption = LanguageTranslate.ChangeLanguageText(btnProductReportOK.Caption);
+            btnProductReportNG.Caption = LanguageTranslate.ChangeLanguageText(btnProductReportNG.Caption);
+            btnReportSyntheticView.Caption = LanguageTranslate.ChangeLanguageText(btnReportSyntheticView.Caption);
             rbpHeThong.Text = LanguageTranslate.ChangeLanguageText(rbpHeThong.Text);
             rbpDanhMuc.Text = LanguageTranslate.ChangeLanguageText(rbpDanhMuc.Text);
             rbpChucNang.Text = LanguageTranslate.ChangeLanguageText(rbpChucNang.Text);
@@ -216,22 +216,62 @@ namespace Inavina.View.Home
 
         private void btnProductionHistory_ItemClick(object sender, ItemClickEventArgs e)
         {
-            
+            XtraForm frm = this.CheckExist(typeof(ScanBarcodes.frmProductionHistory));
+            if (frm != null)
+            {
+                frm.Activate();
+            }
+            else
+            {
+                ScanBarcodes.frmProductionHistory f = new ScanBarcodes.frmProductionHistory();
+                f.MdiParent = this;
+                f.Show();
+            }
         }
 
-        private void btnReportProductOK_ItemClick(object sender, ItemClickEventArgs e)
+        private void btnProductReportOK_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            XtraForm frm = this.CheckExist(typeof(Reports.frmProductReportOK));
+            if (frm != null)
+            {
+                frm.Activate();
+            }
+            else
+            {
+                Reports.frmProductReportOK f = new Reports.frmProductReportOK();
+                f.MdiParent = this;
+                f.Show();
+            }
         }
 
-        private void btnReportProductNG_ItemClick(object sender, ItemClickEventArgs e)
+        private void btnProductReportNG_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            XtraForm frm = this.CheckExist(typeof(Reports.frmProductReportNG));
+            if (frm != null)
+            {
+                frm.Activate();
+            }
+            else
+            {
+                Reports.frmProductReportNG f = new Reports.frmProductReportNG();
+                f.MdiParent = this;
+                f.Show();
+            }
         }
 
-        private void btnReport_ItemClick(object sender, ItemClickEventArgs e)
+        private void btnReportSyntheticView_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            XtraForm frm = this.CheckExist(typeof(Reports.frmReportSyntheticView));
+            if (frm != null)
+            {
+                frm.Activate();
+            }
+            else
+            {
+                Reports.frmReportSyntheticView f = new Reports.frmReportSyntheticView();
+                f.MdiParent = this;
+                f.Show();
+            }
         }
     }
 }

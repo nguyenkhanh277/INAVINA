@@ -41,9 +41,9 @@ namespace Inavina.Persistence.Repositories
             return Context.Set<TEntity>().ToList();
         }
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> expression)
         {
-            return Context.Set<TEntity>().Where(predicate);
+            return Context.Set<TEntity>().Where(expression);
         }
 
         public IEnumerable<TEntity> Find(IEnumerable<Expression<Func<TEntity, bool>>> expressions)
@@ -56,9 +56,9 @@ namespace Inavina.Persistence.Repositories
             return queryable.ToList();
         }
 
-        public TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate)
+        public TEntity FirstOrDefault(Expression<Func<TEntity, bool>> expression)
         {
-            return Context.Set<TEntity>().FirstOrDefault(predicate);
+            return Context.Set<TEntity>().FirstOrDefault(expression);
         }
 
         public void Add(TEntity entity)

@@ -43,9 +43,9 @@ namespace Inavina.View.Home
             this.btnShift = new DevExpress.XtraBars.BarButtonItem();
             this.btnPartNumber = new DevExpress.XtraBars.BarButtonItem();
             this.btnProductionHistory = new DevExpress.XtraBars.BarButtonItem();
-            this.btnReportProductOK = new DevExpress.XtraBars.BarButtonItem();
-            this.btnReportProductNG = new DevExpress.XtraBars.BarButtonItem();
-            this.btnReport = new DevExpress.XtraBars.BarButtonItem();
+            this.btnProductReportOK = new DevExpress.XtraBars.BarButtonItem();
+            this.btnProductReportNG = new DevExpress.XtraBars.BarButtonItem();
+            this.btnReportSyntheticView = new DevExpress.XtraBars.BarButtonItem();
             this.btnProductionPlan = new DevExpress.XtraBars.BarButtonItem();
             this.rbpHeThong = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -76,9 +76,9 @@ namespace Inavina.View.Home
             this.btnShift,
             this.btnPartNumber,
             this.btnProductionHistory,
-            this.btnReportProductOK,
-            this.btnReportProductNG,
-            this.btnReport,
+            this.btnProductReportOK,
+            this.btnProductReportNG,
+            this.btnReportSyntheticView,
             this.btnProductionPlan});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.MaxItemId = 40;
@@ -209,32 +209,32 @@ namespace Inavina.View.Home
             this.btnProductionHistory.Name = "btnProductionHistory";
             this.btnProductionHistory.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProductionHistory_ItemClick);
             // 
-            // btnReportProductOK
+            // btnProductReportOK
             // 
-            this.btnReportProductOK.Caption = "Thống kê sản phẩm OK";
-            this.btnReportProductOK.Id = 36;
-            this.btnReportProductOK.ImageOptions.LargeImage = global::Inavina.Properties.Resources.ScanBarcodeOK;
-            this.btnReportProductOK.LargeWidth = 100;
-            this.btnReportProductOK.Name = "btnReportProductOK";
-            this.btnReportProductOK.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReportProductOK_ItemClick);
+            this.btnProductReportOK.Caption = "Thống kê sản phẩm OK";
+            this.btnProductReportOK.Id = 36;
+            this.btnProductReportOK.ImageOptions.LargeImage = global::Inavina.Properties.Resources.ScanBarcodeOK;
+            this.btnProductReportOK.LargeWidth = 100;
+            this.btnProductReportOK.Name = "btnProductReportOK";
+            this.btnProductReportOK.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProductReportOK_ItemClick);
             // 
-            // btnReportProductNG
+            // btnProductReportNG
             // 
-            this.btnReportProductNG.Caption = "Thống kê sản phẩm NG";
-            this.btnReportProductNG.Id = 37;
-            this.btnReportProductNG.ImageOptions.LargeImage = global::Inavina.Properties.Resources.ScanBarcodeNG;
-            this.btnReportProductNG.LargeWidth = 100;
-            this.btnReportProductNG.Name = "btnReportProductNG";
-            this.btnReportProductNG.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReportProductNG_ItemClick);
+            this.btnProductReportNG.Caption = "Thống kê sản phẩm NG";
+            this.btnProductReportNG.Id = 37;
+            this.btnProductReportNG.ImageOptions.LargeImage = global::Inavina.Properties.Resources.ScanBarcodeNG;
+            this.btnProductReportNG.LargeWidth = 100;
+            this.btnProductReportNG.Name = "btnProductReportNG";
+            this.btnProductReportNG.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProductReportNG_ItemClick);
             // 
-            // btnReport
+            // btnReportSyntheticView
             // 
-            this.btnReport.Caption = "Báo cáo tổng hợp";
-            this.btnReport.Id = 38;
-            this.btnReport.ImageOptions.LargeImage = global::Inavina.Properties.Resources.Report;
-            this.btnReport.LargeWidth = 100;
-            this.btnReport.Name = "btnReport";
-            this.btnReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReport_ItemClick);
+            this.btnReportSyntheticView.Caption = "Báo cáo tổng hợp";
+            this.btnReportSyntheticView.Id = 38;
+            this.btnReportSyntheticView.ImageOptions.LargeImage = global::Inavina.Properties.Resources.Report;
+            this.btnReportSyntheticView.LargeWidth = 100;
+            this.btnReportSyntheticView.Name = "btnReportSyntheticView";
+            this.btnReportSyntheticView.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReportSyntheticView_ItemClick);
             // 
             // btnProductionPlan
             // 
@@ -274,7 +274,6 @@ namespace Inavina.View.Home
             this.ribbonPageGroup3.ItemLinks.Add(this.btnShift);
             this.ribbonPageGroup3.ItemLinks.Add(this.btnMold);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
-            this.ribbonPageGroup3.Text = "ribbonPageGroup3";
             // 
             // rbpChucNang
             // 
@@ -290,7 +289,6 @@ namespace Inavina.View.Home
             this.ribbonPageGroup2.ItemLinks.Add(this.btnScanBarcode);
             this.ribbonPageGroup2.ItemLinks.Add(this.btnProductionHistory);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
-            this.ribbonPageGroup2.Text = "ribbonPageGroup2";
             // 
             // rbpBaoCao
             // 
@@ -301,11 +299,10 @@ namespace Inavina.View.Home
             // 
             // ribbonPageGroup4
             // 
-            this.ribbonPageGroup4.ItemLinks.Add(this.btnReportProductOK);
-            this.ribbonPageGroup4.ItemLinks.Add(this.btnReportProductNG);
-            this.ribbonPageGroup4.ItemLinks.Add(this.btnReport);
+            this.ribbonPageGroup4.ItemLinks.Add(this.btnProductReportOK);
+            this.ribbonPageGroup4.ItemLinks.Add(this.btnProductReportNG);
+            this.ribbonPageGroup4.ItemLinks.Add(this.btnReportSyntheticView);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
-            this.ribbonPageGroup4.Text = "ribbonPageGroup4";
             // 
             // frmMain
             // 
@@ -347,9 +344,9 @@ namespace Inavina.View.Home
         private DevExpress.XtraBars.Ribbon.RibbonPage rbpDanhMuc;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private BarButtonItem btnProductionHistory;
-        private BarButtonItem btnReportProductOK;
-        private BarButtonItem btnReportProductNG;
-        private BarButtonItem btnReport;
+        private BarButtonItem btnProductReportOK;
+        private BarButtonItem btnProductReportNG;
+        private BarButtonItem btnReportSyntheticView;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
         private BarButtonItem btnProductionPlan;
     }

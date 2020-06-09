@@ -107,30 +107,6 @@ namespace Inavina.Persistence.Repositories
             return result;
         }
 
-        //public void PrintBarcode(string barcode)
-        //{
-        //    try
-        //    {
-        //        View.RegistBarcodes.rptListBarcode _report = new View.RegistBarcodes.rptListBarcode();
-        //        _report.txtBarcode.Text = barcode;
-        //        _report.Parameters["Barcode"].Value = barcode;
-        //        //if (GeneralHelper.ValidPrinter(GlobalConstants.printerName))
-        //        //{
-        //        //    _report.PrinterName = GlobalConstants.printerName;
-        //        //    DevExpress.XtraReports.UI.ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(_report);
-        //        //    rpt.AutoShowParametersPanel = false;
-        //        //    rpt.Print();
-        //        //}
-        //        //else
-        //        {
-        //            DevExpress.XtraReports.UI.ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(_report);
-        //            rpt.AutoShowParametersPanel = false;
-        //            rpt.ShowPreview();
-        //        }
-        //    }
-        //    catch { }
-        //}
-
         public void PrintListBarcode(DataTable listBarcode)
         {
             try
@@ -152,6 +128,47 @@ namespace Inavina.Persistence.Repositories
                 }
             }
             catch { }
+        }
+
+        public List<ReportSynthetic> GetReportSyntheticView(DateTime fromDate, DateTime toDate)
+        {
+            var query = from x in ProjectDataContext.RegistBarcodes
+                        join y in ProjectDataContext.ScanBarcodes on x.Barcode equals y.Barcode into z
+                        from result in z.DefaultIfEmpty()
+                        where x.RegistDate >= fromDate && x.RegistDate <= toDate
+                        group result by new
+                        {
+                            x.RegistDate,
+                            x.PartNo
+                        } into g
+
+                        select new
+                        {
+                            RegistDate = g.Key.RegistDate,
+                            PartNo = g.Key.PartNo,
+                            QuantityPrint = g.Count(),
+                            QuantityScan = g.Sum(_ => (!String.IsNullOrEmpty(_.PartNo) ? 1 : 0)),
+                            QuantityOK = g.Sum(_ => (_.ResultStatus == GlobalConstants.ResultStatusValue.OK ? 1 : 0)),
+                            QuantityNG = g.Sum(_ => (_.ResultStatus == GlobalConstants.ResultStatusValue.OK ? 1 : 0))
+                        };
+
+            List<ReportSynthetic> reportSyntheticViews = new List<ReportSynthetic>();
+            if (query.Any())
+            {
+                ReportSynthetic reportSyntheticView;
+                foreach (var _ in query)
+                {
+                    reportSyntheticView = new ReportSynthetic();
+                    reportSyntheticView.RegistDate = _.RegistDate;
+                    reportSyntheticView.PartNo = _.PartNo;
+                    reportSyntheticView.QuantityPrint = _.QuantityPrint;
+                    reportSyntheticView.QuantityScan = _.QuantityScan;
+                    reportSyntheticView.QuantityOK = _.QuantityOK;
+                    reportSyntheticView.QuantityNG = _.QuantityNG;
+                    reportSyntheticViews.Add(reportSyntheticView);
+                }
+            }
+            return reportSyntheticViews;
         }
     }
 }

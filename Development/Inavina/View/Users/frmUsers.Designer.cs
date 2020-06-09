@@ -179,6 +179,7 @@
             this.viewDuLieu.OptionsView.ShowGroupPanel = false;
             this.viewDuLieu.RowHeight = 40;
             this.viewDuLieu.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.viewDuLieu_CustomDrawRowIndicator);
+            this.viewDuLieu.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.viewDuLieu_RowCellStyle);
             this.viewDuLieu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.viewDuLieu_KeyDown);
             this.viewDuLieu.DoubleClick += new System.EventHandler(this.btnEdit_Click);
             // 

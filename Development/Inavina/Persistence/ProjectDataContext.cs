@@ -61,14 +61,15 @@ namespace Inavina.Persistence
         public virtual DbSet<Shift> Shifts { get; set; }
         public virtual DbSet<PartNumber> PartNumbers { get; set; }
         public virtual DbSet<RegistBarcode> RegistBarcodes { get; set; }
-        public virtual DbSet<ProductionPlan> ScanBarcodes { get; set; }
-        public virtual DbSet<ScanBarcode> ScanBarcodeDetails { get; set; }
+        public virtual DbSet<ProductionPlan> ProductionPlans { get; set; }
+        public virtual DbSet<ScanBarcode> ScanBarcodes { get; set; }
         public virtual DbSet<LanguageLibrary> LanguageLibrarys { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<AuthorityGroup> AuthorityGroups { get; set; }
         public virtual DbSet<ProgramFunctionMaster> ProgramFunctionMasters { get; set; }
         public virtual DbSet<ProgramFunctionAuthority> ProgramFunctionAuthoritys { get; set; }
         public virtual DbSet<UserAuthority> UserAuthoritys { get; set; }
+        //public DbSet ReportSyntheticView { get; set; }
         #endregion
 
     }

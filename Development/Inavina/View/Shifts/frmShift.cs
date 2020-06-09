@@ -155,5 +155,18 @@ namespace Inavina.View.Shifts
             if (e.RowHandle >= 0)
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
         }
+
+        private void viewDuLieu_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            if (e.RowHandle >= 0)
+            {
+                DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+                if (view.GetRowCellValue(e.RowHandle, "Status").ToString() == "NoUse")
+                {
+                    e.Appearance.ForeColor = Color.Red;
+                    e.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F, FontStyle.Strikeout);
+                }
+            }
+        }
     }
 }

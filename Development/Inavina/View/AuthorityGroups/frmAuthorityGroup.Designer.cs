@@ -39,10 +39,10 @@
             this.Id = new DevExpress.XtraGrid.Columns.GridColumn();
             this.AuthorityGroupName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
+            this.Status = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.Status = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDuLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewDuLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
@@ -167,6 +167,7 @@
             this.viewDuLieu.OptionsView.ShowGroupPanel = false;
             this.viewDuLieu.RowHeight = 40;
             this.viewDuLieu.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.viewDuLieu_CustomDrawRowIndicator);
+            this.viewDuLieu.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.viewDuLieu_RowCellStyle);
             this.viewDuLieu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.viewDuLieu_KeyDown);
             this.viewDuLieu.DoubleClick += new System.EventHandler(this.btnEdit_Click);
             // 
@@ -199,6 +200,24 @@
             // 
             this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
             // 
+            // Status
+            // 
+            this.Status.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Status.AppearanceCell.Options.UseFont = true;
+            this.Status.AppearanceCell.Options.UseTextOptions = true;
+            this.Status.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.Status.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.Status.AppearanceHeader.Options.UseFont = true;
+            this.Status.AppearanceHeader.Options.UseTextOptions = true;
+            this.Status.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.Status.Caption = "Trạng thái";
+            this.Status.FieldName = "Status";
+            this.Status.MaxWidth = 75;
+            this.Status.MinWidth = 75;
+            this.Status.Name = "Status";
+            this.Status.Visible = true;
+            this.Status.VisibleIndex = 1;
+            // 
             // repositoryItemCheckEdit1
             // 
             this.repositoryItemCheckEdit1.AutoHeight = false;
@@ -227,24 +246,6 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1290, 50);
             this.panelControl1.TabIndex = 0;
-            // 
-            // Status
-            // 
-            this.Status.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.Status.AppearanceCell.Options.UseFont = true;
-            this.Status.AppearanceCell.Options.UseTextOptions = true;
-            this.Status.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.Status.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.Status.AppearanceHeader.Options.UseFont = true;
-            this.Status.AppearanceHeader.Options.UseTextOptions = true;
-            this.Status.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.Status.Caption = "Trạng thái";
-            this.Status.FieldName = "Status";
-            this.Status.MaxWidth = 75;
-            this.Status.MinWidth = 75;
-            this.Status.Name = "Status";
-            this.Status.Visible = true;
-            this.Status.VisibleIndex = 1;
             // 
             // frmAuthorityGroup
             // 

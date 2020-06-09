@@ -11,18 +11,16 @@ using DevExpress.XtraEditors;
 using Inavina.Persistence;
 using Inavina.Core;
 using Inavina.Persistence.Repositories;
-using Inavina.View.AuthorityGroups;
-using Inavina.View.ProgramFunctionMasters;
 using Inavina.Core.Helper;
-using System.Linq.Expressions;
 using Inavina.Core.Domain;
+using System.Linq.Expressions;
 
-namespace Inavina.View.Users
+namespace Inavina.View.ScanBarcodes
 {
-    public partial class frmUsers : DevExpress.XtraEditors.XtraForm
+    public partial class frmProductionHistory : DevExpress.XtraEditors.XtraForm
     {
         ProjectDataContext _projectDataContext;
-        UserRepository _userRepository;
+        ScanBarcodeRepository _scanBarcodeRepository;
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
@@ -33,19 +31,9 @@ namespace Inavina.View.Users
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             KeyEventArgs e = new KeyEventArgs(keyData);
-            if (e.KeyCode == Keys.F1)
+            if (e.KeyCode == Keys.F3)
             {
-                btnAdd_Click(null, null);
-                return true;
-            }
-            else if (e.KeyCode == Keys.F2)
-            {
-                btnEdit_Click(null, null);
-                return true;
-            }
-            else if (e.KeyCode == Keys.F3)
-            {
-                btnDelete_Click(null, null);
+                btnCancel_Click(null, null);
                 return true;
             }
             else if (e.KeyCode == Keys.F4)
@@ -58,70 +46,43 @@ namespace Inavina.View.Users
                 btnRefresh_Click(null, null);
                 return true;
             }
-            else if (e.KeyCode == Keys.F6)
-            {
-                btnAuthority_Click(null, null);
-                return true;
-            }
-            else if (e.KeyCode == Keys.F7)
-            {
-                btnProgram_Click(null, null);
-                return true;
-            }
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        public frmUsers()
+        public frmProductionHistory()
         {
             InitializeComponent();
         }
 
-        private void frmUsers_Load(object sender, EventArgs e)
+        private void frmProductionHistory_Load(object sender, EventArgs e)
         {
             LanguageTranslate.ChangeLanguageForm(this);
             LanguageTranslate.ChangeLanguageGridView(viewDuLieu);
-            btnProgram.Visible = (GlobalConstants.username.ToUpper() == "ADMIN");
             Search();
         }
 
         private void Search()
         {
             _projectDataContext = new ProjectDataContext();
-            _userRepository = new UserRepository(_projectDataContext);
-            dgvDuLieu.DataSource = _userRepository.GetAll();
+            _scanBarcodeRepository = new ScanBarcodeRepository(_projectDataContext);
+            List<Expression<Func<ScanBarcode, bool>>> expressions = new List<Expression<Func<ScanBarcode, bool>>>();
+            DateTime fromDate = DateTime.Parse(dtpFromDate.Value.ToString("yyyy-MM-dd 00:00:00"));
+            DateTime toDate = DateTime.Parse(dtpToDate.Value.ToString("yyyy-MM-dd 23:59:59"));
+            expressions.Add(_ => _.ScanDate >= fromDate && _.ScanDate <= toDate);
+            dgvDuLieu.DataSource = _scanBarcodeRepository.Find(expressions);
             Control();
         }
 
         private void Control()
         {
-            btnEdit.Enabled = btnDelete.Enabled = btnExcel.Enabled = (viewDuLieu.RowCount > 0);
+            btnExcel.Enabled = (viewDuLieu.RowCount > 0);
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-            frmUsersAddEdit frm = new frmUsersAddEdit();
-            frm.ShowDialog();
-            Search();
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            if (viewDuLieu.RowCount > 0)
+            if (viewDuLieu.RowCount > 0 && XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Bạn có muốn hủy thông tin này?"), LanguageTranslate.ChangeLanguageText("Xác nhận"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                frmUsersAddEdit frm = new frmUsersAddEdit(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
-                DialogResult dr = frm.ShowDialog();
-                if (dr == DialogResult.OK)
-                {
-                    Search();
-                }
-            }
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            if (viewDuLieu.RowCount > 0 && XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Bạn có muốn xóa thông tin này?"), LanguageTranslate.ChangeLanguageText("Xác nhận"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                _userRepository.Remove(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
+                _scanBarcodeRepository.Cancel(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
                 UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);
                 int result = unitOfWork.Complete();
                 if (result > 0)
@@ -130,7 +91,7 @@ namespace Inavina.View.Users
                 }
                 else
                 {
-                    XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Xóa thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Hủy thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
@@ -144,18 +105,6 @@ namespace Inavina.View.Users
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             Search();
-        }
-
-        private void btnAuthority_Click(object sender, EventArgs e)
-        {
-            frmAuthorityGroup frm = new frmAuthorityGroup();
-            frm.ShowDialog();
-        }
-
-        private void btnProgram_Click(object sender, EventArgs e)
-        {
-            frmProgramFunctionMaster frm = new frmProgramFunctionMaster();
-            frm.ShowDialog();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
