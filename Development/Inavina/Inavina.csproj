@@ -81,6 +81,9 @@
     <Reference Include="DevExpress.Utils.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraBars.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Ksoft.Core">
+      <HintPath>License\Ksoft.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
@@ -150,6 +153,12 @@
     </Compile>
     <Compile Include="View\AuthorityGroups\frmAuthorityGroupAddEdit.Designer.cs">
       <DependentUpon>frmAuthorityGroupAddEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Home\frmLicenses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Home\frmLicenses.Designer.cs">
+      <DependentUpon>frmLicenses.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Home\frmSetting.cs">
       <SubType>Form</SubType>
@@ -339,6 +348,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\AuthorityGroups\frmAuthorityGroupAddEdit.resx">
       <DependentUpon>frmAuthorityGroupAddEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Home\frmLicenses.resx">
+      <DependentUpon>frmLicenses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Home\frmSetting.resx">
       <DependentUpon>frmSetting.cs</DependentUpon>

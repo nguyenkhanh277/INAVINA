@@ -1,4 +1,5 @@
 ﻿using Inavina.Core.Domain;
+using Khoai.Core.License;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,6 +9,7 @@ namespace Inavina.Core
     public class GlobalConstants
     {
         #region Default Values
+        public static kLicense license;
         public static string userID = "";
         public static string username = "";
         public static string fullName = "";

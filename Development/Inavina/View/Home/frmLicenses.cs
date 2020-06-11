@@ -1,0 +1,67 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using DevExpress.XtraEditors;
+using Inavina.Persistence;
+using Inavina.Persistence.Repositories;
+using Inavina.Core;
+using Inavina.Core.Helper;
+using Inavina.Core.Domain;
+using Khoai.Core.License;
+
+namespace Inavina.View.Home
+{
+    public partial class frmLicenses : DevExpress.XtraEditors.XtraForm
+    {
+        public frmLicenses()
+        {
+            InitializeComponent();
+            lblMaKichHoat.Text = GlobalConstants.license.Read().ProductId;
+            lblTrangThai.Text = "Dùng thử";
+            lblBanQuyen.Text = "Dùng thử cho 1 máy tính (" + (int)GlobalConstants.license.Read().TrialKeyLimit + " ngày)";
+            lblNgayKichHoat.Text = GlobalConstants.license.Read().TrialKeyBegin.ToString("dd/MM/yyyy HH:mm");
+            lblNgayHetHan.Text = GlobalConstants.license.Read().TrialKeyEnd.ToString("dd/MM/yyyy HH:mm");
+            lblConLai.Text = GlobalConstants.license.Read().TrialKeyLeft.ToString() + " ngày";
+            btnTrial.Enabled = (GlobalConstants.license.Read().TrialKeyLeft > 0);
+        }
+
+        private void frmLicenses_Load(object sender, EventArgs e)
+        {
+            LanguageTranslate.ChangeLanguageForm(this);
+        }
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            frmLicense frm = new frmLicense();
+            frm.License = GlobalConstants.license;
+            frm.BuyLicenseUrl = "http://google.com";
+            frm.Text = "Đăng ký sử dụng phần mềm " + Properties.Settings.Default.Company;
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            DialogResult dr = frm.ShowDialog();
+            if (dr != DialogResult.OK)
+            {
+                return;
+            }
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void btnTrial_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+    }
+}
