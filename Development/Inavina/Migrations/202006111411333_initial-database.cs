@@ -77,6 +77,7 @@ namespace Inavina.Migrations
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         MachineNo = c.String(),
+                        MachineName = c.String(),
                         Note = c.String(),
                         Status = c.Int(nullable: false),
                         CreatedAt = c.DateTime(),
@@ -116,6 +117,28 @@ namespace Inavina.Migrations
                         EditedBy = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.ProductionPlans",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        WorkOrder = c.String(),
+                        PartNo = c.String(),
+                        Model = c.String(),
+                        ExpectedDeliveryDate = c.DateTime(nullable: false),
+                        Quantity = c.Double(nullable: false),
+                        UserID = c.String(maxLength: 128),
+                        ProductionStatus = c.Int(nullable: false),
+                        Status = c.Int(nullable: false),
+                        CreatedAt = c.DateTime(),
+                        CreatedBy = c.String(),
+                        EditedAt = c.DateTime(),
+                        EditedBy = c.String(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Users", t => t.UserID)
+                .Index(t => t.UserID);
             
             CreateTable(
                 "dbo.ProgramFunctionMasters",
@@ -161,11 +184,11 @@ namespace Inavina.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
-                        ScanDate = c.DateTime(nullable: false),
-                        Barcode = c.String(),
                         PartNo = c.String(),
+                        ScanDate = c.DateTime(nullable: false),
                         ShiftNo = c.String(),
                         MachineNo = c.String(),
+                        Barcode = c.String(),
                         UserID = c.String(),
                         ResultStatus = c.Int(nullable: false),
                         Status = c.Int(nullable: false),
@@ -177,33 +200,13 @@ namespace Inavina.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.ProductionPlans",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        WorkOrder = c.String(),
-                        PartNo = c.String(),
-                        Model = c.String(),
-                        ExpectedDeliveryDate = c.DateTime(nullable: false),
-                        Quantity = c.Double(nullable: false),
-                        UserID = c.String(maxLength: 128),
-                        ProductionStatus = c.Int(nullable: false),
-                        Status = c.Int(nullable: false),
-                        CreatedAt = c.DateTime(),
-                        CreatedBy = c.String(),
-                        EditedAt = c.DateTime(),
-                        EditedBy = c.String(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Users", t => t.UserID)
-                .Index(t => t.UserID);
-            
-            CreateTable(
                 "dbo.Shifts",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         ShiftNo = c.String(),
+                        FromTime = c.DateTime(nullable: false),
+                        ToTime = c.DateTime(nullable: false),
                         Note = c.String(),
                         Status = c.Int(nullable: false),
                         CreatedAt = c.DateTime(),
@@ -243,17 +246,17 @@ namespace Inavina.Migrations
             DropForeignKey("dbo.ProductionPlans", "UserID", "dbo.Users");
             DropForeignKey("dbo.UserAuthorities", "AuthorityGroupID", "dbo.AuthorityGroups");
             DropForeignKey("dbo.ProgramFunctionAuthorities", "AuthorityGroupID", "dbo.AuthorityGroups");
-            DropIndex("dbo.ProductionPlans", new[] { "UserID" });
             DropIndex("dbo.RegistBarcodes", new[] { "UserID" });
+            DropIndex("dbo.ProductionPlans", new[] { "UserID" });
             DropIndex("dbo.UserAuthorities", new[] { "AuthorityGroupID" });
             DropIndex("dbo.UserAuthorities", new[] { "UserID" });
             DropIndex("dbo.ProgramFunctionAuthorities", new[] { "AuthorityGroupID" });
             DropTable("dbo.Users");
             DropTable("dbo.Shifts");
-            DropTable("dbo.ProductionPlans");
             DropTable("dbo.ScanBarcodes");
             DropTable("dbo.RegistBarcodes");
             DropTable("dbo.ProgramFunctionMasters");
+            DropTable("dbo.ProductionPlans");
             DropTable("dbo.PartNumbers");
             DropTable("dbo.Molds");
             DropTable("dbo.Machines");

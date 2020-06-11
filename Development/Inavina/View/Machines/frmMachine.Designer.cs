@@ -44,6 +44,7 @@
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.MachineName = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDuLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewDuLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
@@ -155,6 +156,7 @@
             this.viewDuLieu.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Id,
             this.MachineNo,
+            this.MachineName,
             this.Note,
             this.Status});
             this.viewDuLieu.DetailHeight = 284;
@@ -199,6 +201,7 @@
             this.MachineNo.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.MachineNo.AppearanceCell.Options.UseFont = true;
             this.MachineNo.AppearanceCell.Options.UseTextOptions = true;
+            this.MachineNo.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.MachineNo.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.MachineNo.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.MachineNo.AppearanceHeader.Options.UseFont = true;
@@ -230,7 +233,7 @@
             this.Note.MinWidth = 100;
             this.Note.Name = "Note";
             this.Note.Visible = true;
-            this.Note.VisibleIndex = 1;
+            this.Note.VisibleIndex = 2;
             this.Note.Width = 100;
             // 
             // Status
@@ -249,7 +252,7 @@
             this.Status.MinWidth = 75;
             this.Status.Name = "Status";
             this.Status.Visible = true;
-            this.Status.VisibleIndex = 2;
+            this.Status.VisibleIndex = 3;
             // 
             // repositoryItemCheckEdit1
             // 
@@ -279,6 +282,23 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1290, 50);
             this.panelControl1.TabIndex = 0;
+            // 
+            // MachineName
+            // 
+            this.MachineName.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.MachineName.AppearanceCell.Options.UseFont = true;
+            this.MachineName.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.MachineName.AppearanceHeader.Options.UseFont = true;
+            this.MachineName.AppearanceHeader.Options.UseTextOptions = true;
+            this.MachineName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.MachineName.Caption = "Tên máy";
+            this.MachineName.FieldName = "MachineName";
+            this.MachineName.MaxWidth = 200;
+            this.MachineName.MinWidth = 200;
+            this.MachineName.Name = "MachineName";
+            this.MachineName.Visible = true;
+            this.MachineName.VisibleIndex = 1;
+            this.MachineName.Width = 200;
             // 
             // frmMachine
             // 
@@ -325,5 +345,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn Note;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraGrid.Columns.GridColumn Status;
+        private DevExpress.XtraGrid.Columns.GridColumn MachineName;
     }
 }

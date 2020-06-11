@@ -96,6 +96,14 @@ namespace Inavina.Core.Helper
             {
                 return;
             }
+            if (x is DateEdit)
+            {
+                return;
+            }
+            if (x is TimeEdit)
+            {
+                return;
+            }
             try
             {
                 x.Text = ChangeLanguageText(x.Text.Trim());

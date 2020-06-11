@@ -75,6 +75,7 @@ namespace Inavina.View.Machines
         private void Clear()
         {
             txtMachineNo.Text = "";
+            txtMachineName.Text = "";
             txtNote.Text = "";
             chkUsing.Checked = true;
             txtMachineNo.Focus();
@@ -85,6 +86,7 @@ namespace Inavina.View.Machines
             //Get Data Table Machine
             Machine machine = _machineRepository.Get(_id);
             txtMachineNo.Text = machine.MachineNo;
+            txtMachineName.Text = machine.MachineName;
             txtNote.Text = machine.Note;
             chkUsing.Checked = (machine.Status == GlobalConstants.StatusValue.Using);
         }

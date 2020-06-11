@@ -326,7 +326,7 @@
             // 
             this.txtNote.Location = new System.Drawing.Point(45, 415);
             this.txtNote.Name = "txtNote";
-            this.txtNote.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.txtNote.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtNote.Properties.Appearance.Options.UseFont = true;
             this.txtNote.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.txtNote.Properties.AppearanceFocused.Options.UseBackColor = true;

@@ -183,7 +183,7 @@
             // 
             this.txtExplanation.Location = new System.Drawing.Point(45, 165);
             this.txtExplanation.Name = "txtExplanation";
-            this.txtExplanation.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.txtExplanation.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtExplanation.Properties.Appearance.Options.UseFont = true;
             this.txtExplanation.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.txtExplanation.Properties.AppearanceFocused.Options.UseBackColor = true;

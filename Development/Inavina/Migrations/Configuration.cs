@@ -19,8 +19,8 @@ namespace Inavina.Migrations
 
         protected override void Seed(ProjectDataContext projectDataContext)
         {
-            //FirstUpdate(projectDataContext);
-            //AddOrUpdateLanguageLibrary(projectDataContext);
+            FirstUpdate(projectDataContext);
+            AddOrUpdateLanguageLibrary(projectDataContext);
         }
 
         private void AddOrUpdateLanguageLibrary(ProjectDataContext projectDataContext)
@@ -623,6 +623,14 @@ namespace Inavina.Migrations
                 new LanguageLibrary
                 {
                     Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Tên máy",
+                    English = "Machine Name",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
                     Vietnamese = "Mã khuôn",
                     English = "Mold No",
                     CreatedAt = DateTime.Now,
@@ -1070,6 +1078,7 @@ namespace Inavina.Migrations
                 {
                     Id = Guid.NewGuid().ToString(),
                     MachineNo = "01",
+                    MachineName = "Machine 1",
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
@@ -1078,6 +1087,7 @@ namespace Inavina.Migrations
                 {
                     Id = Guid.NewGuid().ToString(),
                     MachineNo = "02",
+                    MachineName = "Machine 2",
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
@@ -1096,6 +1106,8 @@ namespace Inavina.Migrations
                 {
                     Id = Guid.NewGuid().ToString(),
                     ShiftNo = "0001",
+                    FromTime = new DateTime(2020, 01, 01, 06, 00, 00),
+                    ToTime = new DateTime(2020, 01, 01, 18, 00, 00),
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
@@ -1104,6 +1116,8 @@ namespace Inavina.Migrations
                 {
                     Id = Guid.NewGuid().ToString(),
                     ShiftNo = "0002",
+                    FromTime = new DateTime(2020, 01, 01, 18, 00, 00),
+                    ToTime = new DateTime(2020, 01, 01, 06, 00, 00),
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"

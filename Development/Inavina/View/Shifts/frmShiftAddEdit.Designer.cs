@@ -38,10 +38,16 @@
             this.chkNoUse = new System.Windows.Forms.RadioButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.txtNote = new DevExpress.XtraEditors.MemoEdit();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.timeEdit1 = new DevExpress.XtraEditors.TimeEdit();
+            this.timeEdit2 = new DevExpress.XtraEditors.TimeEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtShiftNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNote.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit2.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -49,10 +55,10 @@
             this.btnClose.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(265, 199);
+            this.btnClose.Location = new System.Drawing.Point(265, 260);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 40);
-            this.btnClose.TabIndex = 4;
+            this.btnClose.TabIndex = 6;
             this.btnClose.Text = "Đóng (ESC)";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -62,10 +68,10 @@
             this.btnSave.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnSave.Appearance.Options.UseBackColor = true;
             this.btnSave.Appearance.Options.UseFont = true;
-            this.btnSave.Location = new System.Drawing.Point(179, 199);
+            this.btnSave.Location = new System.Drawing.Point(179, 260);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 40);
-            this.btnSave.TabIndex = 3;
+            this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Lưu (F1)";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -98,7 +104,7 @@
             // 
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(45, 139);
+            this.labelControl7.Location = new System.Drawing.Point(45, 200);
             this.labelControl7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(61, 19);
@@ -109,7 +115,7 @@
             // 
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Location = new System.Drawing.Point(45, 78);
+            this.labelControl8.Location = new System.Drawing.Point(45, 139);
             this.labelControl8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(43, 17);
@@ -146,29 +152,87 @@
             // 
             this.panelControl2.Controls.Add(this.chkUsing);
             this.panelControl2.Controls.Add(this.chkNoUse);
-            this.panelControl2.Location = new System.Drawing.Point(45, 163);
+            this.panelControl2.Location = new System.Drawing.Point(45, 224);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(300, 30);
-            this.panelControl2.TabIndex = 2;
+            this.panelControl2.TabIndex = 4;
             // 
             // txtNote
             // 
-            this.txtNote.Location = new System.Drawing.Point(45, 102);
+            this.txtNote.Location = new System.Drawing.Point(45, 163);
             this.txtNote.Name = "txtNote";
-            this.txtNote.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.txtNote.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtNote.Properties.Appearance.Options.UseFont = true;
             this.txtNote.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.txtNote.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.txtNote.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.txtNote.Size = new System.Drawing.Size(300, 30);
-            this.txtNote.TabIndex = 1;
+            this.txtNote.TabIndex = 3;
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.labelControl3.Appearance.Options.UseFont = true;
+            this.labelControl3.Location = new System.Drawing.Point(45, 78);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(56, 19);
+            this.labelControl3.TabIndex = 6;
+            this.labelControl3.Text = "Thời gian";
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.labelControl2.Appearance.Options.UseFont = true;
+            this.labelControl2.Location = new System.Drawing.Point(245, 78);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(56, 19);
+            this.labelControl2.TabIndex = 8;
+            this.labelControl2.Text = "Thời gian";
+            // 
+            // timeEdit1
+            // 
+            this.timeEdit1.EditValue = new System.DateTime(2020, 6, 11, 0, 0, 0, 0);
+            this.timeEdit1.Location = new System.Drawing.Point(45, 104);
+            this.timeEdit1.Name = "timeEdit1";
+            this.timeEdit1.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.timeEdit1.Properties.Appearance.Options.UseFont = true;
+            this.timeEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.timeEdit1.Properties.DisplayFormat.FormatString = "HH:mm";
+            this.timeEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.timeEdit1.Properties.EditFormat.FormatString = "HH:mm";
+            this.timeEdit1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.timeEdit1.Size = new System.Drawing.Size(100, 28);
+            this.timeEdit1.TabIndex = 1;
+            // 
+            // timeEdit2
+            // 
+            this.timeEdit2.EditValue = new System.DateTime(2020, 6, 11, 0, 0, 0, 0);
+            this.timeEdit2.Location = new System.Drawing.Point(245, 104);
+            this.timeEdit2.Name = "timeEdit2";
+            this.timeEdit2.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.timeEdit2.Properties.Appearance.Options.UseFont = true;
+            this.timeEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.timeEdit2.Properties.DisplayFormat.FormatString = "HH:mm";
+            this.timeEdit2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.timeEdit2.Properties.EditFormat.FormatString = "HH:mm";
+            this.timeEdit2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.timeEdit2.Size = new System.Drawing.Size(100, 28);
+            this.timeEdit2.TabIndex = 2;
             // 
             // frmShiftAddEdit
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(390, 253);
+            this.ClientSize = new System.Drawing.Size(390, 318);
+            this.Controls.Add(this.timeEdit2);
+            this.Controls.Add(this.timeEdit1);
+            this.Controls.Add(this.labelControl2);
+            this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.txtNote);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.labelControl7);
@@ -191,6 +255,8 @@
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNote.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timeEdit2.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -207,5 +273,9 @@
         private System.Windows.Forms.RadioButton chkNoUse;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.MemoEdit txtNote;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.TimeEdit timeEdit1;
+        private DevExpress.XtraEditors.TimeEdit timeEdit2;
     }
 }

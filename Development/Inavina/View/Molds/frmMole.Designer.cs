@@ -199,6 +199,7 @@
             this.MoldNo.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.MoldNo.AppearanceCell.Options.UseFont = true;
             this.MoldNo.AppearanceCell.Options.UseTextOptions = true;
+            this.MoldNo.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.MoldNo.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.MoldNo.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.MoldNo.AppearanceHeader.Options.UseFont = true;
