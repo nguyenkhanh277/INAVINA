@@ -94,12 +94,10 @@ namespace Inavina.Persistence.Repositories
             string result = "0";
             try
             {
-                DateTime fromDate = DateTime.Parse(dateTime.ToString("yyyy-MM-dd 00:00:00"));
-                DateTime toDate = DateTime.Parse(dateTime.ToString("yyyy-MM-dd 23:59:59"));
-                var registBarcode = Find(_ => _.RegistDate >= fromDate && _.RegistDate <= toDate && _.ShiftNo.Equals(shiftNo));
-                if (registBarcode != null)
+                var registBarcodes = Find(_ => _.RegistDate.Year.Equals(dateTime.Year) && _.RegistDate.Month.Equals(dateTime.Month) && _.RegistDate.Day.Equals(dateTime.Day) && _.ShiftNo.Equals(shiftNo));
+                if (registBarcodes != null)
                 {
-                    result = registBarcode.OrderByDescending(_ => _.SEQ).Select(_ => _.SEQ).FirstOrDefault();
+                    result = registBarcodes.Max(_ => _.SEQ);
                     result = (result == null ? "0" : result);
                 }
             }
@@ -130,7 +128,7 @@ namespace Inavina.Persistence.Repositories
             catch { }
         }
 
-        public List<ReportSynthetic> GetReportSyntheticView(DateTime fromDate, DateTime toDate)
+        public List<ReportSyntheticRegistBarcode> GetReportSyntheticRegistBarcode(DateTime fromDate, DateTime toDate)
         {
             var query = from x in ProjectDataContext.RegistBarcodes
                         join y in ProjectDataContext.ScanBarcodes on x.Barcode equals y.Barcode into z
@@ -152,23 +150,29 @@ namespace Inavina.Persistence.Repositories
                             QuantityNG = g.Sum(_ => (_.ResultStatus == GlobalConstants.ResultStatusValue.OK ? 1 : 0))
                         };
 
-            List<ReportSynthetic> reportSyntheticViews = new List<ReportSynthetic>();
+            List<ReportSyntheticRegistBarcode> reportSyntheticViews = new List<ReportSyntheticRegistBarcode>();
             if (query.Any())
             {
-                ReportSynthetic reportSyntheticView;
-                foreach (var _ in query)
+                ReportSyntheticRegistBarcode reportSyntheticView;
+                foreach (var item in query)
                 {
-                    reportSyntheticView = new ReportSynthetic();
-                    reportSyntheticView.RegistDate = _.RegistDate;
-                    reportSyntheticView.PartNo = _.PartNo;
-                    reportSyntheticView.QuantityPrint = _.QuantityPrint;
-                    reportSyntheticView.QuantityScan = _.QuantityScan;
-                    reportSyntheticView.QuantityOK = _.QuantityOK;
-                    reportSyntheticView.QuantityNG = _.QuantityNG;
+                    reportSyntheticView = new ReportSyntheticRegistBarcode();
+                    reportSyntheticView.RegistDate = item.RegistDate;
+                    reportSyntheticView.PartNo = item.PartNo;
+                    reportSyntheticView.QuantityPrint = item.QuantityPrint;
+                    reportSyntheticView.QuantityScan = item.QuantityScan;
+                    reportSyntheticView.QuantityOK = item.QuantityOK;
+                    reportSyntheticView.QuantityNG = item.QuantityNG;
                     reportSyntheticViews.Add(reportSyntheticView);
                 }
             }
             return reportSyntheticViews;
         }
+
+        public RegistBarcode CheckIsExist(string barcode)
+        {
+            return FirstOrDefault(_ => _.Barcode.Trim() == barcode && _.Status == GlobalConstants.StatusValue.Using);
+        }
+
     }
 }

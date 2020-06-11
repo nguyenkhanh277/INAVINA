@@ -142,5 +142,17 @@ namespace Inavina.Properties {
                 this["PrinterName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("COM1")]
+        public string PortCOM {
+            get {
+                return ((string)(this["PortCOM"]));
+            }
+            set {
+                this["PortCOM"] = value;
+            }
+        }
     }
 }

@@ -84,7 +84,7 @@ namespace Inavina.View.RegistBarcodes
         private void Clear()
         {
             dtpRegistDate.Value = DateTime.Now;
-            txtQuantity.Text = "0";
+            txtQuantity.Value = 0;
             txtQuantity.Focus();
         }
 
@@ -138,7 +138,7 @@ namespace Inavina.View.RegistBarcodes
                 cbbShift.Focus();
                 return false;
             }
-            else if (txtQuantity.Text.Trim() == "0")
+            else if (txtQuantity.Value == 0)
             {
                 XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtQuantity.Focus();
@@ -162,7 +162,7 @@ namespace Inavina.View.RegistBarcodes
                 listBarcode.Columns.Add("DateShift", typeof(string));
                 listBarcode.Columns.Add("MoldNoSEQ", typeof(string));
                 listBarcode.Columns.Add("VN", typeof(string));
-                for (int i = 0; i < int.Parse(txtQuantity.Text.Trim()); i++)
+                for (int i = 0; i < txtQuantity.Value; i++)
                 {
                     //Generate barcode
                     seq++;
@@ -270,19 +270,6 @@ namespace Inavina.View.RegistBarcodes
                 LoadMoldData();
                 cbbMold.Text = (string)frm.Tag;
             }
-        }
-
-        private void txtQuantity_EditValueChanged(object sender, EventArgs e)
-        {
-            if (!GeneralHelper.IsStringDouble(txtQuantity.Text.Trim()))
-                txtQuantity.Text = "0";
-            txtQuantity.Text = double.Parse(txtQuantity.Text.Trim()).ToString("N0");
-            txtQuantity.Select(txtQuantity.Text.Length, 0);
-        }
-
-        private void txtQuantity_Click(object sender, EventArgs e)
-        {
-            txtQuantity.SelectAll();
         }
     }
 }

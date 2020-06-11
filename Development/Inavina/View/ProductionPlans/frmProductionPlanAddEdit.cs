@@ -120,7 +120,7 @@ namespace Inavina.View.ProductionPlans
                 productionPlan.WorkOrder = txtWorkOrder.Text.Trim();
                 productionPlan.PartNo = cbbPartNumber.Text.Trim();
                 productionPlan.Model = "";
-                productionPlan.ExpectedDeliveryDate = dtpRegistDate.Value;
+                productionPlan.ExpectedDeliveryDate = dtpRegistDate.Value.Date;
                 productionPlan.Quantity = double.Parse(txtQuantity.Text.Trim());
                 productionPlan.ProductionStatus = GlobalConstants.ProductionStatusValue.None;
                 productionPlan.Status = GlobalConstants.StatusValue.Using;

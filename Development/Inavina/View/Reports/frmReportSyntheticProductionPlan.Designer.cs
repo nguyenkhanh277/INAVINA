@@ -1,6 +1,6 @@
 ﻿namespace Inavina.View.Reports
 {
-    partial class frmReportSyntheticView
+    partial class frmReportSyntheticProductionPlan
     {
         /// <summary>
         /// Required designer variable.
@@ -33,10 +33,10 @@
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.dgvDuLieu = new DevExpress.XtraGrid.GridControl();
             this.viewDuLieu = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.RegistDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ExpectedDeliveryDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.PartNo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.QuantityPrint = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.QuantityPlan = new DevExpress.XtraGrid.Columns.GridColumn();
             this.QuantityScan = new DevExpress.XtraGrid.Columns.GridColumn();
             this.QuantityOK = new DevExpress.XtraGrid.Columns.GridColumn();
             this.QuantityNG = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -120,11 +120,11 @@
             this.viewDuLieu.Appearance.FocusedCell.ForeColor = System.Drawing.Color.Black;
             this.viewDuLieu.Appearance.FocusedCell.Options.UseBackColor = true;
             this.viewDuLieu.Appearance.FocusedCell.Options.UseForeColor = true;
-            this.viewDuLieu.ColumnPanelRowHeight = 50;
+            this.viewDuLieu.ColumnPanelRowHeight = 40;
             this.viewDuLieu.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.RegistDate,
+            this.ExpectedDeliveryDate,
             this.PartNo,
-            this.QuantityPrint,
+            this.QuantityPlan,
             this.QuantityScan,
             this.QuantityOK,
             this.QuantityNG});
@@ -142,29 +142,29 @@
             this.viewDuLieu.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.viewDuLieu_CustomDrawRowIndicator);
             this.viewDuLieu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.viewDuLieu_KeyDown);
             // 
-            // RegistDate
+            // ExpectedDeliveryDate
             // 
-            this.RegistDate.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.RegistDate.AppearanceCell.Options.UseFont = true;
-            this.RegistDate.AppearanceCell.Options.UseTextOptions = true;
-            this.RegistDate.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.RegistDate.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.RegistDate.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.RegistDate.AppearanceHeader.Options.UseFont = true;
-            this.RegistDate.AppearanceHeader.Options.UseTextOptions = true;
-            this.RegistDate.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.RegistDate.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.RegistDate.Caption = "Ngày";
-            this.RegistDate.ColumnEdit = this.repositoryItemMemoEdit1;
-            this.RegistDate.DisplayFormat.FormatString = "dd/MM/yyyy";
-            this.RegistDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.RegistDate.FieldName = "RegistDate";
-            this.RegistDate.MaxWidth = 150;
-            this.RegistDate.MinWidth = 150;
-            this.RegistDate.Name = "RegistDate";
-            this.RegistDate.Visible = true;
-            this.RegistDate.VisibleIndex = 0;
-            this.RegistDate.Width = 150;
+            this.ExpectedDeliveryDate.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.ExpectedDeliveryDate.AppearanceCell.Options.UseFont = true;
+            this.ExpectedDeliveryDate.AppearanceCell.Options.UseTextOptions = true;
+            this.ExpectedDeliveryDate.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.ExpectedDeliveryDate.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.ExpectedDeliveryDate.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.ExpectedDeliveryDate.AppearanceHeader.Options.UseFont = true;
+            this.ExpectedDeliveryDate.AppearanceHeader.Options.UseTextOptions = true;
+            this.ExpectedDeliveryDate.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.ExpectedDeliveryDate.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.ExpectedDeliveryDate.Caption = "Ngày";
+            this.ExpectedDeliveryDate.ColumnEdit = this.repositoryItemMemoEdit1;
+            this.ExpectedDeliveryDate.DisplayFormat.FormatString = "dd/MM/yyyy";
+            this.ExpectedDeliveryDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.ExpectedDeliveryDate.FieldName = "ExpectedDeliveryDate";
+            this.ExpectedDeliveryDate.MaxWidth = 150;
+            this.ExpectedDeliveryDate.MinWidth = 150;
+            this.ExpectedDeliveryDate.Name = "ExpectedDeliveryDate";
+            this.ExpectedDeliveryDate.Visible = true;
+            this.ExpectedDeliveryDate.VisibleIndex = 0;
+            this.ExpectedDeliveryDate.Width = 150;
             // 
             // repositoryItemMemoEdit1
             // 
@@ -188,24 +188,24 @@
             this.PartNo.VisibleIndex = 1;
             this.PartNo.Width = 448;
             // 
-            // QuantityPrint
+            // QuantityPlan
             // 
-            this.QuantityPrint.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.QuantityPrint.AppearanceCell.Options.UseFont = true;
-            this.QuantityPrint.AppearanceCell.Options.UseTextOptions = true;
-            this.QuantityPrint.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.QuantityPrint.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.QuantityPrint.AppearanceHeader.Options.UseFont = true;
-            this.QuantityPrint.AppearanceHeader.Options.UseTextOptions = true;
-            this.QuantityPrint.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.QuantityPrint.Caption = "Số lượng mã vạch đã in";
-            this.QuantityPrint.FieldName = "QuantityPrint";
-            this.QuantityPrint.MaxWidth = 200;
-            this.QuantityPrint.MinWidth = 200;
-            this.QuantityPrint.Name = "QuantityPrint";
-            this.QuantityPrint.Visible = true;
-            this.QuantityPrint.VisibleIndex = 2;
-            this.QuantityPrint.Width = 200;
+            this.QuantityPlan.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.QuantityPlan.AppearanceCell.Options.UseFont = true;
+            this.QuantityPlan.AppearanceCell.Options.UseTextOptions = true;
+            this.QuantityPlan.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.QuantityPlan.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.QuantityPlan.AppearanceHeader.Options.UseFont = true;
+            this.QuantityPlan.AppearanceHeader.Options.UseTextOptions = true;
+            this.QuantityPlan.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.QuantityPlan.Caption = "Số lượng mã vạch đã in";
+            this.QuantityPlan.FieldName = "QuantityPlan";
+            this.QuantityPlan.MaxWidth = 200;
+            this.QuantityPlan.MinWidth = 200;
+            this.QuantityPlan.Name = "QuantityPlan";
+            this.QuantityPlan.Visible = true;
+            this.QuantityPlan.VisibleIndex = 2;
+            this.QuantityPlan.Width = 200;
             // 
             // QuantityScan
             // 
@@ -344,7 +344,7 @@
             this.labelControl3.TabIndex = 4;
             this.labelControl3.Text = "Từ ngày";
             // 
-            // frmReportSyntheticView
+            // frmReportSyntheticProductionPlan
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -354,11 +354,11 @@
             this.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "frmReportSyntheticView";
+            this.Name = "frmReportSyntheticProductionPlan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Báo cáo tổng hợp";
+            this.Text = "Báo cáo tổng hợp theo kế hoạch";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.frmReportSyntheticView_Load);
+            this.Load += new System.EventHandler(this.frmReportSyntheticProductionPlan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDuLieu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewDuLieu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
@@ -382,10 +382,10 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
-        private DevExpress.XtraGrid.Columns.GridColumn RegistDate;
+        private DevExpress.XtraGrid.Columns.GridColumn ExpectedDeliveryDate;
         private DevExpress.XtraGrid.Columns.GridColumn PartNo;
         private DevExpress.XtraEditors.PanelControl pnControl;
-        private DevExpress.XtraGrid.Columns.GridColumn QuantityPrint;
+        private DevExpress.XtraGrid.Columns.GridColumn QuantityPlan;
         private DevExpress.XtraGrid.Columns.GridColumn QuantityScan;
         private DevExpress.XtraGrid.Columns.GridColumn QuantityOK;
         private DevExpress.XtraEditors.PanelControl panelControl2;

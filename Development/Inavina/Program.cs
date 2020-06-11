@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Inavina.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ namespace Inavina
         }
         static void Login()
         {
+            GlobalConstants.machineName = Environment.MachineName;
             View.Home.frmSignIn frm = new View.Home.frmSignIn();
             DialogResult dr = frm.ShowDialog();
             if (dr != DialogResult.OK)

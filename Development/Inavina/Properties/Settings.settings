@@ -32,5 +32,8 @@
     <Setting Name="PrinterName" Type="System.String" Scope="User">
       <Value Profile="(Default)">Printer</Value>
     </Setting>
+    <Setting Name="PortCOM" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

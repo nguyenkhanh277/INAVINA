@@ -86,5 +86,10 @@ namespace Inavina.Persistence.Repositories
         {
             return Guid.NewGuid().ToString();
         }
+
+        public ScanBarcode CheckIsExist(string barcode)
+        {
+            return FirstOrDefault(_ => _.Barcode.Trim() == barcode && _.ResultStatus == GlobalConstants.ResultStatusValue.OK);
+        }
     }
 }

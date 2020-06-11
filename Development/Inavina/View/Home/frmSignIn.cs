@@ -133,7 +133,6 @@ namespace Inavina.View.Home
             LanguageTranslate.switchLanguage = true;
             LanguageTranslate.ChangeLanguageForm(this);
             LanguageTranslate.switchLanguage = false;
-            lblTieuDe.Text = Properties.Settings.Default.Company;
         }
 
         private void picEnglish_Click(object sender, EventArgs e)
@@ -142,7 +141,6 @@ namespace Inavina.View.Home
             LanguageTranslate.switchLanguage = true;
             LanguageTranslate.ChangeLanguageForm(this);
             LanguageTranslate.switchLanguage = false;
-            lblTieuDe.Text = Properties.Settings.Default.Company;
         }
     }
 }

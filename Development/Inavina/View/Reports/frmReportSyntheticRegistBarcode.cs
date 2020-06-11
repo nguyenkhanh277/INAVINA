@@ -17,7 +17,7 @@ using System.Linq.Expressions;
 
 namespace Inavina.View.Reports
 {
-    public partial class frmReportSyntheticView : DevExpress.XtraEditors.XtraForm
+    public partial class frmReportSyntheticRegistBarcode : DevExpress.XtraEditors.XtraForm
     {
         ProjectDataContext _projectDataContext;
         RegistBarcodeRepository _registBarcodeRepository;
@@ -44,12 +44,12 @@ namespace Inavina.View.Reports
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        public frmReportSyntheticView()
+        public frmReportSyntheticRegistBarcode()
         {
             InitializeComponent();
         }
 
-        private void frmReportSyntheticView_Load(object sender, EventArgs e)
+        private void frmReportSyntheticRegistBarcode_Load(object sender, EventArgs e)
         {
             LanguageTranslate.ChangeLanguageForm(this);
             LanguageTranslate.ChangeLanguageGridView(viewDuLieu);
@@ -62,7 +62,7 @@ namespace Inavina.View.Reports
             _registBarcodeRepository = new RegistBarcodeRepository(_projectDataContext);
             DateTime fromDate = DateTime.Parse(dtpFromDate.Value.ToString("yyyy-MM-dd 00:00:00"));
             DateTime toDate = DateTime.Parse(dtpToDate.Value.ToString("yyyy-MM-dd 23:59:59"));
-            dgvDuLieu.DataSource = _registBarcodeRepository.GetReportSyntheticView(fromDate, toDate);
+            dgvDuLieu.DataSource = _registBarcodeRepository.GetReportSyntheticRegistBarcode(fromDate, toDate);
             Control();
         }
 

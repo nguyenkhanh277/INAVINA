@@ -49,6 +49,7 @@ namespace Inavina.Core.Helper
             catch { }
 
         }
+
         public static bool ValidPrinter(string printerName)
         {
             bool result = false;

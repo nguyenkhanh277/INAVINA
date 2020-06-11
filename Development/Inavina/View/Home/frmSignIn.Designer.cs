@@ -74,7 +74,6 @@
             this.btnSignIn.Appearance.Font = new System.Drawing.Font("Segoe UI", 20F);
             this.btnSignIn.Appearance.Options.UseBackColor = true;
             this.btnSignIn.Appearance.Options.UseFont = true;
-            this.btnSignIn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSignIn.Location = new System.Drawing.Point(45, 246);
             this.btnSignIn.Name = "btnSignIn";
             this.btnSignIn.Size = new System.Drawing.Size(300, 50);
@@ -179,7 +178,6 @@
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.CancelButton = this.btnSignIn;
             this.ClientSize = new System.Drawing.Size(390, 368);
             this.Controls.Add(this.picEnglish);
             this.Controls.Add(this.picVietnamese);

@@ -45,7 +45,7 @@
             this.btnShift = new System.Windows.Forms.Button();
             this.btnAddMachine = new System.Windows.Forms.Button();
             this.btnMold = new System.Windows.Forms.Button();
-            this.txtQuantity = new DevExpress.XtraEditors.TextEdit();
+            this.txtQuantity = new DevExpress.XtraEditors.SpinEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity.Properties)).BeginInit();
             this.SuspendLayout();
             // 
@@ -253,19 +253,26 @@
             // 
             // txtQuantity
             // 
-            this.txtQuantity.EditValue = "0";
-            this.txtQuantity.Location = new System.Drawing.Point(211, 215);
-            this.txtQuantity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtQuantity.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtQuantity.Location = new System.Drawing.Point(211, 216);
             this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtQuantity.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtQuantity.Properties.Appearance.Options.UseFont = true;
-            this.txtQuantity.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtQuantity.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.txtQuantity.Properties.AutoHeight = false;
-            this.txtQuantity.Size = new System.Drawing.Size(134, 30);
-            this.txtQuantity.TabIndex = 5;
-            this.txtQuantity.EditValueChanged += new System.EventHandler(this.txtQuantity_EditValueChanged);
-            this.txtQuantity.Click += new System.EventHandler(this.txtQuantity_Click);
+            this.txtQuantity.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtQuantity.Properties.IsFloatValue = false;
+            this.txtQuantity.Properties.Mask.EditMask = "N00";
+            this.txtQuantity.Properties.MaxValue = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.txtQuantity.Size = new System.Drawing.Size(134, 28);
+            this.txtQuantity.TabIndex = 12;
             // 
             // frmRegistBarcodeAddEdit
             // 
@@ -324,6 +331,6 @@
         private System.Windows.Forms.Button btnShift;
         private System.Windows.Forms.Button btnAddMachine;
         private System.Windows.Forms.Button btnMold;
-        private DevExpress.XtraEditors.TextEdit txtQuantity;
+        private DevExpress.XtraEditors.SpinEdit txtQuantity;
     }
 }

@@ -20,7 +20,7 @@ namespace Inavina.Migrations
         protected override void Seed(ProjectDataContext projectDataContext)
         {
             //FirstUpdate(projectDataContext);
-            AddOrUpdateLanguageLibrary(projectDataContext);
+            //AddOrUpdateLanguageLibrary(projectDataContext);
         }
 
         private void AddOrUpdateLanguageLibrary(ProjectDataContext projectDataContext)
@@ -28,6 +28,30 @@ namespace Inavina.Migrations
             #region LanguageLibrary
             var languageLibrarys = new List<LanguageLibrary>
             {
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Tên công ty",
+                    English = "Company name",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Tên máy in",
+                    English = "Printer name",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Cấu hình",
+                    English = "Setting",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
                 new LanguageLibrary
                 {
                     Id = Guid.NewGuid().ToString(),
@@ -727,8 +751,16 @@ namespace Inavina.Migrations
                 new LanguageLibrary
                 {
                     Id = Guid.NewGuid().ToString(),
-                    Vietnamese = "Báo cáo tổng hợp",
-                    English = "Report synthetic",
+                    Vietnamese = "Báo cáo tổng hợp theo mã vạch",
+                    English = "Report synthetic by barcode",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Báo cáo tổng hợp theo kế hoạch",
+                    English = "Report synthetic by plan",
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 },

@@ -30,6 +30,7 @@ namespace Inavina.View.Home
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnUsers = new DevExpress.XtraBars.BarButtonItem();
             this.btnChangePassword = new DevExpress.XtraBars.BarButtonItem();
@@ -45,8 +46,10 @@ namespace Inavina.View.Home
             this.btnProductionHistory = new DevExpress.XtraBars.BarButtonItem();
             this.btnProductReportOK = new DevExpress.XtraBars.BarButtonItem();
             this.btnProductReportNG = new DevExpress.XtraBars.BarButtonItem();
-            this.btnReportSyntheticView = new DevExpress.XtraBars.BarButtonItem();
+            this.btnReportSyntheticRegistBarcode = new DevExpress.XtraBars.BarButtonItem();
             this.btnProductionPlan = new DevExpress.XtraBars.BarButtonItem();
+            this.btnReportSyntheticProductionPlan = new DevExpress.XtraBars.BarButtonItem();
+            this.btnSetting = new DevExpress.XtraBars.BarButtonItem();
             this.rbpHeThong = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbpDanhMuc = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -78,10 +81,12 @@ namespace Inavina.View.Home
             this.btnProductionHistory,
             this.btnProductReportOK,
             this.btnProductReportNG,
-            this.btnReportSyntheticView,
-            this.btnProductionPlan});
+            this.btnReportSyntheticRegistBarcode,
+            this.btnProductionPlan,
+            this.btnReportSyntheticProductionPlan,
+            this.btnSetting});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 40;
+            this.ribbonControl1.MaxItemId = 42;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.PageHeaderItemLinks.Add(this.txtUser);
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -227,14 +232,14 @@ namespace Inavina.View.Home
             this.btnProductReportNG.Name = "btnProductReportNG";
             this.btnProductReportNG.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProductReportNG_ItemClick);
             // 
-            // btnReportSyntheticView
+            // btnReportSyntheticRegistBarcode
             // 
-            this.btnReportSyntheticView.Caption = "Báo cáo tổng hợp";
-            this.btnReportSyntheticView.Id = 38;
-            this.btnReportSyntheticView.ImageOptions.LargeImage = global::Inavina.Properties.Resources.Report;
-            this.btnReportSyntheticView.LargeWidth = 100;
-            this.btnReportSyntheticView.Name = "btnReportSyntheticView";
-            this.btnReportSyntheticView.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReportSyntheticView_ItemClick);
+            this.btnReportSyntheticRegistBarcode.Caption = "Báo cáo tổng hợp theo mã vạch";
+            this.btnReportSyntheticRegistBarcode.Id = 38;
+            this.btnReportSyntheticRegistBarcode.ImageOptions.LargeImage = global::Inavina.Properties.Resources.ReportSyntheticRegistBarcode;
+            this.btnReportSyntheticRegistBarcode.LargeWidth = 100;
+            this.btnReportSyntheticRegistBarcode.Name = "btnReportSyntheticRegistBarcode";
+            this.btnReportSyntheticRegistBarcode.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReportSyntheticRegistBarcode_ItemClick);
             // 
             // btnProductionPlan
             // 
@@ -244,6 +249,24 @@ namespace Inavina.View.Home
             this.btnProductionPlan.LargeWidth = 100;
             this.btnProductionPlan.Name = "btnProductionPlan";
             this.btnProductionPlan.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProductionPlan_ItemClick);
+            // 
+            // btnReportSyntheticProductionPlan
+            // 
+            this.btnReportSyntheticProductionPlan.Caption = "Báo cáo tổng hợp theo kế hoạch";
+            this.btnReportSyntheticProductionPlan.Id = 40;
+            this.btnReportSyntheticProductionPlan.ImageOptions.LargeImage = global::Inavina.Properties.Resources.ReportSyntheticProductionPlan;
+            this.btnReportSyntheticProductionPlan.LargeWidth = 100;
+            this.btnReportSyntheticProductionPlan.Name = "btnReportSyntheticProductionPlan";
+            this.btnReportSyntheticProductionPlan.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReportSyntheticProductionPlan_ItemClick);
+            // 
+            // btnSetting
+            // 
+            this.btnSetting.Caption = "Cấu hình";
+            this.btnSetting.Id = 41;
+            this.btnSetting.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnSetting.ImageOptions.LargeImage")));
+            this.btnSetting.LargeWidth = 100;
+            this.btnSetting.Name = "btnSetting";
+            this.btnSetting.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSetting_ItemClick);
             // 
             // rbpHeThong
             // 
@@ -257,6 +280,7 @@ namespace Inavina.View.Home
             this.ribbonPageGroup1.ItemLinks.Add(this.btnUsers);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnChangePassword);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnLanguageLibrary);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnSetting);
             this.ribbonPageGroup1.ItemLinks.Add(this.rgbiSkins);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             // 
@@ -301,7 +325,8 @@ namespace Inavina.View.Home
             // 
             this.ribbonPageGroup4.ItemLinks.Add(this.btnProductReportOK);
             this.ribbonPageGroup4.ItemLinks.Add(this.btnProductReportNG);
-            this.ribbonPageGroup4.ItemLinks.Add(this.btnReportSyntheticView);
+            this.ribbonPageGroup4.ItemLinks.Add(this.btnReportSyntheticRegistBarcode);
+            this.ribbonPageGroup4.ItemLinks.Add(this.btnReportSyntheticProductionPlan);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             // 
             // frmMain
@@ -346,9 +371,11 @@ namespace Inavina.View.Home
         private BarButtonItem btnProductionHistory;
         private BarButtonItem btnProductReportOK;
         private BarButtonItem btnProductReportNG;
-        private BarButtonItem btnReportSyntheticView;
+        private BarButtonItem btnReportSyntheticRegistBarcode;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
         private BarButtonItem btnProductionPlan;
+        private BarButtonItem btnReportSyntheticProductionPlan;
+        private BarButtonItem btnSetting;
     }
 }
 

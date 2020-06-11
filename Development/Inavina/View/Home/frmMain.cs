@@ -63,7 +63,7 @@ namespace Inavina.View.Home
             btnProductionHistory.Caption = LanguageTranslate.ChangeLanguageText(btnProductionHistory.Caption);
             btnProductReportOK.Caption = LanguageTranslate.ChangeLanguageText(btnProductReportOK.Caption);
             btnProductReportNG.Caption = LanguageTranslate.ChangeLanguageText(btnProductReportNG.Caption);
-            btnReportSyntheticView.Caption = LanguageTranslate.ChangeLanguageText(btnReportSyntheticView.Caption);
+            btnReportSyntheticRegistBarcode.Caption = LanguageTranslate.ChangeLanguageText(btnReportSyntheticRegistBarcode.Caption);
             rbpHeThong.Text = LanguageTranslate.ChangeLanguageText(rbpHeThong.Text);
             rbpDanhMuc.Text = LanguageTranslate.ChangeLanguageText(rbpDanhMuc.Text);
             rbpChucNang.Text = LanguageTranslate.ChangeLanguageText(rbpChucNang.Text);
@@ -117,6 +117,12 @@ namespace Inavina.View.Home
                 f.MdiParent = this;
                 f.Show();
             }
+        }
+
+        private void btnSetting_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmSetting frm = new frmSetting();
+            frm.ShowDialog();
         }
 
         private void btnMachine_ItemClick(object sender, ItemClickEventArgs e)
@@ -211,7 +217,8 @@ namespace Inavina.View.Home
 
         private void btnScanBarcode_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            
+            ScanBarcodes.frmScanBarcode frm = new ScanBarcodes.frmScanBarcode();
+            frm.ShowDialog();
         }
 
         private void btnProductionHistory_ItemClick(object sender, ItemClickEventArgs e)
@@ -259,16 +266,31 @@ namespace Inavina.View.Home
             }
         }
 
-        private void btnReportSyntheticView_ItemClick(object sender, ItemClickEventArgs e)
+        private void btnReportSyntheticRegistBarcode_ItemClick(object sender, ItemClickEventArgs e)
         {
-            XtraForm frm = this.CheckExist(typeof(Reports.frmReportSyntheticView));
+            XtraForm frm = this.CheckExist(typeof(Reports.frmReportSyntheticRegistBarcode));
             if (frm != null)
             {
                 frm.Activate();
             }
             else
             {
-                Reports.frmReportSyntheticView f = new Reports.frmReportSyntheticView();
+                Reports.frmReportSyntheticRegistBarcode f = new Reports.frmReportSyntheticRegistBarcode();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnReportSyntheticProductionPlan_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            XtraForm frm = this.CheckExist(typeof(Reports.frmReportSyntheticProductionPlan));
+            if (frm != null)
+            {
+                frm.Activate();
+            }
+            else
+            {
+                Reports.frmReportSyntheticProductionPlan f = new Reports.frmReportSyntheticProductionPlan();
                 f.MdiParent = this;
                 f.Show();
             }
