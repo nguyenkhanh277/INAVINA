@@ -19,7 +19,6 @@ namespace Inavina.View.Home
     {
         ProjectDataContext _projectDataContext = new ProjectDataContext();
         UserRepository _userRepository;
-        LanguageLibraryRepository _languageLibraryRepository;
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
@@ -35,10 +34,6 @@ namespace Inavina.View.Home
         private void frmSignIn_Load(object sender, EventArgs e)
         {
             _userRepository = new UserRepository(_projectDataContext);
-            _languageLibraryRepository = new LanguageLibraryRepository(_projectDataContext);
-            GlobalConstants.printerName = Properties.Settings.Default.PrinterName;
-            GlobalConstants.languageLibrary = _languageLibraryRepository.GetAll().ToList();
-            GlobalConstants.language = Properties.Settings.Default.Language;
             LoadLanguage(GlobalConstants.language);
             LanguageTranslate.ChangeLanguageForm(this);
             lblTieuDe.Text = Properties.Settings.Default.Company;

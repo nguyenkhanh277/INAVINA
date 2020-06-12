@@ -9,8 +9,8 @@ namespace Inavina.Core
     public class GlobalConstants
     {
         #region Default Values
-        public static string keySoft = "1511";
-        public static string saltSoft = "O12ab88c@";
+        public static string keySoft = "KSOFT";
+        public static string saltSoft = "O12ab88cKh@nh";
         public static kLicense license;
         public static string userID = "";
         public static string username = "";
@@ -22,7 +22,7 @@ namespace Inavina.Core
         public static int language = 0;
         public static List<LanguageLibrary> languageLibrary = new List<LanguageLibrary>();
         public static int defaultSaltLength = 5;
-        public static bool debugMode = true;
+        public static bool debugMode = false;
         public enum SearchConditions { }
         public enum GenderValue { Female, Male }
         public enum StatusValue { NoUse, Using }

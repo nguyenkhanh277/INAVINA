@@ -22,12 +22,12 @@ namespace Inavina.View.Home
         public frmLicenses()
         {
             InitializeComponent();
-            lblMaKichHoat.Text = GlobalConstants.license.Read().ProductId;
-            lblTrangThai.Text = LanguageTranslate.ChangeLanguageText("Dùng thử");
-            lblBanQuyen.Text = LanguageTranslate.ChangeLanguageText("Dùng thử cho 1 máy tính");
-            lblNgayKichHoat.Text = GlobalConstants.license.Read().TrialKeyBegin.ToString("dd/MM/yyyy HH:mm");
-            lblNgayHetHan.Text = GlobalConstants.license.Read().TrialKeyEnd.ToString("dd/MM/yyyy HH:mm");
-            lblConLai.Text = GlobalConstants.license.Read().TrialKeyLeft.ToString() + " " + LanguageTranslate.ChangeLanguageText("Ngày");
+            lblMaKichHoat.Text = ": " + GlobalConstants.license.Read().ProductId;
+            lblTrangThai.Text = ": " + LanguageTranslate.ChangeLanguageText("Dùng thử");
+            lblBanQuyen.Text = ": " + LanguageTranslate.ChangeLanguageText("Dùng thử cho 1 máy tính");
+            lblNgayKichHoat.Text = ": " + GlobalConstants.license.Read().TrialKeyBegin.ToString("dd/MM/yyyy HH:mm");
+            lblNgayHetHan.Text = ": " + GlobalConstants.license.Read().TrialKeyEnd.ToString("dd/MM/yyyy HH:mm");
+            lblConLai.Text = ": " + GlobalConstants.license.Read().TrialKeyLeft.ToString() + " " + LanguageTranslate.ChangeLanguageText("Ngày");
             btnTrial.Enabled = (GlobalConstants.license.Read().TrialKeyLeft > 0);
         }
 
@@ -42,7 +42,7 @@ namespace Inavina.View.Home
             frm.License = GlobalConstants.license;
             frm.BuyLicenseUrl = "http://google.com";
             frm.Text = LanguageTranslate.ChangeLanguageText("Đăng ký sử dụng phần mềm") + " " + Properties.Settings.Default.Company;
-            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.Icon = Properties.Resources.icon;
             DialogResult dr = frm.ShowDialog();
             if (dr != DialogResult.OK)
             {

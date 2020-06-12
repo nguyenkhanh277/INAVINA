@@ -62,7 +62,7 @@ namespace Inavina.View.Reports
             _registBarcodeRepository = new RegistBarcodeRepository(_projectDataContext);
             DateTime fromDate = DateTime.Parse(dtpFromDate.Value.ToString("yyyy-MM-dd 00:00:00"));
             DateTime toDate = DateTime.Parse(dtpToDate.Value.ToString("yyyy-MM-dd 23:59:59"));
-            dgvDuLieu.DataSource = _registBarcodeRepository.GetReportSyntheticRegistBarcode(fromDate, toDate).OrderBy(_ => _.PartNo);
+            dgvDuLieu.DataSource = _registBarcodeRepository.GetReportSyntheticRegistBarcode(fromDate, toDate).OrderBy(_ => _.RegistDate).ThenBy(_ => _.PartNo);
             Control();
         }
 
@@ -102,6 +102,23 @@ namespace Inavina.View.Reports
         {
             if (e.RowHandle >= 0)
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
+        }
+
+        private void viewDuLieu_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            if (e.RowHandle >= 0)
+            {
+                DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+                if (e.Column.FieldName == "QuantityNG" || view.GetRowCellValue(e.RowHandle, "PartNo").ToString() == "Mã vạch bị NOT FOUND + NG")
+                {
+                    e.Appearance.ForeColor = Color.Red;
+                }
+                else if (e.Column.FieldName == "QuantityOK")
+                {
+                    e.Appearance.ForeColor = Color.Blue;
+                    e.Appearance.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+                }
+            }
         }
     }
 }

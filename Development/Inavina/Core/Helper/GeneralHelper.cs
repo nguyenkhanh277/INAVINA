@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing.Printing;
 using System.IO;
+using System.IO.Ports;
 using System.Web;
 using System.Windows.Forms;
 
@@ -68,5 +69,22 @@ namespace Inavina.Core.Helper
             return result;
         }
 
+        public static bool ValidPortCOM(string portCOM)
+        {
+            bool result = false;
+            try
+            {
+                foreach (string portName in SerialPort.GetPortNames())
+                {
+                    if (portCOM == portName)
+                    {
+                        result = true;
+                        break;
+                    }
+                }
+            }
+            catch { }
+            return result;
+        }
     }
 }

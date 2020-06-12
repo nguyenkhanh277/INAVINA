@@ -107,7 +107,7 @@ namespace Inavina.Persistence.Repositories
                                       QuantityPlan = g.Sum(_ => _.Quantity)
                                   };
 
-            var scanBarocdes = from x in ProjectDataContext.ScanBarcodes
+            var scanBarcodesDUPLICATE = from x in ProjectDataContext.ScanBarcodes
                                where x.ScanDate >= fromDate && x.ScanDate <= toDate
                                group x by new
                                {
@@ -125,12 +125,34 @@ namespace Inavina.Persistence.Repositories
                                    PartNo = g.Key.PartNo,
                                    QuantityScan = g.Count(),
                                    QuantityOK = g.Where(_ => _.ResultStatus == GlobalConstants.ResultStatusValue.OK).Count(),
-                                   QuantityNG = g.Where(_ => _.ResultStatus != GlobalConstants.ResultStatusValue.OK).Count()
+                                   QuantityNG = g.Where(_ => _.ResultStatus == GlobalConstants.ResultStatusValue.Duplicate).Count()
                                };
 
             var result = from x in productionPlans
-                         join y in scanBarocdes on new { x.PartNo, x.Year, x.Month, x.Day } equals new { y.PartNo, y.Year, y.Month, y.Day }
+                         join y in scanBarcodesDUPLICATE on new { x.PartNo, x.Year, x.Month, x.Day } equals new { y.PartNo, y.Year, y.Month, y.Day }
                          select new { x, y };
+
+            var scanBarcodesNG = from x in ProjectDataContext.ScanBarcodes
+                                 where x.ScanDate >= fromDate && x.ScanDate <= toDate &&
+                                     (x.ResultStatus == GlobalConstants.ResultStatusValue.NotFound || x.ResultStatus == GlobalConstants.ResultStatusValue.NG)
+                                 group x by new
+                                 {
+                                     x.ScanDate.Year,
+                                     x.ScanDate.Month,
+                                     x.ScanDate.Day
+                                 } into g
+
+                                 select new
+                                 {
+                                     Year = g.Key.Year,
+                                     Month = g.Key.Month,
+                                     Day = g.Key.Day,
+                                     PartNo = "Mã vạch bị NOT FOUND + NG",
+                                     QuantityPlan = 0,
+                                     QuantityScan = g.Count(),
+                                     QuantityOK = 0,
+                                     QuantityNG = g.Count()
+                                 };
 
             List<ReportSyntheticProductionPlan> reportSyntheticProductionPlans = new List<ReportSyntheticProductionPlan>();
             if (result.Any())
@@ -145,6 +167,21 @@ namespace Inavina.Persistence.Repositories
                     reportSyntheticProductionPlan.QuantityScan = item.y.QuantityScan;
                     reportSyntheticProductionPlan.QuantityOK = item.y.QuantityOK;
                     reportSyntheticProductionPlan.QuantityNG = item.y.QuantityNG;
+                    reportSyntheticProductionPlans.Add(reportSyntheticProductionPlan);
+                }
+            }
+            if (scanBarcodesNG.Any())
+            {
+                ReportSyntheticProductionPlan reportSyntheticProductionPlan;
+                foreach (var item in scanBarcodesNG)
+                {
+                    reportSyntheticProductionPlan = new ReportSyntheticProductionPlan();
+                    reportSyntheticProductionPlan.ExpectedDeliveryDate = new DateTime(item.Year, item.Month, item.Day);
+                    reportSyntheticProductionPlan.PartNo = item.PartNo;
+                    reportSyntheticProductionPlan.QuantityPlan = item.QuantityPlan;
+                    reportSyntheticProductionPlan.QuantityScan = item.QuantityScan;
+                    reportSyntheticProductionPlan.QuantityOK = item.QuantityOK;
+                    reportSyntheticProductionPlan.QuantityNG = item.QuantityNG;
                     reportSyntheticProductionPlans.Add(reportSyntheticProductionPlan);
                 }
             }

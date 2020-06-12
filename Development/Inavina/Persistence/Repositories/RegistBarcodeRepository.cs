@@ -142,22 +142,60 @@ namespace Inavina.Persistence.Repositories
 
                         select new
                         {
-                            RegistDate = g.Key.RegistDate,
+                            Year = g.Key.RegistDate.Year,
+                            Month = g.Key.RegistDate.Month,
+                            Day = g.Key.RegistDate.Day,
                             PartNo = g.Key.PartNo,
                             QuantityPrint = g.Count(),
                             QuantityScan = g.Sum(_ => (!String.IsNullOrEmpty(_.PartNo) ? 1 : 0)),
-                            QuantityOK = g.Sum(_ => (_.ResultStatus == GlobalConstants.ResultStatusValue.OK ? 1 : 0)),
-                            QuantityNG = g.Sum(_ => (_.ResultStatus == GlobalConstants.ResultStatusValue.OK ? 1 : 0))
+                            QuantityOK = g.Sum(_ => (!String.IsNullOrEmpty(_.PartNo) && _.ResultStatus == GlobalConstants.ResultStatusValue.OK ? 1 : 0)),
+                            QuantityNG = g.Sum(_ => (!String.IsNullOrEmpty(_.PartNo) && _.ResultStatus == GlobalConstants.ResultStatusValue.Duplicate ? 1 : 0))
                         };
 
+            var scanBarcodesNG = from x in ProjectDataContext.ScanBarcodes
+                               where x.ScanDate >= fromDate && x.ScanDate <= toDate &&
+                                   (x.ResultStatus == GlobalConstants.ResultStatusValue.NotFound || x.ResultStatus == GlobalConstants.ResultStatusValue.NG)
+                               group x by new
+                               {
+                                   x.ScanDate.Year,
+                                   x.ScanDate.Month,
+                                   x.ScanDate.Day
+                               } into g
+
+                               select new
+                               {
+                                   Year = g.Key.Year,
+                                   Month = g.Key.Month,
+                                   Day = g.Key.Day,
+                                   PartNo = "Mã vạch bị NOT FOUND + NG",
+                                   QuantityPrint = 0,
+                                   QuantityScan = g.Count(),
+                                   QuantityOK = 0,
+                                   QuantityNG = g.Count()
+                               };
+
             List<ReportSyntheticRegistBarcode> reportSyntheticViews = new List<ReportSyntheticRegistBarcode>();
+            ReportSyntheticRegistBarcode reportSyntheticView;
             if (query.Any())
             {
-                ReportSyntheticRegistBarcode reportSyntheticView;
                 foreach (var item in query)
                 {
                     reportSyntheticView = new ReportSyntheticRegistBarcode();
-                    reportSyntheticView.RegistDate = item.RegistDate;
+                    reportSyntheticView.RegistDate = new DateTime(item.Year, item.Month, item.Day);
+                    reportSyntheticView.PartNo = item.PartNo;
+                    reportSyntheticView.QuantityPrint = item.QuantityPrint;
+                    reportSyntheticView.QuantityScan = item.QuantityScan;
+                    reportSyntheticView.QuantityOK = item.QuantityOK;
+                    reportSyntheticView.QuantityNG = item.QuantityNG;
+                    reportSyntheticViews.Add(reportSyntheticView);
+                }
+            }
+            if (scanBarcodesNG.Any())
+            {
+                foreach (var item in scanBarcodesNG)
+                {
+                    reportSyntheticView = new ReportSyntheticRegistBarcode();
+                    reportSyntheticView.RegistDate = new DateTime(item.Year, item.Month, item.Day);
                     reportSyntheticView.PartNo = item.PartNo;
                     reportSyntheticView.QuantityPrint = item.QuantityPrint;
                     reportSyntheticView.QuantityScan = item.QuantityScan;

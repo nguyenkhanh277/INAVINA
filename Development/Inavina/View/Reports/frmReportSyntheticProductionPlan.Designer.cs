@@ -137,9 +137,11 @@
             this.viewDuLieu.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.viewDuLieu.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.viewDuLieu.OptionsView.ShowAutoFilterRow = true;
+            this.viewDuLieu.OptionsView.ShowFooter = true;
             this.viewDuLieu.OptionsView.ShowGroupPanel = false;
             this.viewDuLieu.RowHeight = 40;
             this.viewDuLieu.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.viewDuLieu_CustomDrawRowIndicator);
+            this.viewDuLieu.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.viewDuLieu_RowCellStyle);
             this.viewDuLieu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.viewDuLieu_KeyDown);
             // 
             // ExpectedDeliveryDate
@@ -203,6 +205,8 @@
             this.QuantityPlan.MaxWidth = 200;
             this.QuantityPlan.MinWidth = 200;
             this.QuantityPlan.Name = "QuantityPlan";
+            this.QuantityPlan.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "QuantityPlan", "{0:0.##}")});
             this.QuantityPlan.Visible = true;
             this.QuantityPlan.VisibleIndex = 2;
             this.QuantityPlan.Width = 200;
@@ -222,6 +226,8 @@
             this.QuantityScan.MaxWidth = 200;
             this.QuantityScan.MinWidth = 200;
             this.QuantityScan.Name = "QuantityScan";
+            this.QuantityScan.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "QuantityScan", "{0:0.##}")});
             this.QuantityScan.Visible = true;
             this.QuantityScan.VisibleIndex = 3;
             this.QuantityScan.Width = 200;
@@ -241,6 +247,8 @@
             this.QuantityOK.MaxWidth = 200;
             this.QuantityOK.MinWidth = 200;
             this.QuantityOK.Name = "QuantityOK";
+            this.QuantityOK.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "QuantityOK", "{0:0.##}")});
             this.QuantityOK.Visible = true;
             this.QuantityOK.VisibleIndex = 4;
             this.QuantityOK.Width = 200;
@@ -260,6 +268,8 @@
             this.QuantityNG.MaxWidth = 200;
             this.QuantityNG.MinWidth = 200;
             this.QuantityNG.Name = "QuantityNG";
+            this.QuantityNG.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "QuantityNG", "{0:0.##}")});
             this.QuantityNG.Visible = true;
             this.QuantityNG.VisibleIndex = 5;
             this.QuantityNG.Width = 200;

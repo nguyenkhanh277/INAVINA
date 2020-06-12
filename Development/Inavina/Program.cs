@@ -17,11 +17,17 @@ namespace Inavina
         [STAThread]
         static void Main()
         {
+            Persistence.ProjectDataContext _projectDataContext = new Persistence.ProjectDataContext();
+            Persistence.Repositories.LanguageLibraryRepository _languageLibraryRepository = new Persistence.Repositories.LanguageLibraryRepository(_projectDataContext);
             DevExpress.Skins.SkinManager.EnableFormSkins();
             DevExpress.UserSkins.BonusSkins.Register();
             DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(Properties.Settings.Default.Theme);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            GlobalConstants.printerName = Properties.Settings.Default.PrinterName;
+            GlobalConstants.languageLibrary = _languageLibraryRepository.GetAll().ToList();
+            GlobalConstants.language = Properties.Settings.Default.Language;
+            GlobalConstants.machineName = Environment.MachineName;
             License();
         }
 
@@ -38,9 +44,8 @@ namespace Inavina
                     {
                         Prefix = GlobalConstants.keySoft,
                         Salt = GlobalConstants.saltSoft + GlobalConstants.keySoft,
-                        ProductLength = Registration.Fusion.Library.kProductLength.Twelve,
-                        ProductType = Registration.Fusion.Library.kProductType.CpuId,
-                        SerialType = Registration.Fusion.Library.kSerialType.Second
+                        ProductType = Registration.Fusion.Library.kProductType.Both,
+                        SerialType = Registration.Fusion.Library.kSerialType.Rev2
                     };
                     GlobalConstants.license.Keycode = keycode;
                     GlobalConstants.license.FileName = GlobalConstants.keySoft + ".set";
@@ -54,12 +59,13 @@ namespace Inavina
                     default:
                     case Registration.Core.License.kLicenseType.Inactive:
                     case Registration.Core.License.kLicenseType.Incorrect:
-                        if (!Registration.Fusion.Library.kNetwork.IsInternetConnected())
-                        {
-                            XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Ứng dụng cần kết nối mạng để kích hoạt"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            return;
-                        }
-                        else if (!Registration.Core.Uc.kForm.IsRunAsAdministrator())
+                        //if (!Registration.Fusion.Library.kNetwork.IsInternetConnected())
+                        //{
+                        //    XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Ứng dụng cần kết nối mạng để kích hoạt"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        //    return;
+                        //}
+                        //else 
+                        if (!Registration.Core.Uc.kForm.IsRunAsAdministrator())
                         {
                             dr = XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Ứng dụng cần quyền Quản trị để kích hoạt"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             if (dr != DialogResult.OK)
@@ -73,9 +79,8 @@ namespace Inavina
                         frmLicense.BuyLicenseUrl = "http://google.com";
                         frmLicense.Text = LanguageTranslate.ChangeLanguageText("Đăng ký sử dụng phần mềm") + " " + Properties.Settings.Default.Company;
                         frmLicense.TrialDateLimit = Registration.Fusion.Library.kDateLimit.Seven;
-                        frmLicense.IsOnlineActivationCheck = true;
-                        frmLicense.StartPosition = FormStartPosition.CenterScreen;
-                        frmLicense.ShowInTaskbar = true;
+                        frmLicense.IsOnlineActivationCheck = false;
+                        frmLicense.Icon = Properties.Resources.icon;
                         dr = frmLicense.ShowDialog();
                         break;
                     case Registration.Core.License.kLicenseType.Trial:
@@ -98,7 +103,6 @@ namespace Inavina
 
         static void Login()
         {
-            GlobalConstants.machineName = Environment.MachineName;
             View.Home.frmSignIn frm = new View.Home.frmSignIn();
             DialogResult dr = frm.ShowDialog();
             if (dr != DialogResult.OK)

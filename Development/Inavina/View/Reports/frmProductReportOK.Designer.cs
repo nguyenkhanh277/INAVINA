@@ -35,11 +35,11 @@
             this.viewDuLieu = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Id = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
-            this.ScanDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Barcode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.PartNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ScanDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ShiftNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.MachineNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Barcode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.UserID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ResultStatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Status = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -170,6 +170,26 @@
             // 
             this.repositoryItemMemoEdit1.Name = "repositoryItemMemoEdit1";
             // 
+            // PartNo
+            // 
+            this.PartNo.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.PartNo.AppearanceCell.Options.UseFont = true;
+            this.PartNo.AppearanceCell.Options.UseTextOptions = true;
+            this.PartNo.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.PartNo.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.PartNo.AppearanceHeader.Options.UseFont = true;
+            this.PartNo.AppearanceHeader.Options.UseTextOptions = true;
+            this.PartNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.PartNo.Caption = "PartNumber";
+            this.PartNo.ColumnEdit = this.repositoryItemMemoEdit1;
+            this.PartNo.FieldName = "PartNo";
+            this.PartNo.MaxWidth = 200;
+            this.PartNo.MinWidth = 200;
+            this.PartNo.Name = "PartNo";
+            this.PartNo.Visible = true;
+            this.PartNo.VisibleIndex = 0;
+            this.PartNo.Width = 200;
+            // 
             // ScanDate
             // 
             this.ScanDate.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -193,46 +213,6 @@
             this.ScanDate.Visible = true;
             this.ScanDate.VisibleIndex = 1;
             this.ScanDate.Width = 200;
-            // 
-            // Barcode
-            // 
-            this.Barcode.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.Barcode.AppearanceCell.Options.UseFont = true;
-            this.Barcode.AppearanceCell.Options.UseTextOptions = true;
-            this.Barcode.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.Barcode.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.Barcode.AppearanceHeader.Options.UseFont = true;
-            this.Barcode.AppearanceHeader.Options.UseTextOptions = true;
-            this.Barcode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.Barcode.Caption = "Mã vạch";
-            this.Barcode.ColumnEdit = this.repositoryItemMemoEdit1;
-            this.Barcode.FieldName = "Barcode";
-            this.Barcode.Name = "Barcode";
-            this.Barcode.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Barcode", "{0}")});
-            this.Barcode.Visible = true;
-            this.Barcode.VisibleIndex = 4;
-            this.Barcode.Width = 223;
-            // 
-            // PartNo
-            // 
-            this.PartNo.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.PartNo.AppearanceCell.Options.UseFont = true;
-            this.PartNo.AppearanceCell.Options.UseTextOptions = true;
-            this.PartNo.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.PartNo.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.PartNo.AppearanceHeader.Options.UseFont = true;
-            this.PartNo.AppearanceHeader.Options.UseTextOptions = true;
-            this.PartNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.PartNo.Caption = "PartNumber";
-            this.PartNo.ColumnEdit = this.repositoryItemMemoEdit1;
-            this.PartNo.FieldName = "PartNo";
-            this.PartNo.MaxWidth = 200;
-            this.PartNo.MinWidth = 200;
-            this.PartNo.Name = "PartNo";
-            this.PartNo.Visible = true;
-            this.PartNo.VisibleIndex = 0;
-            this.PartNo.Width = 200;
             // 
             // ShiftNo
             // 
@@ -272,6 +252,24 @@
             this.MachineNo.VisibleIndex = 3;
             this.MachineNo.Width = 150;
             // 
+            // Barcode
+            // 
+            this.Barcode.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Barcode.AppearanceCell.Options.UseFont = true;
+            this.Barcode.AppearanceCell.Options.UseTextOptions = true;
+            this.Barcode.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.Barcode.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.Barcode.AppearanceHeader.Options.UseFont = true;
+            this.Barcode.AppearanceHeader.Options.UseTextOptions = true;
+            this.Barcode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.Barcode.Caption = "Mã vạch";
+            this.Barcode.ColumnEdit = this.repositoryItemMemoEdit1;
+            this.Barcode.FieldName = "Barcode";
+            this.Barcode.Name = "Barcode";
+            this.Barcode.Visible = true;
+            this.Barcode.VisibleIndex = 4;
+            this.Barcode.Width = 223;
+            // 
             // UserID
             // 
             this.UserID.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -303,6 +301,8 @@
             this.ResultStatus.MaxWidth = 150;
             this.ResultStatus.MinWidth = 150;
             this.ResultStatus.Name = "ResultStatus";
+            this.ResultStatus.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "ResultStatus", "{0}")});
             this.ResultStatus.Visible = true;
             this.ResultStatus.VisibleIndex = 5;
             this.ResultStatus.Width = 150;

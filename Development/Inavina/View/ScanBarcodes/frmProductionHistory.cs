@@ -140,6 +140,18 @@ namespace Inavina.View.ScanBarcodes
                     e.Appearance.ForeColor = Color.Red;
                     e.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F, FontStyle.Strikeout);
                 }
+                else
+                {
+                    if (view.GetRowCellValue(e.RowHandle, "ResultStatus").ToString() == "OK")
+                    {
+                        e.Appearance.ForeColor = Color.Blue;
+                        e.Appearance.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+                    }
+                    else
+                    {
+                        e.Appearance.ForeColor = Color.Red;
+                    }
+                }
             }
         }
     }

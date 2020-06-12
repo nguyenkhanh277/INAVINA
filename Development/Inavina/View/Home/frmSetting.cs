@@ -14,6 +14,7 @@ using Inavina.Core;
 using Inavina.Core.Helper;
 using Inavina.Core.Domain;
 using System.Drawing.Printing;
+using System.IO.Ports;
 
 namespace Inavina.View.Home
 {
@@ -39,10 +40,10 @@ namespace Inavina.View.Home
         {
             LanguageTranslate.ChangeLanguageForm(this);
             LoadPrinter();
-            txtCompany.Text= Properties.Settings.Default.Company;
-            txtAddress.Text= Properties.Settings.Default.Address;
-            txtPhone.Text= Properties.Settings.Default.Phone;
-            cbbPrinter.Text= (GeneralHelper.ValidPrinter(Properties.Settings.Default.PrinterName) ? Properties.Settings.Default.PrinterName : "");
+            txtCompany.Text = Properties.Settings.Default.Company;
+            txtAddress.Text = Properties.Settings.Default.Address;
+            txtPhone.Text = Properties.Settings.Default.Phone;
+            cbbPrinter.Text = (GeneralHelper.ValidPrinter(Properties.Settings.Default.PrinterName) ? Properties.Settings.Default.PrinterName : "");
             cbbPortCOM.Text = Properties.Settings.Default.PortCOM;
         }
 
@@ -55,6 +56,20 @@ namespace Inavina.View.Home
                 foreach (string installedPrinters in PrinterSettings.InstalledPrinters)
                 {
                     cbbPrinter.Items.Add(installedPrinters);
+                }
+            }
+            catch { }
+        }
+
+        public void LoadPortCOM()
+        {
+            cbbPrinter.Items.Clear();
+            try
+            {
+                cbbPortCOM.Items.Add("");
+                foreach (string portName in SerialPort.GetPortNames())
+                {
+                    cbbPortCOM.Items.Add(portName);
                 }
             }
             catch { }

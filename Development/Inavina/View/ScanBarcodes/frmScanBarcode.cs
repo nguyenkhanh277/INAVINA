@@ -65,13 +65,13 @@ namespace Inavina.View.ScanBarcodes
                 if (_serialPort.IsOpen == false)
                 {
                     _serialPort.Open();
-                    lsvLog.Items.Add(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + " - " + "Mở cổng COM thành công" + "(" + _portname + "");
+                    lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + "Mở cổng COM thành công" + "(" + _portname + "");
                 }
             }
             catch (Exception ex)
             {
-                lsvLog.Items.Add(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + " - " + "Mở cổng COM thất bại");
-                lsvLog.Items.Add(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + " - " + ex.ToString());
+                lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + "Mở cổng COM thất bại");
+                lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + ex.ToString());
             }
         }
 
@@ -83,13 +83,13 @@ namespace Inavina.View.ScanBarcodes
                 if (_serialPort.IsOpen == true)
                 {
                     _serialPort.Close();
-                    lsvLog.Items.Add(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + " - " + "Đóng cổng COM thành công" + "(" + _portname + "");
+                    lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + "Đóng cổng COM thành công" + "(" + _portname + "");
                 }
             }
             catch (Exception ex)
             {
-                lsvLog.Items.Add(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + " - Đóng cổng COM thất bại");
-                lsvLog.Items.Add(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + " - " + ex.ToString());
+                lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - Đóng cổng COM thất bại");
+                lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + ex.ToString());
             }
         }
 
@@ -148,13 +148,13 @@ namespace Inavina.View.ScanBarcodes
                     {
                         _countDuplicate++;
                         lblResult.Text = "DUPLICATE";
-                        lblResult.BackColor = Color.Yellow;
+                        lblResult.BackColor = Color.Orange;
                     }
                     else if (resultStatus == GlobalConstants.ResultStatusValue.NotFound)
                     {
                         _countNotFound++;
                         lblResult.Text = "NOT FOUND";
-                        lblResult.BackColor = Color.Orange;
+                        lblResult.BackColor = Color.DarkRed;
                     }
                     else if (resultStatus == GlobalConstants.ResultStatusValue.NG)
                     {
@@ -162,7 +162,7 @@ namespace Inavina.View.ScanBarcodes
                         lblResult.Text = "NG";
                         lblResult.BackColor = Color.Red;
                     }
-                    lsvLog.Items.Add(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + " - Barcode: " + barcode + " - Result: " + lblResult.Text);
+                    lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - Barcode: " + barcode + " - " + lblResult.Text);
                 }
             }
             else
@@ -193,7 +193,7 @@ namespace Inavina.View.ScanBarcodes
             else
             {
                 //Nếu cổng chưa mở hoặc lỗi thì cần kiểm tra và message cho người dùng
-                lsvLog.Items.Add(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + " - Không kết nối được với thiết bị");
+                lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - Không kết nối được với thiết bị");
             }
         }
 
@@ -218,12 +218,6 @@ namespace Inavina.View.ScanBarcodes
         {
             try
             {
-                if (e.KeyChar == (char)Keys.Tab)
-                {
-                    txtBarcode.Focus();
-                    txtBarcode.SelectAll();
-                    return;
-                }
                 if (txtBarcode.Text.Length == 1)
                 {
                     dtStart = DateTime.Now;
@@ -234,7 +228,7 @@ namespace Inavina.View.ScanBarcodes
                     ts = dtEnd - dtStart;
                     //if (ts.TotalMilliseconds > 100)
                     //{
-                    //    lsvLog.Items.Add(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + "YÊU CẦU PHẢI SỬ DỤNG MÁY SCAN");
+                    //    lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + "YÊU CẦU PHẢI SỬ DỤNG MÁY SCAN");
                     //}
                     //else
                     {
@@ -242,7 +236,7 @@ namespace Inavina.View.ScanBarcodes
                         string barcode = txtBarcode.Text.ToString();
                         if (String.IsNullOrEmpty(barcode))//Không đọc được mã vạch
                         {
-                            ControlDisplay("NG", GlobalConstants.ResultStatusValue.NG);
+                            ControlDisplay("<Empty>", GlobalConstants.ResultStatusValue.NG);
                         }
                         else
                         {
@@ -269,23 +263,26 @@ namespace Inavina.View.ScanBarcodes
                             }
                         }
                     }
+                    txtBarcode.Text = "";
+                    txtBarcode.Focus();
                 }
             }
             catch (Exception ex)
             {
-                lsvLog.Items.Add(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + " - Lỗi trong quá trình scan barcode");
-                lsvLog.Items.Add(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + " - " + ex.ToString());
-            }
-            finally
-            {
-                txtBarcode.Focus();
-                txtBarcode.SelectAll();
+                lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - Lỗi trong quá trình scan barcode");
+                lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + ex.ToString());
             }
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            lblTittle.Text = LanguageTranslate.ChangeLanguageText("Tài khoản") + ": " + GlobalConstants.username + "  |  " + LanguageTranslate.ChangeLanguageText("Tên đầy đủ") + ": " + GlobalConstants.fullName + "  |  " + LanguageTranslate.ChangeLanguageText("Ngày") + ": " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss") + "  |  " + LanguageTranslate.ChangeLanguageText("Máy") + ": " + GlobalConstants.machineName;
+            lblTittle.Text = LanguageTranslate.ChangeLanguageText("Tài khoản") + ": " + GlobalConstants.username + "  |  " + LanguageTranslate.ChangeLanguageText("Tên đầy đủ") + ": " + GlobalConstants.fullName + "  |  " + LanguageTranslate.ChangeLanguageText("Ngày") + ": " + DateTime.Now.ToString("dd/MM HH:mm:ss") + "  |  " + LanguageTranslate.ChangeLanguageText("Máy") + ": " + GlobalConstants.machineName;
+        }
+
+        private void lsvLog_Enter(object sender, EventArgs e)
+        {
+            txtBarcode.Focus();
+            txtBarcode.SelectAll();
         }
     }
 }

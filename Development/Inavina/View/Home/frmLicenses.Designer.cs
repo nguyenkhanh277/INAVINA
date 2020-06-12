@@ -51,7 +51,7 @@
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(30, 55);
+            this.labelControl3.Location = new System.Drawing.Point(20, 55);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(86, 28);
@@ -62,7 +62,7 @@
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(30, 15);
+            this.labelControl1.Location = new System.Drawing.Point(20, 15);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(117, 28);
@@ -73,7 +73,7 @@
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(30, 95);
+            this.labelControl2.Location = new System.Drawing.Point(20, 95);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(91, 28);
@@ -96,7 +96,7 @@
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(30, 215);
+            this.labelControl4.Location = new System.Drawing.Point(20, 215);
             this.labelControl4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(60, 28);
@@ -107,7 +107,7 @@
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(30, 175);
+            this.labelControl5.Location = new System.Drawing.Point(20, 175);
             this.labelControl5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(117, 28);
@@ -118,7 +118,7 @@
             // 
             this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(30, 135);
+            this.labelControl6.Location = new System.Drawing.Point(20, 135);
             this.labelControl6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(132, 28);
@@ -129,7 +129,7 @@
             // 
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(30, 264);
+            this.labelControl7.Location = new System.Drawing.Point(20, 264);
             this.labelControl7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(421, 28);
@@ -142,7 +142,7 @@
             this.lblConLai.Appearance.ForeColor = System.Drawing.Color.Red;
             this.lblConLai.Appearance.Options.UseFont = true;
             this.lblConLai.Appearance.Options.UseForeColor = true;
-            this.lblConLai.Location = new System.Drawing.Point(195, 215);
+            this.lblConLai.Location = new System.Drawing.Point(185, 215);
             this.lblConLai.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblConLai.Name = "lblConLai";
             this.lblConLai.Size = new System.Drawing.Size(64, 28);
@@ -153,7 +153,7 @@
             // 
             this.lblNgayHetHan.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
             this.lblNgayHetHan.Appearance.Options.UseFont = true;
-            this.lblNgayHetHan.Location = new System.Drawing.Point(195, 175);
+            this.lblNgayHetHan.Location = new System.Drawing.Point(185, 175);
             this.lblNgayHetHan.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblNgayHetHan.Name = "lblNgayHetHan";
             this.lblNgayHetHan.Size = new System.Drawing.Size(82, 28);
@@ -164,7 +164,7 @@
             // 
             this.lblNgayKichHoat.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
             this.lblNgayKichHoat.Appearance.Options.UseFont = true;
-            this.lblNgayKichHoat.Location = new System.Drawing.Point(195, 135);
+            this.lblNgayKichHoat.Location = new System.Drawing.Point(185, 135);
             this.lblNgayKichHoat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblNgayKichHoat.Name = "lblNgayKichHoat";
             this.lblNgayKichHoat.Size = new System.Drawing.Size(82, 28);
@@ -175,7 +175,7 @@
             // 
             this.lblBanQuyen.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
             this.lblBanQuyen.Appearance.Options.UseFont = true;
-            this.lblBanQuyen.Location = new System.Drawing.Point(195, 95);
+            this.lblBanQuyen.Location = new System.Drawing.Point(185, 95);
             this.lblBanQuyen.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblBanQuyen.Name = "lblBanQuyen";
             this.lblBanQuyen.Size = new System.Drawing.Size(238, 28);
@@ -186,7 +186,7 @@
             // 
             this.lblTrangThai.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
             this.lblTrangThai.Appearance.Options.UseFont = true;
-            this.lblTrangThai.Location = new System.Drawing.Point(195, 55);
+            this.lblTrangThai.Location = new System.Drawing.Point(185, 55);
             this.lblTrangThai.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblTrangThai.Name = "lblTrangThai";
             this.lblTrangThai.Size = new System.Drawing.Size(142, 28);
@@ -197,7 +197,7 @@
             // 
             this.lblMaKichHoat.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
             this.lblMaKichHoat.Appearance.Options.UseFont = true;
-            this.lblMaKichHoat.Location = new System.Drawing.Point(195, 15);
+            this.lblMaKichHoat.Location = new System.Drawing.Point(185, 15);
             this.lblMaKichHoat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblMaKichHoat.Name = "lblMaKichHoat";
             this.lblMaKichHoat.Size = new System.Drawing.Size(183, 28);
@@ -233,12 +233,12 @@
             // 
             this.labelControl9.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.labelControl9.Appearance.Options.UseFont = true;
-            this.labelControl9.Location = new System.Drawing.Point(30, 300);
+            this.labelControl9.Location = new System.Drawing.Point(20, 300);
             this.labelControl9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(390, 28);
+            this.labelControl9.Size = new System.Drawing.Size(385, 28);
             this.labelControl9.TabIndex = 18;
-            this.labelControl9.Text = "Để tiếp tục sử dụng, bạn nên mua bản quyền";
+            this.labelControl9.Text = "Để tiếp tục sử dụng, bạn nên mua giấy phép";
             // 
             // frmLicenses
             // 
