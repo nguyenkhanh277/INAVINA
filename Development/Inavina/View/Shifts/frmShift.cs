@@ -75,7 +75,7 @@ namespace Inavina.View.Shifts
         {
             _projectDataContext = new ProjectDataContext();
             _shiftRepository = new ShiftRepository(_projectDataContext);
-            dgvDuLieu.DataSource = _shiftRepository.GetAll();
+            dgvDuLieu.DataSource = _shiftRepository.GetAll().OrderBy(_ => _.ShiftNo);
             Control();
         }
 

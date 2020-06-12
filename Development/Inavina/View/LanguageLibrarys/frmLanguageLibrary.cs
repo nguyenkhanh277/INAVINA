@@ -73,7 +73,7 @@ namespace Inavina.View.LanguageLibrarys
         {
             _projectDataContext = new ProjectDataContext();
             _languageLibraryRepository = new LanguageLibraryRepository(_projectDataContext);
-            dgvDuLieu.DataSource = _languageLibraryRepository.GetAll();
+            dgvDuLieu.DataSource = _languageLibraryRepository.GetAll().OrderBy(_ => _.Vietnamese);
             Control();
         }
 

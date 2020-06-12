@@ -62,7 +62,7 @@ namespace Inavina.View.Reports
             _productionPlanRepository = new ProductionPlanRepository(_projectDataContext);
             DateTime fromDate = DateTime.Parse(dtpFromDate.Value.ToString("yyyy-MM-dd 00:00:00"));
             DateTime toDate = DateTime.Parse(dtpToDate.Value.ToString("yyyy-MM-dd 23:59:59"));
-            dgvDuLieu.DataSource = _productionPlanRepository.GetReportSyntheticProductionPlan(fromDate, toDate);
+            dgvDuLieu.DataSource = _productionPlanRepository.GetReportSyntheticProductionPlan(fromDate, toDate).OrderBy(_ => _.PartNo);
             Control();
         }
 

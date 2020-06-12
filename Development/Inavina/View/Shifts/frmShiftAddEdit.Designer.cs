@@ -40,14 +40,14 @@
             this.txtNote = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.timeEdit1 = new DevExpress.XtraEditors.TimeEdit();
-            this.timeEdit2 = new DevExpress.XtraEditors.TimeEdit();
+            this.txtFromTime = new DevExpress.XtraEditors.TimeEdit();
+            this.txtToTime = new DevExpress.XtraEditors.TimeEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtShiftNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNote.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFromTime.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtToTime.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -176,52 +176,52 @@
             this.labelControl3.Location = new System.Drawing.Point(45, 78);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(56, 19);
+            this.labelControl3.Size = new System.Drawing.Size(38, 19);
             this.labelControl3.TabIndex = 6;
-            this.labelControl3.Text = "Thời gian";
+            this.labelControl3.Text = "Từ giờ";
             // 
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(245, 78);
+            this.labelControl2.Location = new System.Drawing.Point(225, 78);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(56, 19);
+            this.labelControl2.Size = new System.Drawing.Size(48, 19);
             this.labelControl2.TabIndex = 8;
-            this.labelControl2.Text = "Thời gian";
+            this.labelControl2.Text = "Đến giờ";
             // 
-            // timeEdit1
+            // txtFromTime
             // 
-            this.timeEdit1.EditValue = new System.DateTime(2020, 6, 11, 0, 0, 0, 0);
-            this.timeEdit1.Location = new System.Drawing.Point(45, 104);
-            this.timeEdit1.Name = "timeEdit1";
-            this.timeEdit1.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.timeEdit1.Properties.Appearance.Options.UseFont = true;
-            this.timeEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.txtFromTime.EditValue = new System.DateTime(2020, 6, 11, 0, 0, 0, 0);
+            this.txtFromTime.Location = new System.Drawing.Point(45, 104);
+            this.txtFromTime.Name = "txtFromTime";
+            this.txtFromTime.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtFromTime.Properties.Appearance.Options.UseFont = true;
+            this.txtFromTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.timeEdit1.Properties.DisplayFormat.FormatString = "HH:mm";
-            this.timeEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.timeEdit1.Properties.EditFormat.FormatString = "HH:mm";
-            this.timeEdit1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.timeEdit1.Size = new System.Drawing.Size(100, 28);
-            this.timeEdit1.TabIndex = 1;
+            this.txtFromTime.Properties.DisplayFormat.FormatString = "HH:mm";
+            this.txtFromTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.txtFromTime.Properties.EditFormat.FormatString = "HH:mm";
+            this.txtFromTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.txtFromTime.Size = new System.Drawing.Size(120, 28);
+            this.txtFromTime.TabIndex = 1;
             // 
-            // timeEdit2
+            // txtToTime
             // 
-            this.timeEdit2.EditValue = new System.DateTime(2020, 6, 11, 0, 0, 0, 0);
-            this.timeEdit2.Location = new System.Drawing.Point(245, 104);
-            this.timeEdit2.Name = "timeEdit2";
-            this.timeEdit2.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.timeEdit2.Properties.Appearance.Options.UseFont = true;
-            this.timeEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.txtToTime.EditValue = new System.DateTime(2020, 6, 11, 0, 0, 0, 0);
+            this.txtToTime.Location = new System.Drawing.Point(225, 104);
+            this.txtToTime.Name = "txtToTime";
+            this.txtToTime.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtToTime.Properties.Appearance.Options.UseFont = true;
+            this.txtToTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.timeEdit2.Properties.DisplayFormat.FormatString = "HH:mm";
-            this.timeEdit2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.timeEdit2.Properties.EditFormat.FormatString = "HH:mm";
-            this.timeEdit2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.timeEdit2.Size = new System.Drawing.Size(100, 28);
-            this.timeEdit2.TabIndex = 2;
+            this.txtToTime.Properties.DisplayFormat.FormatString = "HH:mm";
+            this.txtToTime.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.txtToTime.Properties.EditFormat.FormatString = "HH:mm";
+            this.txtToTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.txtToTime.Size = new System.Drawing.Size(120, 28);
+            this.txtToTime.TabIndex = 2;
             // 
             // frmShiftAddEdit
             // 
@@ -229,8 +229,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(390, 318);
-            this.Controls.Add(this.timeEdit2);
-            this.Controls.Add(this.timeEdit1);
+            this.Controls.Add(this.txtToTime);
+            this.Controls.Add(this.txtFromTime);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.txtNote);
@@ -255,8 +255,8 @@
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNote.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.timeEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFromTime.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtToTime.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -275,7 +275,7 @@
         private DevExpress.XtraEditors.MemoEdit txtNote;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.TimeEdit timeEdit1;
-        private DevExpress.XtraEditors.TimeEdit timeEdit2;
+        private DevExpress.XtraEditors.TimeEdit txtFromTime;
+        private DevExpress.XtraEditors.TimeEdit txtToTime;
     }
 }

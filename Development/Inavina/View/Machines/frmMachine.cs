@@ -75,7 +75,7 @@ namespace Inavina.View.Machines
         {
             _projectDataContext = new ProjectDataContext();
             _machineRepository = new MachineRepository(_projectDataContext);
-            dgvDuLieu.DataSource = _machineRepository.GetAll();
+            dgvDuLieu.DataSource = _machineRepository.GetAll().OrderBy(_ => _.MachineNo);
             Control();
         }
 

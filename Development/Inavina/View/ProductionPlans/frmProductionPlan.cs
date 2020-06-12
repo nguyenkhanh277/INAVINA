@@ -79,7 +79,7 @@ namespace Inavina.View.ProductionPlans
             DateTime fromDate = DateTime.Parse(dtpFromDate.Value.ToString("yyyy-MM-dd 00:00:00"));
             DateTime toDate = DateTime.Parse(dtpToDate.Value.ToString("yyyy-MM-dd 23:59:59"));
             expressions.Add(_ => _.ExpectedDeliveryDate >= fromDate && _.ExpectedDeliveryDate <= toDate);
-            dgvDuLieu.DataSource = _productionPlanRepository.Find(expressions);
+            dgvDuLieu.DataSource = _productionPlanRepository.Find(expressions).OrderBy(_ => _.WorkOrder);
             Control();
         }
 

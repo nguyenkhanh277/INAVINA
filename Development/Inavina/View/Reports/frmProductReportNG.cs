@@ -66,7 +66,7 @@ namespace Inavina.View.Reports
             expressions.Add(_ => _.ScanDate >= fromDate && _.ScanDate <= toDate);
             expressions.Add(_ => _.ResultStatus != GlobalConstants.ResultStatusValue.OK);
             expressions.Add(_ => _.Status == GlobalConstants.StatusValue.Using);
-            dgvDuLieu.DataSource = _scanBarcodeRepository.Find(expressions);
+            dgvDuLieu.DataSource = _scanBarcodeRepository.Find(expressions).OrderBy(_ => _.ScanDate);
             Control();
         }
 

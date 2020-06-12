@@ -75,7 +75,7 @@ namespace Inavina.View.ProgramFunctionMasters
         {
             _projectDataContext = new ProjectDataContext();
             _programFunctionMasterRepository = new ProgramFunctionMasterRepository(_projectDataContext);
-            dgvDuLieu.DataSource = _programFunctionMasterRepository.GetAll();
+            dgvDuLieu.DataSource = _programFunctionMasterRepository.GetAll().OrderBy(_ => _.ProgramName);
             Control();
         }
 

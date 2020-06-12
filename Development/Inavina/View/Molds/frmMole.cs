@@ -75,7 +75,7 @@ namespace Inavina.View.Molds
         {
             _projectDataContext = new ProjectDataContext();
             _moldRepository = new MoldRepository(_projectDataContext);
-            dgvDuLieu.DataSource = _moldRepository.GetAll();
+            dgvDuLieu.DataSource = _moldRepository.GetAll().OrderBy(_ => _.MoldNo);
             Control();
         }
 

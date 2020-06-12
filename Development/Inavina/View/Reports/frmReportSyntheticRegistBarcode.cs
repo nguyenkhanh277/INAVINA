@@ -62,7 +62,7 @@ namespace Inavina.View.Reports
             _registBarcodeRepository = new RegistBarcodeRepository(_projectDataContext);
             DateTime fromDate = DateTime.Parse(dtpFromDate.Value.ToString("yyyy-MM-dd 00:00:00"));
             DateTime toDate = DateTime.Parse(dtpToDate.Value.ToString("yyyy-MM-dd 23:59:59"));
-            dgvDuLieu.DataSource = _registBarcodeRepository.GetReportSyntheticRegistBarcode(fromDate, toDate);
+            dgvDuLieu.DataSource = _registBarcodeRepository.GetReportSyntheticRegistBarcode(fromDate, toDate).OrderBy(_ => _.PartNo);
             Control();
         }
 

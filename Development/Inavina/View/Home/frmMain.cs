@@ -49,10 +49,12 @@ namespace Inavina.View.Home
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            this.Icon = Properties.Resources.icon;
             this.Text = LanguageTranslate.ChangeLanguageText(this.Text);
             btnUsers.Caption = LanguageTranslate.ChangeLanguageText(btnUsers.Caption);
             btnChangePassword.Caption = LanguageTranslate.ChangeLanguageText(btnChangePassword.Caption);
             btnLanguageLibrary.Caption = LanguageTranslate.ChangeLanguageText(btnLanguageLibrary.Caption);
+            btnSetting.Caption = LanguageTranslate.ChangeLanguageText(btnSetting.Caption);
             btnPartNumber.Caption = LanguageTranslate.ChangeLanguageText(btnPartNumber.Caption);
             btnMachine.Caption = LanguageTranslate.ChangeLanguageText(btnMachine.Caption);
             btnShift.Caption = LanguageTranslate.ChangeLanguageText(btnShift.Caption);
@@ -64,6 +66,7 @@ namespace Inavina.View.Home
             btnProductReportOK.Caption = LanguageTranslate.ChangeLanguageText(btnProductReportOK.Caption);
             btnProductReportNG.Caption = LanguageTranslate.ChangeLanguageText(btnProductReportNG.Caption);
             btnReportSyntheticRegistBarcode.Caption = LanguageTranslate.ChangeLanguageText(btnReportSyntheticRegistBarcode.Caption);
+            btnReportSyntheticProductionPlan.Caption = LanguageTranslate.ChangeLanguageText(btnReportSyntheticProductionPlan.Caption);
             rbpHeThong.Text = LanguageTranslate.ChangeLanguageText(rbpHeThong.Text);
             rbpDanhMuc.Text = LanguageTranslate.ChangeLanguageText(rbpDanhMuc.Text);
             rbpChucNang.Text = LanguageTranslate.ChangeLanguageText(rbpChucNang.Text);

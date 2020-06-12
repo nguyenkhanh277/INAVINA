@@ -15,7 +15,7 @@ namespace Inavina.Core.Helper
         public static bool switchLanguage = false;
         public static void ChangeLanguageForm(XtraForm xtraForm)
         {
-            //from.Icon = Properties.Resources.icon;
+            xtraForm.Icon = Properties.Resources.icon;
             xtraForm.Text = ChangeLanguageText(xtraForm.Text.Trim());
             foreach (Control control in xtraForm.Controls)
             {

@@ -75,7 +75,7 @@ namespace Inavina.View.PartNumbers
         {
             _projectDataContext = new ProjectDataContext();
             _partNumberRepository = new PartNumberRepository(_projectDataContext);
-            dgvDuLieu.DataSource = _partNumberRepository.GetAll();
+            dgvDuLieu.DataSource = _partNumberRepository.GetAll().OrderBy(_ => _.PartNo);
             Control();
         }
 

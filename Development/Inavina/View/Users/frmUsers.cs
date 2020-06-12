@@ -88,7 +88,7 @@ namespace Inavina.View.Users
         {
             _projectDataContext = new ProjectDataContext();
             _userRepository = new UserRepository(_projectDataContext);
-            dgvDuLieu.DataSource = _userRepository.GetAll();
+            dgvDuLieu.DataSource = _userRepository.GetAll().OrderBy(_ => _.Username);
             Control();
         }
 

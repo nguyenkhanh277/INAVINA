@@ -32,6 +32,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -81,8 +85,8 @@
     <Reference Include="DevExpress.Utils.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraBars.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="Ksoft.Core">
-      <HintPath>License\Ksoft.Core.dll</HintPath>
+    <Reference Include="Registration">
+      <HintPath>dll\Registration.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -468,19 +472,7 @@
     <Folder Include="Persistence\EntityConfigurations\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="image\ReportSyntheticRegistBarcode.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="image\ReportSyntheticProductionPlan.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="image\Report.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="image\Setting.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="image\ProductionHistory.png" />
+    <Content Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

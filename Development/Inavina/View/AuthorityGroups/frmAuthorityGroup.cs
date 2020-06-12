@@ -75,7 +75,7 @@ namespace Inavina.View.AuthorityGroups
         {
             _projectDataContext = new ProjectDataContext();
             _authorityGroupRepository = new AuthorityGroupRepository(_projectDataContext);
-            dgvDuLieu.DataSource = _authorityGroupRepository.GetAll();
+            dgvDuLieu.DataSource = _authorityGroupRepository.GetAll().OrderBy(_ => _.AuthorityGroupName);
             Control();
         }
 

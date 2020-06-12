@@ -13,7 +13,7 @@ using Inavina.Persistence.Repositories;
 using Inavina.Core;
 using Inavina.Core.Helper;
 using Inavina.Core.Domain;
-using Khoai.Core.License;
+using Registration.Core.License;
 
 namespace Inavina.View.Home
 {
@@ -23,11 +23,11 @@ namespace Inavina.View.Home
         {
             InitializeComponent();
             lblMaKichHoat.Text = GlobalConstants.license.Read().ProductId;
-            lblTrangThai.Text = "Dùng thử";
-            lblBanQuyen.Text = "Dùng thử cho 1 máy tính (" + (int)GlobalConstants.license.Read().TrialKeyLimit + " ngày)";
+            lblTrangThai.Text = LanguageTranslate.ChangeLanguageText("Dùng thử");
+            lblBanQuyen.Text = LanguageTranslate.ChangeLanguageText("Dùng thử cho 1 máy tính");
             lblNgayKichHoat.Text = GlobalConstants.license.Read().TrialKeyBegin.ToString("dd/MM/yyyy HH:mm");
             lblNgayHetHan.Text = GlobalConstants.license.Read().TrialKeyEnd.ToString("dd/MM/yyyy HH:mm");
-            lblConLai.Text = GlobalConstants.license.Read().TrialKeyLeft.ToString() + " ngày";
+            lblConLai.Text = GlobalConstants.license.Read().TrialKeyLeft.ToString() + " " + LanguageTranslate.ChangeLanguageText("Ngày");
             btnTrial.Enabled = (GlobalConstants.license.Read().TrialKeyLeft > 0);
         }
 
@@ -41,7 +41,7 @@ namespace Inavina.View.Home
             frmLicense frm = new frmLicense();
             frm.License = GlobalConstants.license;
             frm.BuyLicenseUrl = "http://google.com";
-            frm.Text = "Đăng ký sử dụng phần mềm " + Properties.Settings.Default.Company;
+            frm.Text = LanguageTranslate.ChangeLanguageText("Đăng ký sử dụng phần mềm") + " " + Properties.Settings.Default.Company;
             frm.StartPosition = FormStartPosition.CenterScreen;
             DialogResult dr = frm.ShowDialog();
             if (dr != DialogResult.OK)

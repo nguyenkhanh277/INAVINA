@@ -36,7 +36,6 @@
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.lblConLai = new DevExpress.XtraEditors.LabelControl();
             this.lblNgayHetHan = new DevExpress.XtraEditors.LabelControl();
             this.lblNgayKichHoat = new DevExpress.XtraEditors.LabelControl();
@@ -45,6 +44,7 @@
             this.lblMaKichHoat = new DevExpress.XtraEditors.LabelControl();
             this.btnTrial = new DevExpress.XtraEditors.SimpleButton();
             this.btnRegister = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.SuspendLayout();
             // 
             // labelControl3
@@ -85,7 +85,7 @@
             this.btnClose.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(398, 416);
+            this.btnClose.Location = new System.Drawing.Point(398, 356);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 40);
             this.btnClose.TabIndex = 4;
@@ -129,92 +129,78 @@
             // 
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(30, 280);
+            this.labelControl7.Location = new System.Drawing.Point(30, 264);
             this.labelControl7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(430, 56);
+            this.labelControl7.Size = new System.Drawing.Size(421, 28);
             this.labelControl7.TabIndex = 8;
-            this.labelControl7.Text = "Sau thời gian chỉ định chương trình sẽ bị vô hiệu. \r\nĐể tiếp tục sử dụng, bạn nên" +
-    " mua bản quyền.";
-            // 
-            // labelControl8
-            // 
-            this.labelControl8.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F);
-            this.labelControl8.Appearance.ForeColor = System.Drawing.Color.Blue;
-            this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Appearance.Options.UseForeColor = true;
-            this.labelControl8.Location = new System.Drawing.Point(30, 365);
-            this.labelControl8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(328, 28);
-            this.labelControl8.TabIndex = 9;
-            this.labelControl8.Text = "Liên hệ: 0974.575.668 gặp (Mr.Khánh)";
+            this.labelControl7.Text = "Sau thời gian chỉ định chương trình sẽ bị vô hiệu";
             // 
             // lblConLai
             // 
-            this.lblConLai.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.lblConLai.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
             this.lblConLai.Appearance.ForeColor = System.Drawing.Color.Red;
             this.lblConLai.Appearance.Options.UseFont = true;
             this.lblConLai.Appearance.Options.UseForeColor = true;
-            this.lblConLai.Location = new System.Drawing.Point(200, 215);
+            this.lblConLai.Location = new System.Drawing.Point(195, 215);
             this.lblConLai.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblConLai.Name = "lblConLai";
-            this.lblConLai.Size = new System.Drawing.Size(59, 28);
+            this.lblConLai.Size = new System.Drawing.Size(64, 28);
             this.lblConLai.TabIndex = 15;
             this.lblConLai.Text = "0 ngày";
             // 
             // lblNgayHetHan
             // 
-            this.lblNgayHetHan.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.lblNgayHetHan.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
             this.lblNgayHetHan.Appearance.Options.UseFont = true;
-            this.lblNgayHetHan.Location = new System.Drawing.Point(200, 175);
+            this.lblNgayHetHan.Location = new System.Drawing.Point(195, 175);
             this.lblNgayHetHan.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblNgayHetHan.Name = "lblNgayHetHan";
-            this.lblNgayHetHan.Size = new System.Drawing.Size(80, 28);
+            this.lblNgayHetHan.Size = new System.Drawing.Size(82, 28);
             this.lblNgayHetHan.TabIndex = 14;
             this.lblNgayHetHan.Text = "--/--/----";
             // 
             // lblNgayKichHoat
             // 
-            this.lblNgayKichHoat.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.lblNgayKichHoat.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
             this.lblNgayKichHoat.Appearance.Options.UseFont = true;
-            this.lblNgayKichHoat.Location = new System.Drawing.Point(200, 135);
+            this.lblNgayKichHoat.Location = new System.Drawing.Point(195, 135);
             this.lblNgayKichHoat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblNgayKichHoat.Name = "lblNgayKichHoat";
-            this.lblNgayKichHoat.Size = new System.Drawing.Size(80, 28);
+            this.lblNgayKichHoat.Size = new System.Drawing.Size(82, 28);
             this.lblNgayKichHoat.TabIndex = 13;
             this.lblNgayKichHoat.Text = "--/--/----";
             // 
             // lblBanQuyen
             // 
-            this.lblBanQuyen.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.lblBanQuyen.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
             this.lblBanQuyen.Appearance.Options.UseFont = true;
-            this.lblBanQuyen.Location = new System.Drawing.Point(200, 95);
+            this.lblBanQuyen.Location = new System.Drawing.Point(195, 95);
             this.lblBanQuyen.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblBanQuyen.Name = "lblBanQuyen";
-            this.lblBanQuyen.Size = new System.Drawing.Size(256, 28);
+            this.lblBanQuyen.Size = new System.Drawing.Size(238, 28);
             this.lblBanQuyen.TabIndex = 12;
-            this.lblBanQuyen.Text = "Dùng thử 1 máy tính (7 ngày)";
+            this.lblBanQuyen.Text = "Dùng thử cho 1 máy tính";
             // 
             // lblTrangThai
             // 
-            this.lblTrangThai.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.lblTrangThai.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
             this.lblTrangThai.Appearance.Options.UseFont = true;
-            this.lblTrangThai.Location = new System.Drawing.Point(200, 55);
+            this.lblTrangThai.Location = new System.Drawing.Point(195, 55);
             this.lblTrangThai.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblTrangThai.Name = "lblTrangThai";
-            this.lblTrangThai.Size = new System.Drawing.Size(130, 28);
+            this.lblTrangThai.Size = new System.Drawing.Size(142, 28);
             this.lblTrangThai.TabIndex = 11;
             this.lblTrangThai.Text = "Chưa kích hoạt";
             // 
             // lblMaKichHoat
             // 
-            this.lblMaKichHoat.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.lblMaKichHoat.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
             this.lblMaKichHoat.Appearance.Options.UseFont = true;
-            this.lblMaKichHoat.Location = new System.Drawing.Point(200, 15);
+            this.lblMaKichHoat.Location = new System.Drawing.Point(195, 15);
             this.lblMaKichHoat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblMaKichHoat.Name = "lblMaKichHoat";
-            this.lblMaKichHoat.Size = new System.Drawing.Size(167, 28);
+            this.lblMaKichHoat.Size = new System.Drawing.Size(183, 28);
             this.lblMaKichHoat.TabIndex = 10;
             this.lblMaKichHoat.Text = "Phiên bản miễn phí";
             // 
@@ -223,7 +209,7 @@
             this.btnTrial.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnTrial.Appearance.Options.UseFont = true;
             this.btnTrial.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnTrial.Location = new System.Drawing.Point(98, 416);
+            this.btnTrial.Location = new System.Drawing.Point(98, 356);
             this.btnTrial.Name = "btnTrial";
             this.btnTrial.Size = new System.Drawing.Size(80, 40);
             this.btnTrial.TabIndex = 17;
@@ -236,19 +222,31 @@
             this.btnRegister.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnRegister.Appearance.Options.UseBackColor = true;
             this.btnRegister.Appearance.Options.UseFont = true;
-            this.btnRegister.Location = new System.Drawing.Point(12, 416);
+            this.btnRegister.Location = new System.Drawing.Point(12, 356);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(80, 40);
             this.btnRegister.TabIndex = 16;
             this.btnRegister.Text = "Đăng ký";
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
+            // labelControl9
+            // 
+            this.labelControl9.Appearance.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.labelControl9.Appearance.Options.UseFont = true;
+            this.labelControl9.Location = new System.Drawing.Point(30, 300);
+            this.labelControl9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(390, 28);
+            this.labelControl9.TabIndex = 18;
+            this.labelControl9.Text = "Để tiếp tục sử dụng, bạn nên mua bản quyền";
+            // 
             // frmLicenses
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(490, 468);
+            this.ClientSize = new System.Drawing.Size(490, 408);
+            this.Controls.Add(this.labelControl9);
             this.Controls.Add(this.btnTrial);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.lblConLai);
@@ -257,7 +255,6 @@
             this.Controls.Add(this.lblBanQuyen);
             this.Controls.Add(this.lblTrangThai);
             this.Controls.Add(this.lblMaKichHoat);
-            this.Controls.Add(this.labelControl8);
             this.Controls.Add(this.labelControl7);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.labelControl5);
@@ -273,7 +270,7 @@
             this.MinimizeBox = false;
             this.Name = "frmLicenses";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Thông tin bản quyền";
+            this.Text = "Bản quyền";
             this.Load += new System.EventHandler(this.frmLicenses_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -289,7 +286,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl7;
-        private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.LabelControl lblConLai;
         private DevExpress.XtraEditors.LabelControl lblNgayHetHan;
         private DevExpress.XtraEditors.LabelControl lblNgayKichHoat;
@@ -298,5 +294,6 @@
         private DevExpress.XtraEditors.LabelControl lblMaKichHoat;
         private DevExpress.XtraEditors.SimpleButton btnTrial;
         private DevExpress.XtraEditors.SimpleButton btnRegister;
+        private DevExpress.XtraEditors.LabelControl labelControl9;
     }
 }

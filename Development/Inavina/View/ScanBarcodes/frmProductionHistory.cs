@@ -69,7 +69,7 @@ namespace Inavina.View.ScanBarcodes
             DateTime fromDate = DateTime.Parse(dtpFromDate.Value.ToString("yyyy-MM-dd 00:00:00"));
             DateTime toDate = DateTime.Parse(dtpToDate.Value.ToString("yyyy-MM-dd 23:59:59"));
             expressions.Add(_ => _.ScanDate >= fromDate && _.ScanDate <= toDate);
-            dgvDuLieu.DataSource = _scanBarcodeRepository.Find(expressions);
+            dgvDuLieu.DataSource = _scanBarcodeRepository.Find(expressions).OrderBy(_ => _.ScanDate);
             Control();
         }
 

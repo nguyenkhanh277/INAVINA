@@ -31,6 +31,262 @@ namespace Inavina.Migrations
                 new LanguageLibrary
                 {
                     Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Ứng dụng cần kết nối mạng để kích hoạt",
+                    English = "The application requires a network connection to activate",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Ứng dụng cần quyền Quản trị để kích hoạt",
+                    English = "Application needs Admin rights to activate",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Đăng ký sử dụng phần mềm",
+                    English = "Register to use the software",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Dùng thử",
+                    English = "Trial",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Dùng thử cho 1 máy tính",
+                    English = "Try it on 1 computer",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Bản quyền",
+                    English = "License",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Mã sản phẩm",
+                    English = "Product code",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Ngày kích hoạt",
+                    English = "Activation date",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Ngày hết hạn",
+                    English = "Expiration date",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Còn lại",
+                    English = "Left day",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Sau thời gian chỉ định chương trình sẽ bị vô hiệu",
+                    English = "After the specified time the program will be disabled",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Để tiếp tục sử dụng, bạn nên mua giấy phép",
+                    English = "To continue using, you should purchase a license",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Đăng ký",
+                    English = "Registration",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Cổng COM",
+                    English = "Port COM",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "",
+                    English = "",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "",
+                    English = "",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "",
+                    English = "",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "",
+                    English = "",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "",
+                    English = "",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "",
+                    English = "",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "",
+                    English = "",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "",
+                    English = "",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "",
+                    English = "",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "",
+                    English = "",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "",
+                    English = "",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "",
+                    English = "",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "",
+                    English = "",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "",
+                    English = "",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "",
+                    English = "",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "",
+                    English = "",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "",
+                    English = "",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "",
+                    English = "",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
                     Vietnamese = "Tên công ty",
                     English = "Company name",
                     CreatedAt = DateTime.Now,

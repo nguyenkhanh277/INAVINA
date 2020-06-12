@@ -75,6 +75,8 @@ namespace Inavina.View.Shifts
         private void Clear()
         {
             txtShiftNo.Text = "";
+            txtFromTime.Text = "00:00";
+            txtToTime.Text = "00:00";
             txtNote.Text = "";
             chkUsing.Checked = true;
             txtShiftNo.Focus();
@@ -85,6 +87,8 @@ namespace Inavina.View.Shifts
             //Get Data Table Shift
             Shift shift = _shiftRepository.Get(_id);
             txtShiftNo.Text = shift.ShiftNo;
+            txtFromTime.EditValue = shift.FromTime;
+            txtToTime.EditValue = shift.ToTime;
             txtNote.Text = shift.Note;
             chkUsing.Checked = (shift.Status == GlobalConstants.StatusValue.Using);
         }
@@ -120,6 +124,8 @@ namespace Inavina.View.Shifts
                 Shift shift = new Shift();
                 shift.Id = _id;
                 shift.ShiftNo = txtShiftNo.Text.Trim();
+                shift.FromTime = DateTime.Parse(txtFromTime.EditValue.ToString());
+                shift.ToTime = DateTime.Parse(txtToTime.EditValue.ToString());
                 shift.Note = txtNote.Text.Trim();
                 shift.Status = (chkUsing.Checked ? GlobalConstants.StatusValue.Using : GlobalConstants.StatusValue.NoUse);
                 _shiftRepository.Save(shift);
