@@ -113,10 +113,35 @@ namespace Inavina.Persistence.Repositories
             }
         }
 
-        public void CheckPermission(string username, string password, string permission)
+        public bool CheckOperator(string username, string authorityGroupName)
         {
-            error = false;
-            errorMessage = "";
+            bool result = false;
+            var query = from x in ProjectDataContext.Users
+                        join y in ProjectDataContext.UserAuthoritys on x.Id equals y.UserID
+                        join z in ProjectDataContext.AuthorityGroups on y.AuthorityGroupID equals z.Id
+                        where x.Username.Equals(username) && z.AuthorityGroupName.Equals(authorityGroupName)
+                        select new { x, y, z };
+            if (query.Any())
+            {
+                result = true;
+            }
+            return result;
+        }
+
+        public bool CheckPermission(string username, string program, string function)
+        {
+            bool result = false;
+            errorMessage = "Bạn không có quyền sử dụng chức năng này";
+            var query = from x in ProjectDataContext.Users
+                        join y in ProjectDataContext.UserAuthoritys on x.Id equals y.UserID
+                        join z in ProjectDataContext.ProgramFunctionAuthoritys on y.AuthorityGroupID equals z.AuthorityGroupID
+                        where x.Username.Equals(username) && z.ProgramName.Equals(program) && z.FunctionName.Equals(function)
+                        select new { x, y, z };
+            if (query.Any())
+            {
+                result = true;
+            }
+            return result;
         }
 
         public string GetAutoID()

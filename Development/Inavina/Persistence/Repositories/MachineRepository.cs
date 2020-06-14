@@ -63,5 +63,17 @@ namespace Inavina.Persistence.Repositories
         {
             return Guid.NewGuid().ToString();
         }
+
+        public string GetMachineNo(string machineName)
+        {
+            string result = "01";
+            try
+            {
+                var machines = Find(_ => _.MachineName.Equals(machineName)).OrderBy(_ => _.MachineNo).FirstOrDefault();
+                result = (machines != null ? machines.Id : "01");
+            }
+            catch { }
+            return result;
+        }
     }
 }

@@ -23,6 +23,7 @@ namespace Inavina.View.ScanBarcodes
         ProjectDataContext _projectDataContext;
         ScanBarcodeRepository _scanBarcodeRepository;
         RegistBarcodeRepository _registBarcodeRepository;
+        ShiftRepository _shiftRepository;
         SerialPort _serialPort;
         int _countOK = 0;
         int _countNG = 0;
@@ -45,6 +46,7 @@ namespace Inavina.View.ScanBarcodes
             _projectDataContext = new ProjectDataContext();
             _scanBarcodeRepository = new ScanBarcodeRepository(_projectDataContext);
             _registBarcodeRepository = new RegistBarcodeRepository(_projectDataContext);
+            _shiftRepository = new ShiftRepository(_projectDataContext);
             LanguageTranslate.ChangeLanguageForm(this);
             LoadCount();
             _serialPort = new SerialPort();
@@ -121,7 +123,7 @@ namespace Inavina.View.ScanBarcodes
                 Barcode = barcode,
                 PartNo = lblPartNumber.Text.Trim(),
                 MachineNo = GlobalConstants.machineNo,
-                //ShiftNo = lblShift.Text.Trim(),
+                ShiftNo = txtCa.Text.Trim(),
                 ResultStatus = resultStatus,
                 Status = GlobalConstants.StatusValue.Using
             };
@@ -193,7 +195,7 @@ namespace Inavina.View.ScanBarcodes
             else
             {
                 //Nếu cổng chưa mở hoặc lỗi thì cần kiểm tra và message cho người dùng
-                lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - Không kết nối được với thiết bị");
+                lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + "Không kết nối được với thiết bị");
             }
         }
 
@@ -226,11 +228,11 @@ namespace Inavina.View.ScanBarcodes
                 {
                     dtEnd = DateTime.Now;
                     ts = dtEnd - dtStart;
-                    //if (ts.TotalMilliseconds > 100)
-                    //{
-                    //    lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + "YÊU CẦU PHẢI SỬ DỤNG MÁY SCAN");
-                    //}
-                    //else
+                    if (GlobalConstants.mustUseBarcodeReader && ts.TotalMilliseconds > 100)
+                    {
+                        lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + "YÊU CẦU PHẢI SỬ DỤNG MÁY SCAN");
+                    }
+                    else
                     {
                         Clear();
                         string barcode = txtBarcode.Text.ToString();
@@ -269,7 +271,7 @@ namespace Inavina.View.ScanBarcodes
             }
             catch (Exception ex)
             {
-                lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - Lỗi trong quá trình scan barcode");
+                lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + "Lỗi trong quá trình scan barcode");
                 lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + ex.ToString());
             }
         }
@@ -277,6 +279,7 @@ namespace Inavina.View.ScanBarcodes
         private void timer_Tick(object sender, EventArgs e)
         {
             lblTittle.Text = LanguageTranslate.ChangeLanguageText("Tài khoản") + ": " + GlobalConstants.username + "  |  " + LanguageTranslate.ChangeLanguageText("Tên đầy đủ") + ": " + GlobalConstants.fullName + "  |  " + LanguageTranslate.ChangeLanguageText("Ngày") + ": " + DateTime.Now.ToString("dd/MM HH:mm:ss") + "  |  " + LanguageTranslate.ChangeLanguageText("Máy") + ": " + GlobalConstants.machineName;
+            txtCa.Text = _shiftRepository.GetShiftNo();
         }
 
         private void lsvLog_Enter(object sender, EventArgs e)

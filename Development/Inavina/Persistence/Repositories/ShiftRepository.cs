@@ -63,5 +63,18 @@ namespace Inavina.Persistence.Repositories
         {
             return Guid.NewGuid().ToString();
         }
+
+        public string GetShiftNo()
+        {
+            string result = "0001";
+            try
+            {
+                DateTime dateTime = DateTime.Parse(DateTime.Now.ToString("2020-01-01 HH:mm:ss"));
+                var shift = GlobalConstants.shift.Where(_ => _.FromTime >= dateTime && dateTime <= _.ToTime).OrderBy(_ => _.FromTime).FirstOrDefault();
+                result = (shift != null ? shift.ShiftNo : "0001");
+            }
+            catch { }
+            return result;
+        }
     }
 }

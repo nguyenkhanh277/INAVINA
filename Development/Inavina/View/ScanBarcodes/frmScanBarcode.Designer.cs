@@ -56,6 +56,8 @@
             this.lblTittle = new DevExpress.XtraEditors.LabelControl();
             this.btnClose = new DevExpress.XtraEditors.LabelControl();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.txtCa = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBarcode.Properties)).BeginInit();
@@ -482,11 +484,46 @@
             this.timer.Interval = 1000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // txtCa
+            // 
+            this.txtCa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCa.Appearance.Font = new System.Drawing.Font("Segoe UI", 30F, System.Drawing.FontStyle.Bold);
+            this.txtCa.Appearance.ForeColor = System.Drawing.Color.Blue;
+            this.txtCa.Appearance.Options.UseFont = true;
+            this.txtCa.Appearance.Options.UseForeColor = true;
+            this.txtCa.Appearance.Options.UseTextOptions = true;
+            this.txtCa.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.txtCa.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.txtCa.Location = new System.Drawing.Point(1005, 5);
+            this.txtCa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtCa.Name = "txtCa";
+            this.txtCa.Size = new System.Drawing.Size(100, 40);
+            this.txtCa.TabIndex = 10;
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 30F, System.Drawing.FontStyle.Bold);
+            this.labelControl3.Appearance.ForeColor = System.Drawing.Color.Blue;
+            this.labelControl3.Appearance.Options.UseFont = true;
+            this.labelControl3.Appearance.Options.UseForeColor = true;
+            this.labelControl3.Appearance.Options.UseTextOptions = true;
+            this.labelControl3.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl3.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl3.Location = new System.Drawing.Point(934, 5);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(65, 40);
+            this.labelControl3.TabIndex = 11;
+            this.labelControl3.Text = "CA:";
+            // 
             // frmScanBarcode
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1196, 668);
+            this.Controls.Add(this.labelControl3);
+            this.Controls.Add(this.txtCa);
             this.Controls.Add(this.lblResult);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.panelControl1);
@@ -537,5 +574,7 @@
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private System.Windows.Forms.ListView lsvLog;
         private System.Windows.Forms.Timer timer;
+        private DevExpress.XtraEditors.LabelControl txtCa;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
     }
 }

@@ -19,7 +19,7 @@ namespace Inavina.Migrations
 
         protected override void Seed(ProjectDataContext projectDataContext)
         {
-            //FirstUpdate(projectDataContext);
+            FirstUpdate(projectDataContext);
             AddOrUpdateLanguageLibrary(projectDataContext);
         }
 
@@ -28,6 +28,22 @@ namespace Inavina.Migrations
             #region LanguageLibrary
             var languageLibrarys = new List<LanguageLibrary>
             {
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Phải sử dụng máy đọc mã vạch",
+                    English = "Must use barcode reader",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Bạn không có quyền sử dụng chức năng này",
+                    English = "You do not have permission to use this function",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
                 new LanguageLibrary
                 {
                     Id = Guid.NewGuid().ToString(),
@@ -990,13 +1006,21 @@ namespace Inavina.Migrations
         private void FirstUpdate(ProjectDataContext projectDataContext)
         {
             //return;
-            string defaultPassword = "1511";
+            string defaultPassword1 = "1511";
+            string defaultPassword2 = "quanly";
+            string defaultPassword3 = "ca1";
+            string defaultPassword4 = "ca2";
             string salt = SecurityHelper.CreateSalt(GlobalConstants.defaultSaltLength);
-            string encryptedPassword = SecurityHelper.GenerateMD5(defaultPassword, salt);
+            string encryptedPassword1 = SecurityHelper.GenerateMD5(defaultPassword1, salt);
+            string encryptedPassword2 = SecurityHelper.GenerateMD5(defaultPassword2, salt);
+            string encryptedPassword3 = SecurityHelper.GenerateMD5(defaultPassword3, salt);
+            string encryptedPassword4 = SecurityHelper.GenerateMD5(defaultPassword4, salt);
 
             #region Add Users
             string userID1 = Guid.NewGuid().ToString();
             string userID2 = Guid.NewGuid().ToString();
+            string userID3 = Guid.NewGuid().ToString();
+            string userID4 = Guid.NewGuid().ToString();
             var users = new List<User>
             {
                 new User
@@ -1004,7 +1028,7 @@ namespace Inavina.Migrations
                     Id = userID1,
                     Username = "admin",
                     Salt = salt,
-                    Password = encryptedPassword,
+                    Password = encryptedPassword1,
                     FullName = "Administrator",
                     Gender = Core.GlobalConstants.GenderValue.Male,
                     Status = Core.GlobalConstants.StatusValue.Using,
@@ -1014,10 +1038,34 @@ namespace Inavina.Migrations
                 new User
                 {
                     Id = userID2,
-                    Username = "khanh",
+                    Username = "quanly",
                     Salt = salt,
-                    Password = encryptedPassword,
-                    FullName = "Nguyễn Xuân Khánh",
+                    Password = encryptedPassword2,
+                    FullName = "Quản lý",
+                    Gender = Core.GlobalConstants.GenderValue.Male,
+                    Status = Core.GlobalConstants.StatusValue.Using,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new User
+                {
+                    Id = userID3,
+                    Username = "ca1",
+                    Salt = salt,
+                    Password = encryptedPassword3,
+                    FullName = "Ca 1",
+                    Gender = Core.GlobalConstants.GenderValue.Male,
+                    Status = Core.GlobalConstants.StatusValue.Using,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new User
+                {
+                    Id = userID4,
+                    Username = "ca2",
+                    Salt = salt,
+                    Password = encryptedPassword4,
+                    FullName = "Ca 2",
                     Gender = Core.GlobalConstants.GenderValue.Male,
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
@@ -1032,6 +1080,8 @@ namespace Inavina.Migrations
 
             #region Add AuthorityGroup
             string authorityGroup1 = Guid.NewGuid().ToString();
+            string authorityGroup2 = Guid.NewGuid().ToString();
+            string authorityGroup3 = Guid.NewGuid().ToString();
             var authorityGroups = new List<AuthorityGroup>
             {
                 new AuthorityGroup
@@ -1039,6 +1089,24 @@ namespace Inavina.Migrations
                     Id = authorityGroup1,
                     AuthorityGroupName = "Admin",
                     Sort = 0,
+                    Status = Core.GlobalConstants.StatusValue.Using,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new AuthorityGroup
+                {
+                    Id = authorityGroup2,
+                    AuthorityGroupName = "Manager",
+                    Sort = 1,
+                    Status = Core.GlobalConstants.StatusValue.Using,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new AuthorityGroup
+                {
+                    Id = authorityGroup3,
+                    AuthorityGroupName = "Operator",
+                    Sort = 2,
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
@@ -1057,8 +1125,8 @@ namespace Inavina.Migrations
                 {
                     Id = Guid.NewGuid().ToString(),
                     ProgramName = "User",
-                    FunctionName = "Add",
-                    Explanation = "Add user",
+                    FunctionName = "View",
+                    Explanation = "",
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
@@ -1066,9 +1134,9 @@ namespace Inavina.Migrations
                 new ProgramFunctionMaster
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "User",
-                    FunctionName = "Edit",
-                    Explanation = "Edit user",
+                    ProgramName = "Language",
+                    FunctionName = "View",
+                    Explanation = "",
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
@@ -1076,9 +1144,9 @@ namespace Inavina.Migrations
                 new ProgramFunctionMaster
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "User",
-                    FunctionName = "Delete",
-                    Explanation = "Delete user",
+                    ProgramName = "Setting",
+                    FunctionName = "View",
+                    Explanation = "",
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
@@ -1086,9 +1154,119 @@ namespace Inavina.Migrations
                 new ProgramFunctionMaster
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "User",
-                    FunctionName = "Authority",
-                    Explanation = "Authority user",
+                    ProgramName = "PartNumber",
+                    FunctionName = "View",
+                    Explanation = "",
+                    Status = Core.GlobalConstants.StatusValue.Using,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionMaster
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "Machine",
+                    FunctionName = "View",
+                    Explanation = "",
+                    Status = Core.GlobalConstants.StatusValue.Using,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionMaster
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "Shift",
+                    FunctionName = "View",
+                    Explanation = "",
+                    Status = Core.GlobalConstants.StatusValue.Using,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionMaster
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "Mold",
+                    FunctionName = "View",
+                    Explanation = "",
+                    Status = Core.GlobalConstants.StatusValue.Using,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionMaster
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "RegistBarcode",
+                    FunctionName = "View",
+                    Explanation = "",
+                    Status = Core.GlobalConstants.StatusValue.Using,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionMaster
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "ProductionPlan",
+                    FunctionName = "View",
+                    Explanation = "",
+                    Status = Core.GlobalConstants.StatusValue.Using,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionMaster
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "ScanBarcode",
+                    FunctionName = "View",
+                    Explanation = "",
+                    Status = Core.GlobalConstants.StatusValue.Using,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionMaster
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "ProductionHistory",
+                    FunctionName = "View",
+                    Explanation = "",
+                    Status = Core.GlobalConstants.StatusValue.Using,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionMaster
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "QuantityOfProductsOK",
+                    FunctionName = "View",
+                    Explanation = "",
+                    Status = Core.GlobalConstants.StatusValue.Using,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionMaster
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "QuantityOfProductsNG",
+                    FunctionName = "View",
+                    Explanation = "",
+                    Status = Core.GlobalConstants.StatusValue.Using,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionMaster
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "ReportSyntheticRegistBarcode",
+                    FunctionName = "View",
+                    Explanation = "",
+                    Status = Core.GlobalConstants.StatusValue.Using,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionMaster
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "ReportSyntheticProductionPlan",
+                    FunctionName = "View",
+                    Explanation = "",
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
@@ -1107,7 +1285,133 @@ namespace Inavina.Migrations
                 {
                     Id = Guid.NewGuid().ToString(),
                     ProgramName = "User",
-                    FunctionName = "Add",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup1,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "Language",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup1,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "Setting",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup1,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "PartNumber",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup1,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "Machine",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup1,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "Shift",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup1,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "Mold",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup1,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "RegisterPrintBarcode",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup1,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "ProductionPlan",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup1,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "ScanBarcode",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup1,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "HistoryProduct",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup1,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "QuantityOfProductsOK",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup1,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "QuantityOfProductsNG",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup1,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "ReportSyntheticByBarcode",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup1,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "ReportSyntheticByPlan",
+                    FunctionName = "View",
                     AuthorityGroupID = authorityGroup1,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
@@ -1116,30 +1420,148 @@ namespace Inavina.Migrations
                 {
                     Id = Guid.NewGuid().ToString(),
                     ProgramName = "User",
-                    FunctionName = "Edit",
-                    AuthorityGroupID = authorityGroup1,
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup2,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 },
                 new ProgramFunctionAuthority
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "User",
-                    FunctionName = "Delete",
-                    AuthorityGroupID = authorityGroup1,
+                    ProgramName = "Language",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup2,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 },
                 new ProgramFunctionAuthority
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "User",
-                    FunctionName = "Authority",
-                    AuthorityGroupID = authorityGroup1,
+                    ProgramName = "Setting",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup2,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "PartNumber",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup2,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "Machine",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup2,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "Shift",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup2,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "Mold",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup2,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "RegistBarcode",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup2,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "ProductionPlan",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup2,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "ScanBarcode",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup2,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "ProductionHistory",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup2,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "QuantityOfProductsOK",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup2,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "QuantityOfProductsNG",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup2,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "ReportSyntheticRegistBarcode",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup2,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "ReportSyntheticProductionPlan",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup2,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new ProgramFunctionAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProgramName = "ScanBarcode",
+                    FunctionName = "View",
+                    AuthorityGroupID = authorityGroup3,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 }
             };
+
 
             foreach (var programFunctionAuthority in programFunctionAuthoritys)
                 projectDataContext.ProgramFunctionAuthoritys.AddOrUpdate(a => a.Id, programFunctionAuthority);
@@ -1154,6 +1576,30 @@ namespace Inavina.Migrations
                     Id = Guid.NewGuid().ToString(),
                     UserID = userID1,
                     AuthorityGroupID = authorityGroup1,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new UserAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    UserID = userID2,
+                    AuthorityGroupID = authorityGroup2,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new UserAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    UserID = userID3,
+                    AuthorityGroupID = authorityGroup3,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new UserAuthority
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    UserID = userID4,
+                    AuthorityGroupID = authorityGroup3,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 }

@@ -19,15 +19,22 @@ namespace Inavina
         {
             Persistence.ProjectDataContext _projectDataContext = new Persistence.ProjectDataContext();
             Persistence.Repositories.LanguageLibraryRepository _languageLibraryRepository = new Persistence.Repositories.LanguageLibraryRepository(_projectDataContext);
+            Persistence.Repositories.ShiftRepository _shiftRepository = new Persistence.Repositories.ShiftRepository(_projectDataContext);
+            Persistence.Repositories.MachineRepository _machineRepository = new Persistence.Repositories.MachineRepository(_projectDataContext);
             DevExpress.Skins.SkinManager.EnableFormSkins();
             DevExpress.UserSkins.BonusSkins.Register();
             DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(Properties.Settings.Default.Theme);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             GlobalConstants.printerName = Properties.Settings.Default.PrinterName;
+            GlobalConstants.portCOM = Properties.Settings.Default.PortCOM;
             GlobalConstants.languageLibrary = _languageLibraryRepository.GetAll().ToList();
             GlobalConstants.language = Properties.Settings.Default.Language;
+            GlobalConstants.shift = _shiftRepository.GetAll().ToList();
             GlobalConstants.machineName = Environment.MachineName;
+            GlobalConstants.machineNo = _machineRepository.GetMachineNo(GlobalConstants.machineName);
+            GlobalConstants.VN = Properties.Settings.Default.VN;
+            GlobalConstants.mustUseBarcodeReader = Properties.Settings.Default.MustUseBarcodeReader;
             License();
         }
 

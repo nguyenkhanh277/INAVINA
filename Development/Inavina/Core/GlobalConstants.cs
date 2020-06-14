@@ -19,7 +19,10 @@ namespace Inavina.Core
         public static string portCOM = "COM1";
         public static string machineNo = "";
         public static string machineName = "";
+        public static string VN = "VN001208";
         public static int language = 0;
+        public static bool mustUseBarcodeReader = false;
+        public static List<Shift> shift = new List<Shift>();
         public static List<LanguageLibrary> languageLibrary = new List<LanguageLibrary>();
         public static int defaultSaltLength = 5;
         public static bool debugMode = false;

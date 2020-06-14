@@ -11,7 +11,6 @@ namespace Inavina.Core.Helper
 {
     public class GeneralHelper
     {
-
         public static bool IsNumericType(Type type)
         {
             HashSet<Type> NumericTypes = new HashSet<Type>

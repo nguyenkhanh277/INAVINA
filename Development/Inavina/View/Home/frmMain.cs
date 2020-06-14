@@ -5,6 +5,7 @@ using DevExpress.XtraEditors;
 using Inavina.Core;
 using Inavina.Core.Helper;
 using Inavina.Persistence;
+using Inavina.Persistence.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,7 @@ namespace Inavina.View.Home
     public partial class frmMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         ProjectDataContext _projectDataContext = new ProjectDataContext();
+        UserRepository _userRepository;
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
@@ -35,7 +37,7 @@ namespace Inavina.View.Home
 
         private void rgbiSkins_GalleryItemClick(object sender, GalleryItemClickEventArgs e)
         {
-            
+
             Properties.Settings.Default.Theme = e.Item.Value.ToString();
             Properties.Settings.Default.Save();
         }
@@ -49,8 +51,20 @@ namespace Inavina.View.Home
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            _userRepository = new UserRepository(_projectDataContext);
             this.Icon = Properties.Resources.icon;
             this.Text = LanguageTranslate.ChangeLanguageText(this.Text);
+            Translate();
+            Permission();
+            ribbonControl1.SelectPage(rbpChucNang);
+            if (_userRepository.CheckOperator(GlobalConstants.username, "Operator"))
+            {
+                btnScanBarcode_ItemClick(null, null);
+            }
+        }
+
+        private void Translate()
+        {
             btnUsers.Caption = LanguageTranslate.ChangeLanguageText(btnUsers.Caption);
             btnChangePassword.Caption = LanguageTranslate.ChangeLanguageText(btnChangePassword.Caption);
             btnLanguageLibrary.Caption = LanguageTranslate.ChangeLanguageText(btnLanguageLibrary.Caption);
@@ -72,8 +86,27 @@ namespace Inavina.View.Home
             rbpChucNang.Text = LanguageTranslate.ChangeLanguageText(rbpChucNang.Text);
             rbpBaoCao.Text = LanguageTranslate.ChangeLanguageText(rbpBaoCao.Text);
             txtUser.Caption = LanguageTranslate.ChangeLanguageText("Tài khoản") + ": " + GlobalConstants.username + "  |  " + LanguageTranslate.ChangeLanguageText("Tên đầy đủ") + ": " + GlobalConstants.fullName;
-            ribbonControl1.SelectPage(rbpChucNang);
         }
+
+        private void Permission()
+        {
+            btnUsers.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "User", "View");
+            btnLanguageLibrary.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "Language", "View");
+            btnSetting.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "Setting", "View");
+            btnPartNumber.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "PartNumber", "View");
+            btnMachine.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "Machine", "View");
+            btnShift.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "Shift", "View");
+            btnMold.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "Mold", "View");
+            btnRegistBarcode.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "RegistBarcode", "View");
+            btnProductionPlan.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "ProductionPlan", "View");
+            btnScanBarcode.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "ScanBarcode", "View");
+            btnProductionHistory.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "ProductionHistory", "View");
+            btnProductReportOK.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "QuantityOfProductsOK", "View");
+            btnProductReportNG.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "QuantityOfProductsNG", "View");
+            btnReportSyntheticRegistBarcode.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "ReportSyntheticRegistBarcode", "View");
+            btnReportSyntheticProductionPlan.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "ReportSyntheticProductionPlan", "View");
+        }
+
         private XtraForm CheckExist(Type fType)
         {
             foreach (XtraForm f in this.MdiChildren)

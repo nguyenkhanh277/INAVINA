@@ -39,12 +39,15 @@ namespace Inavina.View.Home
         private void frmSetting_Load(object sender, EventArgs e)
         {
             LanguageTranslate.ChangeLanguageForm(this);
-            LoadPrinter();
+            LoadPrinter(); 
+            LoadPortCOM();
             txtCompany.Text = Properties.Settings.Default.Company;
             txtAddress.Text = Properties.Settings.Default.Address;
             txtPhone.Text = Properties.Settings.Default.Phone;
+            txtVN.Text = Properties.Settings.Default.VN;
             cbbPrinter.Text = (GeneralHelper.ValidPrinter(Properties.Settings.Default.PrinterName) ? Properties.Settings.Default.PrinterName : "");
             cbbPortCOM.Text = Properties.Settings.Default.PortCOM;
+            chkMustUseBarcodeReader.Checked = Properties.Settings.Default.MustUseBarcodeReader;
         }
 
         private void LoadPrinter()
@@ -83,6 +86,12 @@ namespace Inavina.View.Home
                 txtCompany.Focus();
                 return false;
             }
+            else if (txtVN.Text.Trim() == "")
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCompany.Focus();
+                return false;
+            }
             return true;
         }
 
@@ -92,8 +101,10 @@ namespace Inavina.View.Home
             Properties.Settings.Default.Company = txtCompany.Text.Trim();
             Properties.Settings.Default.Address = txtAddress.Text.Trim();
             Properties.Settings.Default.Phone = txtPhone.Text.Trim();
+            Properties.Settings.Default.VN = txtVN.Text.Trim();
             Properties.Settings.Default.PrinterName = cbbPrinter.Text.Trim();
             Properties.Settings.Default.PortCOM = cbbPortCOM.Text.Trim();
+            Properties.Settings.Default.MustUseBarcodeReader = chkMustUseBarcodeReader.Checked;
             Properties.Settings.Default.Save();
             Close();
         }

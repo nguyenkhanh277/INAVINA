@@ -35,5 +35,11 @@
     <Setting Name="PortCOM" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM1</Value>
     </Setting>
+    <Setting Name="VN" Type="System.String" Scope="User">
+      <Value Profile="(Default)">VN001208</Value>
+    </Setting>
+    <Setting Name="MustUseBarcodeReader" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

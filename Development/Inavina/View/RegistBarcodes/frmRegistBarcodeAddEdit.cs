@@ -80,35 +80,37 @@ namespace Inavina.View.RegistBarcodes
         {
             txtQuantity.Focus();
         }
-
+        
         private void Clear()
         {
             dtpRegistDate.Value = DateTime.Now;
+            cbbMachine.Text = GlobalConstants.machineNo;
+            cbbShift.Text = _shiftRepository.GetShiftNo();
             txtQuantity.Value = 0;
             txtQuantity.Focus();
         }
 
         private void LoadPartNumberData()
         {
-            cbbPartNumber.DataSource = _partNumberRepository.GetAll().ToList();
+            cbbPartNumber.DataSource = _partNumberRepository.GetAll().OrderBy(_ => _.PartNo).ToList();
             cbbPartNumber.SelectedIndex = 0;
         }
 
         private void LoadMachineData()
         {
-            cbbMachine.DataSource = _machineRepository.GetAll().ToList();
+            cbbMachine.DataSource = _machineRepository.GetAll().OrderBy(_ => _.MachineNo).ToList();
             cbbMachine.SelectedIndex = 0;
         }
 
         private void LoadShiftData()
         {
-            cbbShift.DataSource = _shiftRepository.GetAll().ToList();
+            cbbShift.DataSource = _shiftRepository.GetAll().OrderBy(_ => _.ShiftNo).ToList();
             cbbShift.SelectedIndex = 0;
         }
 
         private void LoadMoldData()
         {
-            cbbMold.DataSource = _moldRepository.GetAll().ToList();
+            cbbMold.DataSource = _moldRepository.GetAll().OrderBy(_ => _.MoldNo).ToList();
             cbbMold.SelectedIndex = 0;
         }
 
@@ -176,10 +178,10 @@ namespace Inavina.View.RegistBarcodes
                     //Set list barcode
                     listBarcode.Rows.Add(new string[] {
                         barcode,
-                        cbbPartNumber.Text.Trim(),
-                        dtpRegistDate.Value.ToString("yyMMdd") + cbbShift.Text.Trim(),
-                        cbbMold.Text.Trim() + "SEQ" + seq.ToString("0000"),
-                        "VN001200"
+                        "P/N:" + cbbPartNumber.Text.Trim(),
+                        "Date:" +dtpRegistDate.Value.ToString("yyMMdd") + cbbShift.Text.Trim(),
+                        "M/N:" +cbbMold.Text.Trim() + "SEQ" + seq.ToString("0000"),
+                        "VN:" +GlobalConstants.VN
                     });
                     //Insert data
                     registBarcode = new RegistBarcode();

@@ -40,9 +40,14 @@
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.cbbPortCOM = new System.Windows.Forms.ComboBox();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.txtVN = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.chkMustUseBarcodeReader = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCompany.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtVN.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkMustUseBarcodeReader.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // txtAddress
@@ -123,10 +128,10 @@
             this.btnClose.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(265, 326);
+            this.btnClose.Location = new System.Drawing.Point(265, 426);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 40);
-            this.btnClose.TabIndex = 4;
+            this.btnClose.TabIndex = 7;
             this.btnClose.Text = "Đóng (ESC)";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -136,10 +141,10 @@
             this.btnSave.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnSave.Appearance.Options.UseBackColor = true;
             this.btnSave.Appearance.Options.UseFont = true;
-            this.btnSave.Location = new System.Drawing.Point(179, 326);
+            this.btnSave.Location = new System.Drawing.Point(179, 426);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 40);
-            this.btnSave.TabIndex = 3;
+            this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Lưu (F1)";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -149,17 +154,17 @@
             this.cbbPrinter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbPrinter.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.cbbPrinter.FormattingEnabled = true;
-            this.cbbPrinter.Location = new System.Drawing.Point(45, 228);
+            this.cbbPrinter.Location = new System.Drawing.Point(45, 291);
             this.cbbPrinter.Name = "cbbPrinter";
             this.cbbPrinter.Size = new System.Drawing.Size(300, 28);
-            this.cbbPrinter.TabIndex = 5;
+            this.cbbPrinter.TabIndex = 4;
             this.cbbPrinter.ValueMember = "Id";
             // 
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(45, 204);
+            this.labelControl4.Location = new System.Drawing.Point(45, 267);
             this.labelControl4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(63, 17);
@@ -172,29 +177,67 @@
             this.cbbPortCOM.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbPortCOM.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.cbbPortCOM.FormattingEnabled = true;
-            this.cbbPortCOM.Location = new System.Drawing.Point(45, 287);
+            this.cbbPortCOM.Location = new System.Drawing.Point(45, 350);
             this.cbbPortCOM.Name = "cbbPortCOM";
             this.cbbPortCOM.Size = new System.Drawing.Size(300, 28);
-            this.cbbPortCOM.TabIndex = 7;
+            this.cbbPortCOM.TabIndex = 5;
             this.cbbPortCOM.ValueMember = "Id";
             // 
             // labelControl5
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(45, 263);
+            this.labelControl5.Location = new System.Drawing.Point(45, 326);
             this.labelControl5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(70, 19);
             this.labelControl5.TabIndex = 8;
             this.labelControl5.Text = "Cổng COM";
             // 
+            // txtVN
+            // 
+            this.txtVN.Location = new System.Drawing.Point(45, 229);
+            this.txtVN.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtVN.Name = "txtVN";
+            this.txtVN.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtVN.Properties.Appearance.Options.UseFont = true;
+            this.txtVN.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtVN.Properties.AppearanceFocused.Options.UseBackColor = true;
+            this.txtVN.Properties.AutoHeight = false;
+            this.txtVN.Size = new System.Drawing.Size(300, 30);
+            this.txtVN.TabIndex = 3;
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.labelControl6.Appearance.Options.UseFont = true;
+            this.labelControl6.Location = new System.Drawing.Point(45, 204);
+            this.labelControl6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(18, 17);
+            this.labelControl6.TabIndex = 10;
+            this.labelControl6.Text = "VN";
+            // 
+            // chkMustUseBarcodeReader
+            // 
+            this.chkMustUseBarcodeReader.Location = new System.Drawing.Point(45, 384);
+            this.chkMustUseBarcodeReader.Name = "chkMustUseBarcodeReader";
+            this.chkMustUseBarcodeReader.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.chkMustUseBarcodeReader.Properties.Appearance.Options.UseFont = true;
+            this.chkMustUseBarcodeReader.Properties.AutoHeight = false;
+            this.chkMustUseBarcodeReader.Properties.Caption = "Phải sử dụng máy đọc mã vạch";
+            this.chkMustUseBarcodeReader.Size = new System.Drawing.Size(300, 30);
+            this.chkMustUseBarcodeReader.TabIndex = 11;
+            // 
             // frmSetting
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(390, 378);
+            this.ClientSize = new System.Drawing.Size(390, 478);
+            this.Controls.Add(this.chkMustUseBarcodeReader);
+            this.Controls.Add(this.txtVN);
+            this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.cbbPortCOM);
             this.Controls.Add(this.labelControl5);
             this.Controls.Add(this.cbbPrinter);
@@ -219,6 +262,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCompany.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtVN.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkMustUseBarcodeReader.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,5 +282,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private System.Windows.Forms.ComboBox cbbPortCOM;
         private DevExpress.XtraEditors.LabelControl labelControl5;
+        private DevExpress.XtraEditors.TextEdit txtVN;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.CheckEdit chkMustUseBarcodeReader;
     }
 }

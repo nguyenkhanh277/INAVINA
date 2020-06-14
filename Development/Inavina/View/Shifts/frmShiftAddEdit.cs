@@ -124,8 +124,17 @@ namespace Inavina.View.Shifts
                 Shift shift = new Shift();
                 shift.Id = _id;
                 shift.ShiftNo = txtShiftNo.Text.Trim();
-                shift.FromTime = DateTime.Parse(txtFromTime.EditValue.ToString());
-                shift.ToTime = DateTime.Parse(txtToTime.EditValue.ToString());
+                DateTime fromDate = DateTime.Parse(txtFromTime.EditValue.ToString());
+                DateTime toDate = DateTime.Parse(txtToTime.EditValue.ToString());
+                shift.FromTime = DateTime.Parse("2020-01-01 " + fromDate.ToString("HH:mm:00"));
+                if (fromDate < toDate)
+                {
+                    shift.ToTime = DateTime.Parse("2020-01-01 " + toDate.ToString("HH:mm:00"));
+                }
+                else
+                {
+                    shift.ToTime = DateTime.Parse("2020-01-02 " + toDate.ToString("HH:mm:00"));
+                }
                 shift.Note = txtNote.Text.Trim();
                 shift.Status = (chkUsing.Checked ? GlobalConstants.StatusValue.Using : GlobalConstants.StatusValue.NoUse);
                 _shiftRepository.Save(shift);
