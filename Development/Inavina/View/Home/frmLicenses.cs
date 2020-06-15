@@ -40,7 +40,7 @@ namespace Inavina.View.Home
         {
             frmLicense frm = new frmLicense();
             frm.License = GlobalConstants.license;
-            frm.BuyLicenseUrl = "http://google.com";
+            frm.BuyLicenseUrl = "http://datatech.vn/";
             frm.Text = LanguageTranslate.ChangeLanguageText("Đăng ký sử dụng phần mềm") + " " + Properties.Settings.Default.Company;
             frm.Icon = Properties.Resources.icon;
             DialogResult dr = frm.ShowDialog();

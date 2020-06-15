@@ -107,7 +107,6 @@
   <ItemGroup>
     <Compile Include="Core\Domain\ReportSyntheticRegistBarcode.cs" />
     <Compile Include="Core\Domain\ReportSyntheticProductionPlan.cs" />
-    <Compile Include="Core\Domain\WorkOrder.cs" />
     <Compile Include="Core\Domain\ScanBarcode.cs" />
     <Compile Include="Core\Domain\ProductionPlan.cs" />
     <Compile Include="Core\Domain\Shift.cs" />

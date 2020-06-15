@@ -58,11 +58,13 @@ namespace Inavina.View.Home
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbpBaoCao = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
             // 
+            this.ribbonControl1.CaptionBarItemLinks.Add(this.barStaticItem1);
             this.ribbonControl1.ExpandCollapseItem.Id = 0;
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
@@ -84,9 +86,10 @@ namespace Inavina.View.Home
             this.btnReportSyntheticRegistBarcode,
             this.btnProductionPlan,
             this.btnReportSyntheticProductionPlan,
-            this.btnSetting});
+            this.btnSetting,
+            this.barStaticItem1});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 42;
+            this.ribbonControl1.MaxItemId = 43;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.PageHeaderItemLinks.Add(this.txtUser);
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -96,7 +99,7 @@ namespace Inavina.View.Home
             this.rbpBaoCao});
             this.ribbonControl1.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl1.ShowToolbarCustomizeItem = false;
-            this.ribbonControl1.Size = new System.Drawing.Size(677, 143);
+            this.ribbonControl1.Size = new System.Drawing.Size(1014, 143);
             this.ribbonControl1.Toolbar.ShowCustomizeItem = false;
             // 
             // btnUsers
@@ -329,11 +332,17 @@ namespace Inavina.View.Home
             this.ribbonPageGroup4.ItemLinks.Add(this.btnReportSyntheticProductionPlan);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             // 
+            // barStaticItem1
+            // 
+            this.barStaticItem1.Caption = "Copyright by Datatech.vn - Phone: 08 8822 2329 - Email: contact@datatech.vn";
+            this.barStaticItem1.Id = 42;
+            this.barStaticItem1.Name = "barStaticItem1";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(677, 379);
+            this.ClientSize = new System.Drawing.Size(1014, 379);
             this.Controls.Add(this.ribbonControl1);
             this.IsMdiContainer = true;
             this.Name = "frmMain";
@@ -376,6 +385,7 @@ namespace Inavina.View.Home
         private BarButtonItem btnProductionPlan;
         private BarButtonItem btnReportSyntheticProductionPlan;
         private BarButtonItem btnSetting;
+        private BarStaticItem barStaticItem1;
     }
 }
 

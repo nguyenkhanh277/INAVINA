@@ -165,7 +165,7 @@
             // 
             // cbbMachine
             // 
-            this.cbbMachine.DisplayMember = "MachineName";
+            this.cbbMachine.DisplayMember = "MachineNo";
             this.cbbMachine.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbMachine.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.cbbMachine.FormattingEnabled = true;

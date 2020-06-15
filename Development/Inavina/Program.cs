@@ -83,9 +83,9 @@ namespace Inavina
                         }
                         Registration.Core.License.frmLicense frmLicense = new Registration.Core.License.frmLicense();
                         frmLicense.License = GlobalConstants.license;
-                        frmLicense.BuyLicenseUrl = "http://google.com";
+                        frmLicense.BuyLicenseUrl = "http://datatech.vn/";
                         frmLicense.Text = LanguageTranslate.ChangeLanguageText("Đăng ký sử dụng phần mềm") + " " + Properties.Settings.Default.Company;
-                        frmLicense.TrialDateLimit = Registration.Fusion.Library.kDateLimit.Seven;
+                        frmLicense.TrialDateLimit = Registration.Fusion.Library.kDateLimit.Thirty;
                         frmLicense.IsOnlineActivationCheck = false;
                         frmLicense.Icon = Properties.Resources.icon;
                         dr = frmLicense.ShowDialog();

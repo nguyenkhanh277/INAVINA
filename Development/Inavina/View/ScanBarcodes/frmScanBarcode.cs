@@ -29,11 +29,16 @@ namespace Inavina.View.ScanBarcodes
         int _countNG = 0;
         int _countDuplicate = 0;
         int _countNotFound = 0;
+        int _countTimeEmpty = 0;
 
+        DateTime _dtStart = new DateTime();
+        DateTime _dtEnd = new DateTime();
+        TimeSpan _ts = new TimeSpan();
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             base.OnClosing(e);
             _projectDataContext.Dispose();
+            _serialPort.Dispose();
         }
 
         public frmScanBarcode()
@@ -52,8 +57,8 @@ namespace Inavina.View.ScanBarcodes
             _serialPort = new SerialPort();
             _serialPort.DataReceived += new SerialDataReceivedEventHandler(this.serialPort_DataReceived);
             Control.CheckForIllegalCrossThreadCalls = false;
-            //ClosePortCOM(GlobalConstants.portCOM);
-            //OpenPortCOM(GlobalConstants.portCOM, 9600);
+            ClosePortCOM(GlobalConstants.portCOM);
+            OpenPortCOM(GlobalConstants.portCOM, 9600);
             timer.Enabled = true;
             txtBarcode.Focus();
         }
@@ -165,6 +170,7 @@ namespace Inavina.View.ScanBarcodes
                         lblResult.BackColor = Color.Red;
                     }
                     lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - Barcode: " + barcode + " - " + lblResult.Text);
+                    ControlDevice(barcode, resultStatus);
                 }
             }
             else
@@ -176,7 +182,6 @@ namespace Inavina.View.ScanBarcodes
             lblOK.Text = _countOK.ToString();
             lblDuplicate.Text = _countDuplicate.ToString();
             lblNotFound.Text = _countNotFound.ToString();
-            ControlDevice(barcode, resultStatus);
         }
 
         private void ControlDevice(string barcode, GlobalConstants.ResultStatusValue resultStatus)
@@ -184,9 +189,7 @@ namespace Inavina.View.ScanBarcodes
             if (_serialPort.IsOpen == true)
             {
                 GlobalConstants.ControlSerialData data;
-                if (resultStatus == GlobalConstants.ResultStatusValue.Empty)
-                    data = GlobalConstants.ControlSerialData.RESET;
-                else if (resultStatus == GlobalConstants.ResultStatusValue.OK)
+                if (resultStatus == GlobalConstants.ResultStatusValue.OK)
                     data = GlobalConstants.ControlSerialData.OK;
                 else
                     data = GlobalConstants.ControlSerialData.NG;
@@ -212,23 +215,19 @@ namespace Inavina.View.ScanBarcodes
                 txtBarcode.SelectAll();
             }
         }
-
-        DateTime dtStart = new DateTime();
-        DateTime dtEnd = new DateTime();
-        TimeSpan ts = new TimeSpan();
         private void txtBarcode_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
                 if (txtBarcode.Text.Length == 1)
                 {
-                    dtStart = DateTime.Now;
+                    _dtStart = DateTime.Now;
                 }
                 if (e.KeyChar == 13)
                 {
-                    dtEnd = DateTime.Now;
-                    ts = dtEnd - dtStart;
-                    if (GlobalConstants.mustUseBarcodeReader && ts.TotalMilliseconds > 100)
+                    _dtEnd = DateTime.Now;
+                    _ts = _dtEnd - _dtStart;
+                    if (GlobalConstants.mustUseBarcodeReader && _ts.TotalMilliseconds > 100)
                     {
                         lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + "YÊU CẦU PHẢI SỬ DỤNG MÁY SCAN");
                     }
@@ -252,10 +251,11 @@ namespace Inavina.View.ScanBarcodes
                                 lblPartNumber.Text = registbarcode.PartNo;
                                 lblDate.Text = registbarcode.RegistDate.ToString("dd/MM/yyyy");
                                 lblMold.Text = registbarcode.MoldNo + "SEQ" + registbarcode.SEQ;
-                                lblVN.Text = registbarcode.MachineNo;
+                                lblVN.Text = GlobalConstants.VN;
                                 var scanBarcode = _scanBarcodeRepository.CheckIsExist(barcode);
                                 if (scanBarcode == null)//Chưa scan lần nào
                                 {
+                                    _countTimeEmpty = 5;
                                     ControlDisplay(barcode, GlobalConstants.ResultStatusValue.OK);
                                 }
                                 else//Đã có kết quả scan OK
@@ -280,6 +280,14 @@ namespace Inavina.View.ScanBarcodes
         {
             lblTittle.Text = LanguageTranslate.ChangeLanguageText("Tài khoản") + ": " + GlobalConstants.username + "  |  " + LanguageTranslate.ChangeLanguageText("Tên đầy đủ") + ": " + GlobalConstants.fullName + "  |  " + LanguageTranslate.ChangeLanguageText("Ngày") + ": " + DateTime.Now.ToString("dd/MM HH:mm:ss") + "  |  " + LanguageTranslate.ChangeLanguageText("Máy") + ": " + GlobalConstants.machineName;
             txtCa.Text = _shiftRepository.GetShiftNo();
+            if (_countTimeEmpty > 0)
+            {
+                _countTimeEmpty--;
+                if (_countTimeEmpty == 0)
+                {
+                    ControlDisplay("", GlobalConstants.ResultStatusValue.Empty);
+                }
+            }
         }
 
         private void lsvLog_Enter(object sender, EventArgs e)

@@ -26,13 +26,12 @@ namespace Inavina.Core
         public static List<LanguageLibrary> languageLibrary = new List<LanguageLibrary>();
         public static int defaultSaltLength = 5;
         public static bool debugMode = false;
-        public enum SearchConditions { }
         public enum GenderValue { Female, Male }
         public enum StatusValue { NoUse, Using }
         public enum ProductionStatusValue { None, InProgress, Completed, Hold }
         public enum ResultStatusValue { Empty, OK, Duplicate, NotFound, NG }
         public enum LanguageValue { Vietnamese, English }
-        public enum ControlSerialData { OK, NG, RESET }
+        public enum ControlSerialData { OK, NG }
         #endregion
     }
 }

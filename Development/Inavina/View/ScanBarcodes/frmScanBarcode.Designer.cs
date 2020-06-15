@@ -50,7 +50,6 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.lblResult = new DevExpress.XtraEditors.LabelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.lsvLog = new System.Windows.Forms.ListView();
             this.txtUser = new DevExpress.XtraBars.BarStaticItem();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.lblTittle = new DevExpress.XtraEditors.LabelControl();
@@ -58,6 +57,7 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.txtCa = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.lsvLog = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBarcode.Properties)).BeginInit();
@@ -422,18 +422,6 @@
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Thông báo";
             // 
-            // lsvLog
-            // 
-            this.lsvLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lsvLog.HideSelection = false;
-            this.lsvLog.Location = new System.Drawing.Point(2, 24);
-            this.lsvLog.Name = "lsvLog";
-            this.lsvLog.Size = new System.Drawing.Size(396, 592);
-            this.lsvLog.TabIndex = 1;
-            this.lsvLog.UseCompatibleStateImageBehavior = false;
-            this.lsvLog.View = System.Windows.Forms.View.List;
-            this.lsvLog.Enter += new System.EventHandler(this.lsvLog_Enter);
-            // 
             // txtUser
             // 
             this.txtUser.Caption = "     ";
@@ -517,6 +505,17 @@
             this.labelControl3.TabIndex = 11;
             this.labelControl3.Text = "CA:";
             // 
+            // lsvLog
+            // 
+            this.lsvLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lsvLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lsvLog.FormattingEnabled = true;
+            this.lsvLog.Location = new System.Drawing.Point(2, 24);
+            this.lsvLog.Name = "lsvLog";
+            this.lsvLog.Size = new System.Drawing.Size(396, 592);
+            this.lsvLog.TabIndex = 0;
+            this.lsvLog.Enter += new System.EventHandler(this.lsvLog_Enter);
+            // 
             // frmScanBarcode
             // 
             this.Appearance.Options.UseFont = true;
@@ -572,9 +571,9 @@
         private DevExpress.XtraEditors.LabelControl lblNG;
         private DevExpress.XtraEditors.LabelControl labelControl17;
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private System.Windows.Forms.ListView lsvLog;
         private System.Windows.Forms.Timer timer;
         private DevExpress.XtraEditors.LabelControl txtCa;
         private DevExpress.XtraEditors.LabelControl labelControl3;
+        private System.Windows.Forms.ListBox lsvLog;
     }
 }

@@ -1347,7 +1347,7 @@ namespace Inavina.Migrations
                 new ProgramFunctionAuthority
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "RegisterPrintBarcode",
+                    ProgramName = "RegistBarcode",
                     FunctionName = "View",
                     AuthorityGroupID = authorityGroup1,
                     CreatedAt = DateTime.Now,
@@ -1374,7 +1374,7 @@ namespace Inavina.Migrations
                 new ProgramFunctionAuthority
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "HistoryProduct",
+                    ProgramName = "ProductionHistory",
                     FunctionName = "View",
                     AuthorityGroupID = authorityGroup1,
                     CreatedAt = DateTime.Now,
@@ -1401,7 +1401,7 @@ namespace Inavina.Migrations
                 new ProgramFunctionAuthority
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "ReportSyntheticByBarcode",
+                    ProgramName = "ReportSyntheticRegistBarcode",
                     FunctionName = "View",
                     AuthorityGroupID = authorityGroup1,
                     CreatedAt = DateTime.Now,
@@ -1410,7 +1410,7 @@ namespace Inavina.Migrations
                 new ProgramFunctionAuthority
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "ReportSyntheticByPlan",
+                    ProgramName = "ReportSyntheticProductionPlan",
                     FunctionName = "View",
                     AuthorityGroupID = authorityGroup1,
                     CreatedAt = DateTime.Now,
@@ -1675,7 +1675,7 @@ namespace Inavina.Migrations
                     Id = Guid.NewGuid().ToString(),
                     ShiftNo = "0002",
                     FromTime = new DateTime(2020, 01, 01, 18, 00, 00),
-                    ToTime = new DateTime(2020, 01, 01, 06, 00, 00),
+                    ToTime = new DateTime(2020, 01, 02, 06, 00, 00),
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
