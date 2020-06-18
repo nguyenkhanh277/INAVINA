@@ -92,6 +92,7 @@ namespace Inavina.View.Home
             GlobalConstants.machineNo = _machineRepository.GetMachineNo(GlobalConstants.machineName);
             GlobalConstants.VN = Properties.Settings.Default.VN;
             GlobalConstants.mustUseBarcodeReader = Properties.Settings.Default.MustUseBarcodeReader;
+            GlobalConstants.countTimeReset = Properties.Settings.Default.CountTimeReset;
             Properties.Settings.Default.KeepMeSignedIn = chkKeepMeSignedIn.Checked;
             if (chkKeepMeSignedIn.Checked)
             {

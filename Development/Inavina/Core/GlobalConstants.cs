@@ -23,6 +23,7 @@ namespace Inavina.Core
         public static string VN = "VN001208";
         public static int language = 0;
         public static bool mustUseBarcodeReader = false;
+        public static int countTimeReset = 5;
         public static List<Shift> shifts = new List<Shift>();
         public static List<LanguageLibrary> languageLibrarys = new List<LanguageLibrary>();
         public static int defaultSaltLength = 5;
@@ -32,7 +33,7 @@ namespace Inavina.Core
         public enum ProductionStatusValue { None, InProgress, Completed, Hold }
         public enum ResultStatusValue { Empty, OK, Duplicate, NotFound, NG }
         public enum LanguageValue { Vietnamese, English }
-        public enum ControlSerialData { OK, NG }
+        public enum ControlSerialData { OK, NG, Reset }
         #endregion
     }
 }

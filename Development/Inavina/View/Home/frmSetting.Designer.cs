@@ -43,11 +43,14 @@
             this.txtVN = new DevExpress.XtraEditors.TextEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.chkMustUseBarcodeReader = new DevExpress.XtraEditors.CheckEdit();
+            this.txtCountTimeReset = new DevExpress.XtraEditors.SpinEdit();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCompany.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtVN.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkMustUseBarcodeReader.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCountTimeReset.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // txtAddress
@@ -204,7 +207,7 @@
             this.txtVN.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.txtVN.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.txtVN.Properties.AutoHeight = false;
-            this.txtVN.Size = new System.Drawing.Size(300, 30);
+            this.txtVN.Size = new System.Drawing.Size(120, 30);
             this.txtVN.TabIndex = 3;
             // 
             // labelControl6
@@ -229,12 +232,48 @@
             this.chkMustUseBarcodeReader.Size = new System.Drawing.Size(300, 30);
             this.chkMustUseBarcodeReader.TabIndex = 11;
             // 
+            // txtCountTimeReset
+            // 
+            this.txtCountTimeReset.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtCountTimeReset.Location = new System.Drawing.Point(225, 229);
+            this.txtCountTimeReset.Name = "txtCountTimeReset";
+            this.txtCountTimeReset.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.txtCountTimeReset.Properties.Appearance.Options.UseFont = true;
+            this.txtCountTimeReset.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtCountTimeReset.Properties.IsFloatValue = false;
+            this.txtCountTimeReset.Properties.Mask.EditMask = "N00";
+            this.txtCountTimeReset.Properties.MaxValue = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.txtCountTimeReset.Size = new System.Drawing.Size(120, 30);
+            this.txtCountTimeReset.TabIndex = 14;
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.labelControl7.Appearance.Options.UseFont = true;
+            this.labelControl7.Location = new System.Drawing.Point(225, 203);
+            this.labelControl7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(121, 19);
+            this.labelControl7.TabIndex = 13;
+            this.labelControl7.Text = "Đếm thời gian reset";
+            // 
             // frmSetting
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(390, 478);
+            this.Controls.Add(this.txtCountTimeReset);
+            this.Controls.Add(this.labelControl7);
             this.Controls.Add(this.chkMustUseBarcodeReader);
             this.Controls.Add(this.txtVN);
             this.Controls.Add(this.labelControl6);
@@ -264,6 +303,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtVN.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkMustUseBarcodeReader.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCountTimeReset.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -285,5 +325,7 @@
         private DevExpress.XtraEditors.TextEdit txtVN;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.CheckEdit chkMustUseBarcodeReader;
+        private DevExpress.XtraEditors.SpinEdit txtCountTimeReset;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
     }
 }

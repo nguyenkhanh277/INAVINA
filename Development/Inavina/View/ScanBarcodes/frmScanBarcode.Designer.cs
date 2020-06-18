@@ -50,6 +50,7 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.lblResult = new DevExpress.XtraEditors.LabelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.lsvLog = new System.Windows.Forms.ListBox();
             this.txtUser = new DevExpress.XtraBars.BarStaticItem();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.lblTittle = new DevExpress.XtraEditors.LabelControl();
@@ -57,7 +58,7 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.txtCa = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.lsvLog = new System.Windows.Forms.ListBox();
+            this.btnReset = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBarcode.Properties)).BeginInit();
@@ -85,6 +86,7 @@
             this.panelControl1.Controls.Add(this.labelControl2);
             this.panelControl1.Controls.Add(this.txtBarcode);
             this.panelControl1.Controls.Add(this.labelControl1);
+            this.panelControl1.Controls.Add(this.btnReset);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 50);
             this.panelControl1.Name = "panelControl1";
@@ -422,6 +424,17 @@
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Thông báo";
             // 
+            // lsvLog
+            // 
+            this.lsvLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lsvLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lsvLog.FormattingEnabled = true;
+            this.lsvLog.Location = new System.Drawing.Point(2, 24);
+            this.lsvLog.Name = "lsvLog";
+            this.lsvLog.Size = new System.Drawing.Size(396, 592);
+            this.lsvLog.TabIndex = 0;
+            this.lsvLog.Enter += new System.EventHandler(this.lsvLog_Enter);
+            // 
             // txtUser
             // 
             this.txtUser.Caption = "     ";
@@ -505,16 +518,25 @@
             this.labelControl3.TabIndex = 11;
             this.labelControl3.Text = "CA:";
             // 
-            // lsvLog
+            // btnReset
             // 
-            this.lsvLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lsvLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lsvLog.FormattingEnabled = true;
-            this.lsvLog.Location = new System.Drawing.Point(2, 24);
-            this.lsvLog.Name = "lsvLog";
-            this.lsvLog.Size = new System.Drawing.Size(396, 592);
-            this.lsvLog.TabIndex = 0;
-            this.lsvLog.Enter += new System.EventHandler(this.lsvLog_Enter);
+            this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReset.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnReset.Appearance.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold);
+            this.btnReset.Appearance.ForeColor = System.Drawing.Color.White;
+            this.btnReset.Appearance.Options.UseBackColor = true;
+            this.btnReset.Appearance.Options.UseFont = true;
+            this.btnReset.Appearance.Options.UseForeColor = true;
+            this.btnReset.Appearance.Options.UseTextOptions = true;
+            this.btnReset.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.btnReset.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.btnReset.Location = new System.Drawing.Point(168, 7);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(600, 46);
+            this.btnReset.TabIndex = 23;
+            this.btnReset.Text = "BẤM VÀO ĐÂY ĐỂ RESET";
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // frmScanBarcode
             // 
@@ -575,5 +597,6 @@
         private DevExpress.XtraEditors.LabelControl txtCa;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private System.Windows.Forms.ListBox lsvLog;
+        private DevExpress.XtraEditors.LabelControl btnReset;
     }
 }

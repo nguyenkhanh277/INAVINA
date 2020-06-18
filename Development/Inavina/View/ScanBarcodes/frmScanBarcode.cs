@@ -112,6 +112,7 @@ namespace Inavina.View.ScanBarcodes
 
         private void Clear()
         {
+            _countTimeEmpty = 0;
             lblPartNumber.Text = "";
             lblDate.Text = "";
             lblMold.Text = "";
@@ -121,7 +122,7 @@ namespace Inavina.View.ScanBarcodes
         private void serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             string data = _serialPort.ReadExisting();
-            lsvLog.Items.Add(data);
+            lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - DataReceived: " + data);
             GlobalConstants.log.Debug("DataReceived: " + data);
         }
 
@@ -172,8 +173,7 @@ namespace Inavina.View.ScanBarcodes
                         lblResult.BackColor = Color.Red;
                     }
                     lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - Barcode: " + barcode + " - " + lblResult.Text);
-                    GlobalConstants.log.Debug("Barcode: " + barcode + " - " + lblResult.Text); 
-                    ControlDevice(barcode, resultStatus);
+                    GlobalConstants.log.Debug("Barcode: " + barcode + " - " + lblResult.Text);
                 }
             }
             else
@@ -181,22 +181,29 @@ namespace Inavina.View.ScanBarcodes
                 lblResult.Text = ". . .";
                 lblResult.BackColor = Color.FromArgb(64, 64, 64);
             }
+            ControlDevice(resultStatus);
             lblNG.Text = _countNG.ToString();
             lblOK.Text = _countOK.ToString();
             lblDuplicate.Text = _countDuplicate.ToString();
             lblNotFound.Text = _countNotFound.ToString();
         }
 
-        private void ControlDevice(string barcode, GlobalConstants.ResultStatusValue resultStatus)
+        private void ControlDevice(GlobalConstants.ResultStatusValue resultStatus)
         {
             if (_serialPort.IsOpen == true)
             {
                 GlobalConstants.ControlSerialData data;
-                if (resultStatus == GlobalConstants.ResultStatusValue.OK)
+                if (resultStatus == GlobalConstants.ResultStatusValue.Empty)
+                    data = GlobalConstants.ControlSerialData.Reset;
+                else if (resultStatus == GlobalConstants.ResultStatusValue.OK)
                     data = GlobalConstants.ControlSerialData.OK;
                 else
+                {
                     data = GlobalConstants.ControlSerialData.NG;
-                _serialPort.Write(data.ToString());
+                    //Ẩn textbox scan và hiện nút Reset
+                    txtBarcode.Visible = false;
+                }
+                _serialPort.Write(((int)data).ToString());
                 GlobalConstants.log.Debug(data);
             }
             else
@@ -260,7 +267,7 @@ namespace Inavina.View.ScanBarcodes
                                 var scanBarcode = _scanBarcodeRepository.CheckIsExist(barcode);
                                 if (scanBarcode == null)//Chưa scan lần nào
                                 {
-                                    _countTimeEmpty = 5;
+                                    _countTimeEmpty = GlobalConstants.countTimeReset;
                                     ControlDisplay(barcode, GlobalConstants.ResultStatusValue.OK);
                                 }
                                 else//Đã có kết quả scan OK
@@ -298,6 +305,14 @@ namespace Inavina.View.ScanBarcodes
 
         private void lsvLog_Enter(object sender, EventArgs e)
         {
+            txtBarcode.Focus();
+            txtBarcode.SelectAll();
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            txtBarcode.Visible = true;
+            ControlDisplay("", GlobalConstants.ResultStatusValue.Empty);
             txtBarcode.Focus();
             txtBarcode.SelectAll();
         }
