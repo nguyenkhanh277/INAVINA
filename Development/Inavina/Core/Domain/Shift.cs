@@ -8,8 +8,8 @@ namespace Inavina.Core.Domain
         #region Fields
         public string Id { get; set; }
         public string ShiftNo { get; set; }
-        public DateTime FromTime { get; set; }
-        public DateTime ToTime { get; set; }
+        public TimeSpan BeginTime { get; set; }
+        public float LengthHours { get; set; }
         public string Note { get; set; }
         public GlobalConstants.StatusValue Status { get; set; }
         #endregion

@@ -73,12 +73,14 @@ namespace Inavina.View.ScanBarcodes
                 {
                     _serialPort.Open();
                     lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + "Mở cổng COM thành công" + "(" + _portname + "");
+                    GlobalConstants.log.Debug("Mở cổng COM thành công" + "(" + _portname + ")");
                 }
             }
             catch (Exception ex)
             {
                 lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + "Mở cổng COM thất bại");
                 lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + ex.ToString());
+                GlobalConstants.log.Error("Mở cổng COM thất bại. " + ex.ToString());
             }
         }
 
@@ -91,12 +93,14 @@ namespace Inavina.View.ScanBarcodes
                 {
                     _serialPort.Close();
                     lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + "Đóng cổng COM thành công" + "(" + _portname + "");
+                    GlobalConstants.log.Debug("Đóng cổng COM thành công" + "(" + _portname + ")");
                 }
             }
             catch (Exception ex)
             {
                 lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - Đóng cổng COM thất bại");
                 lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + ex.ToString());
+                GlobalConstants.log.Debug("Đóng cổng COM thất bại" + "(" + _portname + ")");
             }
         }
 
@@ -118,21 +122,19 @@ namespace Inavina.View.ScanBarcodes
         {
             string data = _serialPort.ReadExisting();
             lsvLog.Items.Add(data);
+            GlobalConstants.log.Debug("DataReceived: " + data);
         }
 
         private int Save(string barcode, GlobalConstants.ResultStatusValue resultStatus)
         {
-            ScanBarcode _scanbarcode = new ScanBarcode
-            {
-                ScanDate = DateTime.Now,
-                Barcode = barcode,
-                PartNo = lblPartNumber.Text.Trim(),
-                MachineNo = GlobalConstants.machineNo,
-                ShiftNo = txtCa.Text.Trim(),
-                ResultStatus = resultStatus,
-                Status = GlobalConstants.StatusValue.Using
-            };
-            _scanBarcodeRepository.Save(_scanbarcode);
+            ScanBarcode scanbarcode = new ScanBarcode();
+            scanbarcode.ScanDate = DateTime.Now;
+            scanbarcode.Barcode = barcode;
+            scanbarcode.PartNo = lblPartNumber.Text.Trim();
+            scanbarcode.MachineNo = GlobalConstants.machineNo;
+            scanbarcode.ShiftNo = txtCa.Text.Trim();
+            scanbarcode.ResultStatus = resultStatus;
+            _scanBarcodeRepository.Save(scanbarcode);
             UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);
             int result = unitOfWork.Complete();
             return result;
@@ -170,6 +172,7 @@ namespace Inavina.View.ScanBarcodes
                         lblResult.BackColor = Color.Red;
                     }
                     lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - Barcode: " + barcode + " - " + lblResult.Text);
+                    GlobalConstants.log.Debug("Barcode: " + barcode + " - " + lblResult.Text); 
                     ControlDevice(barcode, resultStatus);
                 }
             }
@@ -194,11 +197,13 @@ namespace Inavina.View.ScanBarcodes
                 else
                     data = GlobalConstants.ControlSerialData.NG;
                 _serialPort.Write(data.ToString());
+                GlobalConstants.log.Debug(data);
             }
             else
             {
                 //Nếu cổng chưa mở hoặc lỗi thì cần kiểm tra và message cho người dùng
                 lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + "Không kết nối được với thiết bị");
+                GlobalConstants.log.Error("Không kết nối được với thiết bị");
             }
         }
 
@@ -273,6 +278,7 @@ namespace Inavina.View.ScanBarcodes
             {
                 lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + "Lỗi trong quá trình scan barcode");
                 lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + ex.ToString());
+                GlobalConstants.log.Error("Lỗi trong quá trình scan barcode. " + ex.ToString());
             }
         }
 

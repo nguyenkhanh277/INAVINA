@@ -75,8 +75,8 @@ namespace Inavina.View.Shifts
         private void Clear()
         {
             txtShiftNo.Text = "";
-            txtFromTime.Text = "00:00";
-            txtToTime.Text = "00:00";
+            txtBeginTime.Text = "00:00";
+            txtLengthHours.Value = 12;
             txtNote.Text = "";
             chkUsing.Checked = true;
             txtShiftNo.Focus();
@@ -87,8 +87,8 @@ namespace Inavina.View.Shifts
             //Get Data Table Shift
             Shift shift = _shiftRepository.Get(_id);
             txtShiftNo.Text = shift.ShiftNo;
-            txtFromTime.EditValue = shift.FromTime;
-            txtToTime.EditValue = shift.ToTime;
+            txtBeginTime.EditValue = shift.BeginTime;
+            txtLengthHours.Value = (decimal)shift.LengthHours;
             txtNote.Text = shift.Note;
             chkUsing.Checked = (shift.Status == GlobalConstants.StatusValue.Using);
         }
@@ -112,6 +112,12 @@ namespace Inavina.View.Shifts
                 txtShiftNo.Focus();
                 return false;
             }
+            else if (txtLengthHours.Value == 0)
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtLengthHours.Focus();
+                return false;
+            }
             return true;
         }
 
@@ -123,18 +129,10 @@ namespace Inavina.View.Shifts
                 //Table Shift
                 Shift shift = new Shift();
                 shift.Id = _id;
-                shift.ShiftNo = txtShiftNo.Text.Trim();
-                DateTime fromDate = DateTime.Parse(txtFromTime.EditValue.ToString());
-                DateTime toDate = DateTime.Parse(txtToTime.EditValue.ToString());
-                shift.FromTime = DateTime.Parse("2020-01-01 " + fromDate.ToString("HH:mm:00"));
-                if (fromDate < toDate)
-                {
-                    shift.ToTime = DateTime.Parse("2020-01-01 " + toDate.ToString("HH:mm:00"));
-                }
-                else
-                {
-                    shift.ToTime = DateTime.Parse("2020-01-02 " + toDate.ToString("HH:mm:00"));
-                }
+                shift.ShiftNo = txtShiftNo.Text.Trim(); 
+                DateTime fromDate = DateTime.Parse(txtBeginTime.EditValue.ToString());
+                shift.BeginTime = new TimeSpan(fromDate.Hour, fromDate.Minute, fromDate.Second);
+                shift.LengthHours = (float)txtLengthHours.Value;
                 shift.Note = txtNote.Text.Trim();
                 shift.Status = (chkUsing.Checked ? GlobalConstants.StatusValue.Using : GlobalConstants.StatusValue.NoUse);
                 _shiftRepository.Save(shift);

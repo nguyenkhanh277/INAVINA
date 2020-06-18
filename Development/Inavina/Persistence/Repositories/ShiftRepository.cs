@@ -69,8 +69,22 @@ namespace Inavina.Persistence.Repositories
             string result = "0001";
             try
             {
-                DateTime dateTime = DateTime.Parse(DateTime.Now.ToString("2020-01-01 HH:mm:ss"));
-                var shift = GlobalConstants.shift.Where(_ => _.FromTime >= dateTime && dateTime <= _.ToTime).OrderBy(_ => _.FromTime).FirstOrDefault();
+                DateTime currentDateTime = DateTime.Now;
+                DateTime startOfDay = currentDateTime.Date;
+                // Get most recent shift that started today and has not ended yet
+                var shift = GlobalConstants.shifts.Where(_ => startOfDay.Add(_.BeginTime) <= currentDateTime
+                                 && startOfDay.Add(_.BeginTime).AddHours(_.LengthHours) >= currentDateTime)
+                          .OrderByDescending(_ => _.BeginTime)
+                          .FirstOrDefault();
+
+                // If none were found that had a start date today, get the latest shift
+                // (would be one that started yesterday) as long as its end time today has not passed yet
+                if (shift == null)
+                {
+                    shift = GlobalConstants.shifts.Where(_ => startOfDay.AddDays(-1).Add(_.BeginTime) <= currentDateTime)
+                              .OrderByDescending(_ => _.BeginTime)
+                              .FirstOrDefault();
+                }
                 result = (shift != null ? shift.ShiftNo : "0001");
             }
             catch { }

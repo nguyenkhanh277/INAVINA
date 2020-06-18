@@ -193,7 +193,6 @@ namespace Inavina.View.RegistBarcodes
                     registBarcode.ShiftNo = cbbShift.Text.Trim();
                     registBarcode.SEQ = seq.ToString("0000");
                     registBarcode.Barcode = barcode;
-                    registBarcode.Status = GlobalConstants.StatusValue.Using;
                     _registBarcodeRepository.Save(registBarcode);
                 }
                 UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);

@@ -26,17 +26,17 @@ namespace Inavina.Core.Helper
         public static string ChangeLanguageText(string content)
         {
             string result = content;
-            if (content != "" && content != Properties.Settings.Default.Company && GlobalConstants.languageLibrary.Count > 0)
+            if (content != "" && GlobalConstants.languageLibrarys.Count > 0)
             {
                 if (!String.IsNullOrEmpty(result))
                 {
                     if (switchLanguage && GlobalConstants.language == (int)GlobalConstants.LanguageValue.Vietnamese)
                     {
-                        result = GlobalConstants.languageLibrary.Where(_ => _.English.Equals(content)).Select(_ => _.Vietnamese).FirstOrDefault();
+                        result = GlobalConstants.languageLibrarys.Where(_ => _.English.Equals(content)).Select(_ => _.Vietnamese).FirstOrDefault();
                     }
                     else if (GlobalConstants.language == (int)GlobalConstants.LanguageValue.English)
                     {
-                        result = GlobalConstants.languageLibrary.Where(_ => _.Vietnamese.Equals(content)).Select(_ => _.English).FirstOrDefault();
+                        result = GlobalConstants.languageLibrarys.Where(_ => _.Vietnamese.Equals(content)).Select(_ => _.English).FirstOrDefault();
                     }
                 }
                 if (String.IsNullOrEmpty(result))

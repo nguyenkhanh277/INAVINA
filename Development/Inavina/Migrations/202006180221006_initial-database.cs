@@ -205,8 +205,8 @@ namespace Inavina.Migrations
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         ShiftNo = c.String(),
-                        FromTime = c.DateTime(nullable: false),
-                        ToTime = c.DateTime(nullable: false),
+                        BeginTime = c.Time(nullable: false, precision: 7),
+                        LengthHours = c.Single(nullable: false),
                         Note = c.String(),
                         Status = c.Int(nullable: false),
                         CreatedAt = c.DateTime(),

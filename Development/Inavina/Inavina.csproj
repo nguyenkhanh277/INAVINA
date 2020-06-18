@@ -7,7 +7,7 @@
     <ProjectGuid>{17BB81E8-518E-4091-B4CA-B31B8A16ACF0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Inavina</RootNamespace>
-    <AssemblyName>Inavina</AssemblyName>
+    <AssemblyName>p</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -34,7 +34,7 @@
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <ApplicationIcon>image\icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
@@ -85,6 +85,9 @@
     <Reference Include="DevExpress.Utils.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraBars.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="log4net">
+      <HintPath>dll\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Registration, Version=2.0.20.612, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dll\Registration.dll</HintPath>
@@ -125,12 +128,11 @@
     <Compile Include="Core\Helper\GenerateBarcode.cs" />
     <Compile Include="Core\Helper\LanguageTranslate.cs" />
     <Compile Include="Core\Helper\GeneralHelper.cs" />
-    <Compile Include="Core\Helper\Logger.cs" />
     <Compile Include="Core\Helper\SecurityHelper.cs" />
     <Compile Include="Core\Repositories\IRepository.cs" />
-    <Compile Include="Migrations\202006111411333_initial-database.cs" />
-    <Compile Include="Migrations\202006111411333_initial-database.Designer.cs">
-      <DependentUpon>202006111411333_initial-database.cs</DependentUpon>
+    <Compile Include="Migrations\202006180221006_initial-database.cs" />
+    <Compile Include="Migrations\202006180221006_initial-database.Designer.cs">
+      <DependentUpon>202006180221006_initial-database.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistence\Repositories\ScanBarcodeRepository.cs" />
     <Compile Include="Persistence\Repositories\ProductionPlanRepository.cs" />
@@ -344,8 +346,8 @@
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Migrations\202006111411333_initial-database.resx">
-      <DependentUpon>202006111411333_initial-database.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006180221006_initial-database.resx">
+      <DependentUpon>202006180221006_initial-database.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\AuthorityGroups\frmAuthorityGroup.resx">
       <DependentUpon>frmAuthorityGroup.cs</DependentUpon>
@@ -472,7 +474,9 @@
     <Folder Include="Persistence\EntityConfigurations\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="icon.ico" />
+    <None Include="image\icon.ico" />
+    <None Include="image\Machine.png" />
+    <None Include="image\logo.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,7 +1,8 @@
-using Inavina.Core.Domain;
+﻿using Inavina.Core.Domain;
 using System.Data.Entity;
 using System.Data.Common;
 using System;
+using Inavina.Core;
 
 namespace Inavina.Persistence
 {
@@ -29,7 +30,7 @@ namespace Inavina.Persistence
             }
             catch (Exception ex)
             {
-               Core.Helper.Logger.ErrorLog(ex.Message);
+                GlobalConstants.log.Error("Lỗi kết nối db. " + ex.ToString());
             }
         }
         #endregion

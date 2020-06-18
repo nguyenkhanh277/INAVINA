@@ -28,6 +28,7 @@ namespace Inavina.Persistence.Repositories
             {
                 scanBarcode.Id = GetAutoID();
                 scanBarcode.UserID = GlobalConstants.userID;
+                scanBarcode.Status = GlobalConstants.StatusValue.Using;
                 scanBarcode.CreatedAt = DateTime.Now;
                 scanBarcode.CreatedBy = GlobalConstants.username;
                 Add(scanBarcode);

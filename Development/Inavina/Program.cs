@@ -28,9 +28,9 @@ namespace Inavina
             Application.SetCompatibleTextRenderingDefault(false);
             GlobalConstants.printerName = Properties.Settings.Default.PrinterName;
             GlobalConstants.portCOM = Properties.Settings.Default.PortCOM;
-            GlobalConstants.languageLibrary = _languageLibraryRepository.GetAll().ToList();
+            GlobalConstants.languageLibrarys = _languageLibraryRepository.GetAll().ToList();
             GlobalConstants.language = Properties.Settings.Default.Language;
-            GlobalConstants.shift = _shiftRepository.GetAll().ToList();
+            GlobalConstants.shifts = _shiftRepository.GetAll().ToList();
             GlobalConstants.machineName = Environment.MachineName;
             GlobalConstants.machineNo = _machineRepository.GetMachineNo(GlobalConstants.machineName);
             GlobalConstants.VN = Properties.Settings.Default.VN;

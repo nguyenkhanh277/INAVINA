@@ -36,7 +36,6 @@ namespace Inavina.View.Home
             _userRepository = new UserRepository(_projectDataContext);
             LoadLanguage(GlobalConstants.language);
             LanguageTranslate.ChangeLanguageForm(this);
-            lblTieuDe.Text = Properties.Settings.Default.Company;
             chkKeepMeSignedIn.Checked = Properties.Settings.Default.KeepMeSignedIn;
             if (chkKeepMeSignedIn.Checked)
             {

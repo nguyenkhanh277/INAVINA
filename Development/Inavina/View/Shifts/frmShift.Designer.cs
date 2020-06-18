@@ -39,13 +39,13 @@
             this.Id = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.ShiftNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.BeginTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.LengthHours = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Note = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Status = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.ToTime = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.FromTime = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDuLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewDuLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
@@ -157,8 +157,8 @@
             this.viewDuLieu.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Id,
             this.ShiftNo,
-            this.FromTime,
-            this.ToTime,
+            this.BeginTime,
+            this.LengthHours,
             this.Note,
             this.Status});
             this.viewDuLieu.DetailHeight = 284;
@@ -219,6 +219,44 @@
             this.ShiftNo.VisibleIndex = 0;
             this.ShiftNo.Width = 200;
             // 
+            // BeginTime
+            // 
+            this.BeginTime.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.BeginTime.AppearanceCell.Options.UseFont = true;
+            this.BeginTime.AppearanceCell.Options.UseTextOptions = true;
+            this.BeginTime.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.BeginTime.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.BeginTime.AppearanceHeader.Options.UseFont = true;
+            this.BeginTime.AppearanceHeader.Options.UseTextOptions = true;
+            this.BeginTime.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.BeginTime.Caption = "Thời gian bắt đầu";
+            this.BeginTime.FieldName = "BeginTime";
+            this.BeginTime.MaxWidth = 200;
+            this.BeginTime.MinWidth = 200;
+            this.BeginTime.Name = "BeginTime";
+            this.BeginTime.Visible = true;
+            this.BeginTime.VisibleIndex = 1;
+            this.BeginTime.Width = 200;
+            // 
+            // LengthHours
+            // 
+            this.LengthHours.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.LengthHours.AppearanceCell.Options.UseFont = true;
+            this.LengthHours.AppearanceCell.Options.UseTextOptions = true;
+            this.LengthHours.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.LengthHours.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.LengthHours.AppearanceHeader.Options.UseFont = true;
+            this.LengthHours.AppearanceHeader.Options.UseTextOptions = true;
+            this.LengthHours.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.LengthHours.Caption = "Số giờ làm việc";
+            this.LengthHours.FieldName = "LengthHours";
+            this.LengthHours.MaxWidth = 200;
+            this.LengthHours.MinWidth = 200;
+            this.LengthHours.Name = "LengthHours";
+            this.LengthHours.Visible = true;
+            this.LengthHours.VisibleIndex = 2;
+            this.LengthHours.Width = 200;
+            // 
             // Note
             // 
             this.Note.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -243,7 +281,7 @@
             this.Status.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.Status.AppearanceCell.Options.UseFont = true;
             this.Status.AppearanceCell.Options.UseTextOptions = true;
-            this.Status.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.Status.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.Status.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.Status.AppearanceHeader.Options.UseFont = true;
             this.Status.AppearanceHeader.Options.UseTextOptions = true;
@@ -284,48 +322,6 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1290, 50);
             this.panelControl1.TabIndex = 0;
-            // 
-            // ToTime
-            // 
-            this.ToTime.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ToTime.AppearanceCell.Options.UseFont = true;
-            this.ToTime.AppearanceCell.Options.UseTextOptions = true;
-            this.ToTime.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.ToTime.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.ToTime.AppearanceHeader.Options.UseFont = true;
-            this.ToTime.AppearanceHeader.Options.UseTextOptions = true;
-            this.ToTime.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.ToTime.Caption = "Đến giờ";
-            this.ToTime.DisplayFormat.FormatString = "HH:mm";
-            this.ToTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.ToTime.FieldName = "ToTime";
-            this.ToTime.MaxWidth = 200;
-            this.ToTime.MinWidth = 200;
-            this.ToTime.Name = "ToTime";
-            this.ToTime.Visible = true;
-            this.ToTime.VisibleIndex = 2;
-            this.ToTime.Width = 200;
-            // 
-            // FromTime
-            // 
-            this.FromTime.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.FromTime.AppearanceCell.Options.UseFont = true;
-            this.FromTime.AppearanceCell.Options.UseTextOptions = true;
-            this.FromTime.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.FromTime.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.FromTime.AppearanceHeader.Options.UseFont = true;
-            this.FromTime.AppearanceHeader.Options.UseTextOptions = true;
-            this.FromTime.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.FromTime.Caption = "Từ giờ";
-            this.FromTime.DisplayFormat.FormatString = "HH:mm";
-            this.FromTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.FromTime.FieldName = "FromTime";
-            this.FromTime.MaxWidth = 200;
-            this.FromTime.MinWidth = 200;
-            this.FromTime.Name = "FromTime";
-            this.FromTime.Visible = true;
-            this.FromTime.VisibleIndex = 1;
-            this.FromTime.Width = 200;
             // 
             // frmShift
             // 
@@ -372,7 +368,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn Note;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraGrid.Columns.GridColumn Status;
-        private DevExpress.XtraGrid.Columns.GridColumn FromTime;
-        private DevExpress.XtraGrid.Columns.GridColumn ToTime;
+        private DevExpress.XtraGrid.Columns.GridColumn BeginTime;
+        private DevExpress.XtraGrid.Columns.GridColumn LengthHours;
     }
 }

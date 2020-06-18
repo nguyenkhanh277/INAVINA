@@ -39,7 +39,7 @@
       <Value Profile="(Default)">VN001208</Value>
     </Setting>
     <Setting Name="MustUseBarcodeReader" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

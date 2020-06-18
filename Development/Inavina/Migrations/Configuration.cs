@@ -775,6 +775,22 @@ namespace Inavina.Migrations
                 new LanguageLibrary
                 {
                     Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Thời gian bắt đầu",
+                    English = "Begin time",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Số giờ làm việc",
+                    English = "Length hours of work",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
                     Vietnamese = "In lại (F2)",
                     English = "RePrint (F2)",
                     CreatedAt = DateTime.Now,
@@ -1636,7 +1652,7 @@ namespace Inavina.Migrations
                 {
                     Id = Guid.NewGuid().ToString(),
                     MachineNo = "01",
-                    MachineName = "Machine 1",
+                    MachineName = "Machine_01",
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
@@ -1645,7 +1661,7 @@ namespace Inavina.Migrations
                 {
                     Id = Guid.NewGuid().ToString(),
                     MachineNo = "02",
-                    MachineName = "Machine 2",
+                    MachineName = "Machine_02",
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
@@ -1664,8 +1680,8 @@ namespace Inavina.Migrations
                 {
                     Id = Guid.NewGuid().ToString(),
                     ShiftNo = "0001",
-                    FromTime = new DateTime(2020, 01, 01, 06, 00, 00),
-                    ToTime = new DateTime(2020, 01, 01, 18, 00, 00),
+                    BeginTime = new TimeSpan(06, 00, 00),
+                    LengthHours = 12,
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
@@ -1674,8 +1690,8 @@ namespace Inavina.Migrations
                 {
                     Id = Guid.NewGuid().ToString(),
                     ShiftNo = "0002",
-                    FromTime = new DateTime(2020, 01, 01, 18, 00, 00),
-                    ToTime = new DateTime(2020, 01, 02, 06, 00, 00),
+                    BeginTime = new TimeSpan(18, 00, 00),
+                    LengthHours = 12,
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
