@@ -30,7 +30,7 @@ namespace Inavina.Persistence
             }
             catch (Exception ex)
             {
-                GlobalConstants.log.Error("Lỗi kết nối db. " + ex.ToString());
+                GlobalConstants.log.Error("Loi ket noi database. " + ex.ToString());
             }
         }
         #endregion
@@ -53,6 +53,20 @@ namespace Inavina.Persistence
                 return new ProjectDataContext(context.Database.Connection, transaction);
             }
             return new ProjectDataContext();
+        }
+
+        public virtual bool CheckConnection(ProjectDataContext context)
+        {
+            try
+            {
+                context.Database.Connection.Open();
+                context.Database.Connection.Close();
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
         }
         #endregion
 

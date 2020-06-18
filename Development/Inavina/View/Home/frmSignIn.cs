@@ -19,6 +19,9 @@ namespace Inavina.View.Home
     {
         ProjectDataContext _projectDataContext = new ProjectDataContext();
         UserRepository _userRepository;
+        LanguageLibraryRepository _languageLibraryRepository;
+        ShiftRepository _shiftRepository;
+        MachineRepository _machineRepository;
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
@@ -34,6 +37,9 @@ namespace Inavina.View.Home
         private void frmSignIn_Load(object sender, EventArgs e)
         {
             _userRepository = new UserRepository(_projectDataContext);
+            _languageLibraryRepository = new LanguageLibraryRepository(_projectDataContext);
+            _shiftRepository = new ShiftRepository(_projectDataContext);
+            _machineRepository = new MachineRepository(_projectDataContext);
             LoadLanguage(GlobalConstants.language);
             LanguageTranslate.ChangeLanguageForm(this);
             chkKeepMeSignedIn.Checked = Properties.Settings.Default.KeepMeSignedIn;
@@ -43,10 +49,16 @@ namespace Inavina.View.Home
                 txtPassword.Text = Properties.Settings.Default.Password;
             }
         }
+       
 
         private bool CheckData()
         {
-            if (txtUsername.Text.Trim() == "")
+            if(!_projectDataContext.CheckConnection(_projectDataContext))
+            {  
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Kết nối tới máy chủ thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else if (txtUsername.Text.Trim() == "")
             {
                 XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtUsername.Focus();
@@ -71,6 +83,15 @@ namespace Inavina.View.Home
         private void btnSignIn_Click(object sender, EventArgs e)
         {
             if (!CheckData()) return;
+            GlobalConstants.printerName = Properties.Settings.Default.PrinterName;
+            GlobalConstants.portCOM = Properties.Settings.Default.PortCOM;
+            GlobalConstants.languageLibrarys = _languageLibraryRepository.GetAll().ToList();
+            GlobalConstants.language = Properties.Settings.Default.Language;
+            GlobalConstants.shifts = _shiftRepository.GetAll().ToList();
+            GlobalConstants.machineName = Environment.MachineName;
+            GlobalConstants.machineNo = _machineRepository.GetMachineNo(GlobalConstants.machineName);
+            GlobalConstants.VN = Properties.Settings.Default.VN;
+            GlobalConstants.mustUseBarcodeReader = Properties.Settings.Default.MustUseBarcodeReader;
             Properties.Settings.Default.KeepMeSignedIn = chkKeepMeSignedIn.Checked;
             if (chkKeepMeSignedIn.Checked)
             {

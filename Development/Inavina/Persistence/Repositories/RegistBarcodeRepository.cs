@@ -112,14 +112,14 @@ namespace Inavina.Persistence.Repositories
             {
                 View.RegistBarcodes.rptListBarcode _report = new View.RegistBarcodes.rptListBarcode();
                 _report.DataSource = listBarcode;
-                //if (GeneralHelper.ValidPrinter(GlobalConstants.printerName))
-                //{
-                //    _report.PrinterName = GlobalConstants.printerName;
-                //    DevExpress.XtraReports.UI.ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(_report);
-                //    rpt.AutoShowParametersPanel = false;
-                //    rpt.Print();
-                //}
-                //else
+                if (GeneralHelper.ValidPrinter(GlobalConstants.printerName))
+                {
+                    _report.PrinterName = GlobalConstants.printerName;
+                    DevExpress.XtraReports.UI.ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(_report);
+                    rpt.AutoShowParametersPanel = false;
+                    rpt.Print();
+                }
+                else
                 {
                     DevExpress.XtraReports.UI.ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(_report);
                     rpt.AutoShowParametersPanel = false;

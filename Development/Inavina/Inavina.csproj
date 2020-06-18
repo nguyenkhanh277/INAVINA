@@ -7,7 +7,7 @@
     <ProjectGuid>{17BB81E8-518E-4091-B4CA-B31B8A16ACF0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Inavina</RootNamespace>
-    <AssemblyName>p</AssemblyName>
+    <AssemblyName>Inavina</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
