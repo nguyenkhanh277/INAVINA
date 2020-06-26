@@ -131,27 +131,48 @@ namespace Inavina.Persistence.Repositories
 
         public List<ReportSyntheticRegistBarcode> GetReportSyntheticRegistBarcode(DateTime fromDate, DateTime toDate)
         {
-            var query = from x in ProjectDataContext.RegistBarcodes
-                        join y in ProjectDataContext.ScanBarcodes on x.Barcode equals y.Barcode into z
-                        from result in z.DefaultIfEmpty()
-                        where x.RegistDate >= fromDate && x.RegistDate <= toDate
-                        group result by new
-                        {
-                            x.RegistDate,
-                            x.PartNo
-                        } into g
+            var registBarcodes = from x in ProjectDataContext.RegistBarcodes
+                                 where x.RegistDate >= fromDate && x.RegistDate <= toDate
+                                 group x by new
+                                 {
+                                     x.RegistDate,
+                                     x.PartNo
+                                 } into g
 
-                        select new
-                        {
-                            Year = g.Key.RegistDate.Year,
-                            Month = g.Key.RegistDate.Month,
-                            Day = g.Key.RegistDate.Day,
-                            PartNo = g.Key.PartNo,
-                            QuantityPrint = g.Count(),
-                            QuantityScan = g.Sum(_ => (!String.IsNullOrEmpty(_.PartNo) ? 1 : 0)),
-                            QuantityOK = g.Sum(_ => (!String.IsNullOrEmpty(_.PartNo) && _.ResultStatus == GlobalConstants.ResultStatusValue.OK ? 1 : 0)),
-                            QuantityNG = g.Sum(_ => (!String.IsNullOrEmpty(_.PartNo) && _.ResultStatus == GlobalConstants.ResultStatusValue.Duplicate ? 1 : 0))
-                        };
+                                 select new
+                                 {
+                                     Year = g.Key.RegistDate.Year,
+                                     Month = g.Key.RegistDate.Month,
+                                     Day = g.Key.RegistDate.Day,
+                                     PartNo = g.Key.PartNo,
+                                     QuantityPrint = g.Count()
+                                 };
+
+            var scanBarcodesDUPLICATE = from x in ProjectDataContext.ScanBarcodes
+                                        where x.ScanDate >= fromDate && x.ScanDate <= toDate
+                                        group x by new
+                                        {
+                                            x.ScanDate.Year,
+                                            x.ScanDate.Month,
+                                            x.ScanDate.Day,
+                                            x.PartNo
+                                        } into g
+
+                                        select new
+                                        {
+                                            Year = g.Key.Year,
+                                            Month = g.Key.Month,
+                                            Day = g.Key.Day,
+                                            PartNo = g.Key.PartNo,
+                                            QuantityScan = g.Count(),
+                                            QuantityOK = g.Where(_ => _.ResultStatus == GlobalConstants.ResultStatusValue.OK).Count(),
+                                            QuantityNG = g.Where(_ => _.ResultStatus == GlobalConstants.ResultStatusValue.Duplicate).Count()
+                                        };
+
+            var result = from x in registBarcodes
+                         join y in scanBarcodesDUPLICATE on new { x.PartNo, x.Year, x.Month, x.Day } equals new { y.PartNo, y.Year, y.Month, y.Day } into a
+                         from z in a.DefaultIfEmpty()
+                         select new { x, z };
 
             var scanBarcodesNG = from x in ProjectDataContext.ScanBarcodes
                                  where x.ScanDate >= fromDate && x.ScanDate <= toDate &&
@@ -174,38 +195,38 @@ namespace Inavina.Persistence.Repositories
                                      QuantityOK = 0,
                                      QuantityNG = g.Count()
                                  };
-
-            List<ReportSyntheticRegistBarcode> reportSyntheticViews = new List<ReportSyntheticRegistBarcode>();
-            ReportSyntheticRegistBarcode reportSyntheticView;
-            if (query.Any())
+            List<ReportSyntheticRegistBarcode> reportSyntheticRegistBarcodes = new List<ReportSyntheticRegistBarcode>();
+            if (result.Any())
             {
-                foreach (var item in query)
+                ReportSyntheticRegistBarcode reportSyntheticRegistBarcode;
+                foreach (var item in result)
                 {
-                    reportSyntheticView = new ReportSyntheticRegistBarcode();
-                    reportSyntheticView.RegistDate = new DateTime(item.Year, item.Month, item.Day);
-                    reportSyntheticView.PartNo = item.PartNo;
-                    reportSyntheticView.QuantityPrint = item.QuantityPrint;
-                    reportSyntheticView.QuantityScan = item.QuantityScan;
-                    reportSyntheticView.QuantityOK = item.QuantityOK;
-                    reportSyntheticView.QuantityNG = item.QuantityNG;
-                    reportSyntheticViews.Add(reportSyntheticView);
+                    reportSyntheticRegistBarcode = new ReportSyntheticRegistBarcode();
+                    reportSyntheticRegistBarcode.RegistDate = new DateTime(item.x.Year, item.x.Month, item.x.Day);
+                    reportSyntheticRegistBarcode.PartNo = item.x.PartNo;
+                    reportSyntheticRegistBarcode.QuantityPrint = item.x.QuantityPrint;
+                    reportSyntheticRegistBarcode.QuantityScan = (item.z != null ? item.z.QuantityScan : 0);
+                    reportSyntheticRegistBarcode.QuantityOK = (item.z != null ? item.z.QuantityOK : 0);
+                    reportSyntheticRegistBarcode.QuantityNG = (item.z != null ? item.z.QuantityNG : 0);
+                    reportSyntheticRegistBarcodes.Add(reportSyntheticRegistBarcode);
                 }
             }
             if (scanBarcodesNG.Any())
             {
+                ReportSyntheticRegistBarcode reportSyntheticRegistBarcode;
                 foreach (var item in scanBarcodesNG)
                 {
-                    reportSyntheticView = new ReportSyntheticRegistBarcode();
-                    reportSyntheticView.RegistDate = new DateTime(item.Year, item.Month, item.Day);
-                    reportSyntheticView.PartNo = item.PartNo;
-                    reportSyntheticView.QuantityPrint = item.QuantityPrint;
-                    reportSyntheticView.QuantityScan = item.QuantityScan;
-                    reportSyntheticView.QuantityOK = item.QuantityOK;
-                    reportSyntheticView.QuantityNG = item.QuantityNG;
-                    reportSyntheticViews.Add(reportSyntheticView);
+                    reportSyntheticRegistBarcode = new ReportSyntheticRegistBarcode();
+                    reportSyntheticRegistBarcode.RegistDate = new DateTime(item.Year, item.Month, item.Day);
+                    reportSyntheticRegistBarcode.PartNo = item.PartNo;
+                    reportSyntheticRegistBarcode.QuantityPrint = item.QuantityPrint;
+                    reportSyntheticRegistBarcode.QuantityScan = item.QuantityScan;
+                    reportSyntheticRegistBarcode.QuantityOK = item.QuantityOK;
+                    reportSyntheticRegistBarcode.QuantityNG = item.QuantityNG;
+                    reportSyntheticRegistBarcodes.Add(reportSyntheticRegistBarcode);
                 }
             }
-            return reportSyntheticViews;
+            return reportSyntheticRegistBarcodes;
         }
 
         public RegistBarcode CheckIsExist(string barcode)

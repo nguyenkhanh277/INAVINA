@@ -133,6 +133,7 @@
             this.Detail.HeightF = 55F;
             this.Detail.Name = "Detail";
             this.Detail.SnapLinePadding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            this.Detail.StylePriority.UseBorderWidth = false;
             // 
             // xrLabel4
             // 
@@ -215,7 +216,7 @@
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Barcode]")});
             this.txtBarcode.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.txtBarcode.ForeColor = System.Drawing.Color.Black;
-            this.txtBarcode.LocationFloat = new DevExpress.Utils.PointFloat(5F, 4F);
+            this.txtBarcode.LocationFloat = new DevExpress.Utils.PointFloat(5F, 3F);
             this.txtBarcode.Module = 1.5F;
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -228,7 +229,6 @@
             this.txtBarcode.StylePriority.UsePadding = false;
             this.txtBarcode.StylePriority.UseTextAlignment = false;
             this.txtBarcode.Symbology = dataMatrixGenerator1;
-            this.txtBarcode.Text = "AEF7598460220061201000200020001";
             this.txtBarcode.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // objectDataSource1
@@ -245,6 +245,7 @@
             this.ReportHeader,
             this.GroupHeader1,
             this.Detail});
+            this.BorderWidth = 0F;
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;

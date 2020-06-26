@@ -123,7 +123,7 @@
             this.viewDuLieu.Appearance.FocusedCell.ForeColor = System.Drawing.Color.Black;
             this.viewDuLieu.Appearance.FocusedCell.Options.UseBackColor = true;
             this.viewDuLieu.Appearance.FocusedCell.Options.UseForeColor = true;
-            this.viewDuLieu.ColumnPanelRowHeight = 40;
+            this.viewDuLieu.ColumnPanelRowHeight = 45;
             this.viewDuLieu.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Id,
             this.PartNo,
@@ -183,12 +183,12 @@
             this.PartNo.Caption = "PartNumber";
             this.PartNo.ColumnEdit = this.repositoryItemMemoEdit1;
             this.PartNo.FieldName = "PartNo";
-            this.PartNo.MaxWidth = 200;
-            this.PartNo.MinWidth = 200;
+            this.PartNo.MaxWidth = 100;
+            this.PartNo.MinWidth = 100;
             this.PartNo.Name = "PartNo";
             this.PartNo.Visible = true;
             this.PartNo.VisibleIndex = 0;
-            this.PartNo.Width = 200;
+            this.PartNo.Width = 100;
             // 
             // ScanDate
             // 
@@ -197,6 +197,7 @@
             this.ScanDate.AppearanceCell.Options.UseTextOptions = true;
             this.ScanDate.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.ScanDate.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.ScanDate.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.ScanDate.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.ScanDate.AppearanceHeader.Options.UseFont = true;
             this.ScanDate.AppearanceHeader.Options.UseTextOptions = true;
@@ -207,12 +208,12 @@
             this.ScanDate.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss";
             this.ScanDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.ScanDate.FieldName = "ScanDate";
-            this.ScanDate.MaxWidth = 200;
-            this.ScanDate.MinWidth = 200;
+            this.ScanDate.MaxWidth = 100;
+            this.ScanDate.MinWidth = 100;
             this.ScanDate.Name = "ScanDate";
             this.ScanDate.Visible = true;
             this.ScanDate.VisibleIndex = 1;
-            this.ScanDate.Width = 200;
+            this.ScanDate.Width = 100;
             // 
             // ShiftNo
             // 
@@ -226,12 +227,12 @@
             this.ShiftNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.ShiftNo.Caption = "Mã ca";
             this.ShiftNo.FieldName = "ShiftNo";
-            this.ShiftNo.MaxWidth = 150;
-            this.ShiftNo.MinWidth = 150;
+            this.ShiftNo.MaxWidth = 100;
+            this.ShiftNo.MinWidth = 100;
             this.ShiftNo.Name = "ShiftNo";
             this.ShiftNo.Visible = true;
             this.ShiftNo.VisibleIndex = 2;
-            this.ShiftNo.Width = 150;
+            this.ShiftNo.Width = 100;
             // 
             // MachineNo
             // 
@@ -245,12 +246,12 @@
             this.MachineNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.MachineNo.Caption = "Mã máy";
             this.MachineNo.FieldName = "MachineNo";
-            this.MachineNo.MaxWidth = 150;
-            this.MachineNo.MinWidth = 150;
+            this.MachineNo.MaxWidth = 100;
+            this.MachineNo.MinWidth = 100;
             this.MachineNo.Name = "MachineNo";
             this.MachineNo.Visible = true;
             this.MachineNo.VisibleIndex = 3;
-            this.MachineNo.Width = 150;
+            this.MachineNo.Width = 100;
             // 
             // Barcode
             // 
@@ -268,7 +269,7 @@
             this.Barcode.Name = "Barcode";
             this.Barcode.Visible = true;
             this.Barcode.VisibleIndex = 4;
-            this.Barcode.Width = 223;
+            this.Barcode.Width = 623;
             // 
             // UserID
             // 
@@ -298,14 +299,14 @@
             this.ResultStatus.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.ResultStatus.Caption = "Kết quả sản xuất";
             this.ResultStatus.FieldName = "ResultStatus";
-            this.ResultStatus.MaxWidth = 150;
-            this.ResultStatus.MinWidth = 150;
+            this.ResultStatus.MaxWidth = 80;
+            this.ResultStatus.MinWidth = 80;
             this.ResultStatus.Name = "ResultStatus";
             this.ResultStatus.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "ResultStatus", "{0}")});
             this.ResultStatus.Visible = true;
             this.ResultStatus.VisibleIndex = 5;
-            this.ResultStatus.Width = 150;
+            this.ResultStatus.Width = 80;
             // 
             // Status
             // 

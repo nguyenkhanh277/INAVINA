@@ -142,14 +142,17 @@ namespace Inavina.View.ScanBarcodes
                 }
                 else
                 {
-                    if (view.GetRowCellValue(e.RowHandle, "ResultStatus").ToString() == "OK")
+                    if (e.Column.FieldName == "ResultStatus")
                     {
-                        e.Appearance.ForeColor = Color.Blue;
-                        e.Appearance.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-                    }
-                    else
-                    {
-                        e.Appearance.ForeColor = Color.Red;
+                        if (view.GetRowCellValue(e.RowHandle, "ResultStatus").ToString() == "OK")
+                        {
+                            e.Appearance.ForeColor = Color.Blue;
+                            e.Appearance.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+                        }
+                        else
+                        {
+                            e.Appearance.ForeColor = Color.Red;
+                        }
                     }
                 }
             }

@@ -72,7 +72,7 @@ namespace Inavina.View.ScanBarcodes
                 if (_serialPort.IsOpen == false)
                 {
                     _serialPort.Open();
-                    lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + "Mở cổng COM thành công" + "(" + _portname + "");
+                    lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + "Mở cổng COM thành công" + "(" + _portname + ")");
                     GlobalConstants.log.Debug("Mo cong COM thanh cong" + "(" + _portname + ")");
                 }
             }
@@ -201,6 +201,7 @@ namespace Inavina.View.ScanBarcodes
                 {
                     data = GlobalConstants.ControlSerialData.NG;
                     //Ẩn textbox scan và hiện nút Reset
+                    txtBarcode.Enabled = false;
                     txtBarcode.Visible = false;
                 }
                 _serialPort.Write(((int)data).ToString());
@@ -235,7 +236,7 @@ namespace Inavina.View.ScanBarcodes
                 {
                     _dtStart = DateTime.Now;
                 }
-                if (e.KeyChar == 13)
+                if (e.KeyChar == (char)13)
                 {
                     _dtEnd = DateTime.Now;
                     _ts = _dtEnd - _dtStart;
@@ -311,6 +312,7 @@ namespace Inavina.View.ScanBarcodes
 
         private void btnReset_Click(object sender, EventArgs e)
         {
+            txtBarcode.Enabled = true;
             txtBarcode.Visible = true;
             ControlDisplay("", GlobalConstants.ResultStatusValue.Empty);
             txtBarcode.Focus();

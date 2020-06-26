@@ -48,6 +48,7 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtBarcode = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.btnReset = new DevExpress.XtraEditors.LabelControl();
             this.lblResult = new DevExpress.XtraEditors.LabelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.lsvLog = new System.Windows.Forms.ListBox();
@@ -58,7 +59,6 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.txtCa = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.btnReset = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBarcode.Properties)).BeginInit();
@@ -390,6 +390,27 @@
             this.labelControl1.TabIndex = 7;
             this.labelControl1.Text = "Mã vạch";
             // 
+            // btnReset
+            // 
+            this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReset.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnReset.Appearance.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold);
+            this.btnReset.Appearance.ForeColor = System.Drawing.Color.White;
+            this.btnReset.Appearance.Options.UseBackColor = true;
+            this.btnReset.Appearance.Options.UseFont = true;
+            this.btnReset.Appearance.Options.UseForeColor = true;
+            this.btnReset.Appearance.Options.UseTextOptions = true;
+            this.btnReset.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.btnReset.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.btnReset.Location = new System.Drawing.Point(168, 7);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(600, 46);
+            this.btnReset.TabIndex = 23;
+            this.btnReset.Text = "BẤM VÀO ĐÂY ĐỂ RESET";
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // lblResult
             // 
             this.lblResult.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -517,26 +538,6 @@
             this.labelControl3.Size = new System.Drawing.Size(65, 40);
             this.labelControl3.TabIndex = 11;
             this.labelControl3.Text = "CA:";
-            // 
-            // btnReset
-            // 
-            this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReset.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnReset.Appearance.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold);
-            this.btnReset.Appearance.ForeColor = System.Drawing.Color.White;
-            this.btnReset.Appearance.Options.UseBackColor = true;
-            this.btnReset.Appearance.Options.UseFont = true;
-            this.btnReset.Appearance.Options.UseForeColor = true;
-            this.btnReset.Appearance.Options.UseTextOptions = true;
-            this.btnReset.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.btnReset.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.btnReset.Location = new System.Drawing.Point(168, 7);
-            this.btnReset.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(600, 46);
-            this.btnReset.TabIndex = 23;
-            this.btnReset.Text = "BẤM VÀO ĐÂY ĐỂ RESET";
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // frmScanBarcode
             // 
