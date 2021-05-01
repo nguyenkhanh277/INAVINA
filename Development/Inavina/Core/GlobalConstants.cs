@@ -7,6 +7,7 @@ using System.Data;
 namespace Inavina.Core
 {
     public class GlobalConstants
+
     {
         #region Default Values
         public static readonly log4net.ILog log = log4net.LogManager.GetLogger("ScanBarcode");

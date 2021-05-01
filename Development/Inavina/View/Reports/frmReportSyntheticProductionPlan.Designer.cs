@@ -120,7 +120,7 @@
             this.viewDuLieu.Appearance.FocusedCell.ForeColor = System.Drawing.Color.Black;
             this.viewDuLieu.Appearance.FocusedCell.Options.UseBackColor = true;
             this.viewDuLieu.Appearance.FocusedCell.Options.UseForeColor = true;
-            this.viewDuLieu.ColumnPanelRowHeight = 45;
+            this.viewDuLieu.ColumnPanelRowHeight = 40;
             this.viewDuLieu.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.ExpectedDeliveryDate,
             this.PartNo,
@@ -161,12 +161,12 @@
             this.ExpectedDeliveryDate.DisplayFormat.FormatString = "dd/MM/yyyy";
             this.ExpectedDeliveryDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.ExpectedDeliveryDate.FieldName = "ExpectedDeliveryDate";
-            this.ExpectedDeliveryDate.MaxWidth = 100;
-            this.ExpectedDeliveryDate.MinWidth = 100;
+            this.ExpectedDeliveryDate.MaxWidth = 150;
+            this.ExpectedDeliveryDate.MinWidth = 150;
             this.ExpectedDeliveryDate.Name = "ExpectedDeliveryDate";
             this.ExpectedDeliveryDate.Visible = true;
             this.ExpectedDeliveryDate.VisibleIndex = 0;
-            this.ExpectedDeliveryDate.Width = 100;
+            this.ExpectedDeliveryDate.Width = 150;
             // 
             // repositoryItemMemoEdit1
             // 
@@ -188,7 +188,7 @@
             this.PartNo.Name = "PartNo";
             this.PartNo.Visible = true;
             this.PartNo.VisibleIndex = 1;
-            this.PartNo.Width = 648;
+            this.PartNo.Width = 448;
             // 
             // QuantityPlan
             // 
@@ -200,17 +200,16 @@
             this.QuantityPlan.AppearanceHeader.Options.UseFont = true;
             this.QuantityPlan.AppearanceHeader.Options.UseTextOptions = true;
             this.QuantityPlan.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.QuantityPlan.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.QuantityPlan.Caption = "Số lượng mã vạch đã in";
             this.QuantityPlan.FieldName = "QuantityPlan";
-            this.QuantityPlan.MaxWidth = 100;
-            this.QuantityPlan.MinWidth = 100;
+            this.QuantityPlan.MaxWidth = 200;
+            this.QuantityPlan.MinWidth = 200;
             this.QuantityPlan.Name = "QuantityPlan";
             this.QuantityPlan.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "QuantityPlan", "{0:0.##}")});
             this.QuantityPlan.Visible = true;
             this.QuantityPlan.VisibleIndex = 2;
-            this.QuantityPlan.Width = 100;
+            this.QuantityPlan.Width = 200;
             // 
             // QuantityScan
             // 
@@ -222,17 +221,16 @@
             this.QuantityScan.AppearanceHeader.Options.UseFont = true;
             this.QuantityScan.AppearanceHeader.Options.UseTextOptions = true;
             this.QuantityScan.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.QuantityScan.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.QuantityScan.Caption = "SL sản phẩm đã sản xuất";
             this.QuantityScan.FieldName = "QuantityScan";
-            this.QuantityScan.MaxWidth = 100;
-            this.QuantityScan.MinWidth = 100;
+            this.QuantityScan.MaxWidth = 200;
+            this.QuantityScan.MinWidth = 200;
             this.QuantityScan.Name = "QuantityScan";
             this.QuantityScan.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "QuantityScan", "{0:0.##}")});
             this.QuantityScan.Visible = true;
             this.QuantityScan.VisibleIndex = 3;
-            this.QuantityScan.Width = 100;
+            this.QuantityScan.Width = 200;
             // 
             // QuantityOK
             // 
@@ -244,17 +242,16 @@
             this.QuantityOK.AppearanceHeader.Options.UseFont = true;
             this.QuantityOK.AppearanceHeader.Options.UseTextOptions = true;
             this.QuantityOK.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.QuantityOK.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.QuantityOK.Caption = "Số lượng sản phẩm OK";
             this.QuantityOK.FieldName = "QuantityOK";
-            this.QuantityOK.MaxWidth = 100;
-            this.QuantityOK.MinWidth = 100;
+            this.QuantityOK.MaxWidth = 200;
+            this.QuantityOK.MinWidth = 200;
             this.QuantityOK.Name = "QuantityOK";
             this.QuantityOK.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "QuantityOK", "{0:0.##}")});
             this.QuantityOK.Visible = true;
             this.QuantityOK.VisibleIndex = 4;
-            this.QuantityOK.Width = 100;
+            this.QuantityOK.Width = 200;
             // 
             // QuantityNG
             // 
@@ -266,17 +263,16 @@
             this.QuantityNG.AppearanceHeader.Options.UseFont = true;
             this.QuantityNG.AppearanceHeader.Options.UseTextOptions = true;
             this.QuantityNG.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.QuantityNG.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.QuantityNG.Caption = "Số lượng sản phẩm NG";
             this.QuantityNG.FieldName = "QuantityNG";
-            this.QuantityNG.MaxWidth = 100;
-            this.QuantityNG.MinWidth = 100;
+            this.QuantityNG.MaxWidth = 200;
+            this.QuantityNG.MinWidth = 200;
             this.QuantityNG.Name = "QuantityNG";
             this.QuantityNG.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "QuantityNG", "{0:0.##}")});
             this.QuantityNG.Visible = true;
             this.QuantityNG.VisibleIndex = 5;
-            this.QuantityNG.Width = 100;
+            this.QuantityNG.Width = 200;
             // 
             // repositoryItemCheckEdit1
             // 

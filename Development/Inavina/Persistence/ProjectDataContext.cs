@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Data.Common;
 using System;
 using Inavina.Core;
+using System.Data.SqlClient;
 
 namespace Inavina.Persistence
 {
@@ -62,7 +63,7 @@ namespace Inavina.Persistence
                 context.Database.Connection.Open();
                 context.Database.Connection.Close();
             }
-            catch
+            catch(Exception e)
             {
                 return false;
             }

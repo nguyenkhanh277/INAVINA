@@ -124,6 +124,7 @@
             // 
             // Detail
             // 
+            this.Detail.BorderWidth = 0F;
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrLabel4,
             this.xrLabel5,
@@ -229,6 +230,7 @@
             this.txtBarcode.StylePriority.UsePadding = false;
             this.txtBarcode.StylePriority.UseTextAlignment = false;
             this.txtBarcode.Symbology = dataMatrixGenerator1;
+            this.txtBarcode.Text = "AEF7598460220061201000200020001";
             this.txtBarcode.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // objectDataSource1
@@ -245,7 +247,6 @@
             this.ReportHeader,
             this.GroupHeader1,
             this.Detail});
-            this.BorderWidth = 0F;
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;

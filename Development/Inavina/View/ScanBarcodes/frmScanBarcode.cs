@@ -15,6 +15,7 @@ using Inavina.Core.Helper;
 using Inavina.Core.Domain;
 using System.Linq.Expressions;
 using System.IO.Ports;
+using System.Threading;
 
 namespace Inavina.View.ScanBarcodes
 {
@@ -23,6 +24,9 @@ namespace Inavina.View.ScanBarcodes
         ProjectDataContext _projectDataContext;
         ScanBarcodeRepository _scanBarcodeRepository;
         RegistBarcodeRepository _registBarcodeRepository;
+        PartNumberRepository _partNumberRepository;
+        MachineRepository _machineRepository;
+        MoldRepository _moldRepository;
         ShiftRepository _shiftRepository;
         SerialPort _serialPort;
         int _countOK = 0;
@@ -30,7 +34,7 @@ namespace Inavina.View.ScanBarcodes
         int _countDuplicate = 0;
         int _countNotFound = 0;
         int _countTimeEmpty = 0;
-
+        string BarcodePrint = "";
         DateTime _dtStart = new DateTime();
         DateTime _dtEnd = new DateTime();
         TimeSpan _ts = new TimeSpan();
@@ -51,14 +55,23 @@ namespace Inavina.View.ScanBarcodes
             _projectDataContext = new ProjectDataContext();
             _scanBarcodeRepository = new ScanBarcodeRepository(_projectDataContext);
             _registBarcodeRepository = new RegistBarcodeRepository(_projectDataContext);
+            _partNumberRepository = new PartNumberRepository(_projectDataContext);
+            _machineRepository = new MachineRepository(_projectDataContext);
+            _moldRepository = new MoldRepository(_projectDataContext);
             _shiftRepository = new ShiftRepository(_projectDataContext);
             LanguageTranslate.ChangeLanguageForm(this);
+
             LoadCount();
+            LoadPartNumberData();
+            LoadMachineData();
+            LoadMoldData();
+
             _serialPort = new SerialPort();
             _serialPort.DataReceived += new SerialDataReceivedEventHandler(this.serialPort_DataReceived);
             Control.CheckForIllegalCrossThreadCalls = false;
             ClosePortCOM(GlobalConstants.portCOM);
             OpenPortCOM(GlobalConstants.portCOM, 9600);
+
             timer.Enabled = true;
             txtBarcode.Focus();
         }
@@ -72,7 +85,7 @@ namespace Inavina.View.ScanBarcodes
                 if (_serialPort.IsOpen == false)
                 {
                     _serialPort.Open();
-                    lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + "Mở cổng COM thành công" + "(" + _portname + ")");
+                    lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + "Mở cổng COM thành công" + "(" + _portname + "");
                     GlobalConstants.log.Debug("Mo cong COM thanh cong" + "(" + _portname + ")");
                 }
             }
@@ -122,8 +135,30 @@ namespace Inavina.View.ScanBarcodes
         private void serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             string data = _serialPort.ReadExisting();
+            //if(cbxAutoPrint.Checked)
+            //{
+            //    for (int i = 0; i < data.Length - 4; i++)
+            //    {
+            //        if (data[i] == 'P' && data[i + 1] == 'r' && data[i + 2] == 'i' && data[i + 3] == 'n' && data[i + 4] == 't')
+            //        {
+            //            Thread SendPrintCommand = new Thread(() =>
+            //            {
+            //                PrintBarcode(cbbPartNumber.Text.Trim(), cbbMold.Text.Trim(), cbbMachine.Text.Trim(), _shiftRepository.GetShiftNo());
+            //                this.Invoke((MethodInvoker)delegate ()
+            //                {
+            //                    lblBarcodePrint.Text = BarcodePrint;
+            //                    lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - PrintBarcode: " + BarcodePrint);
+            //                });
+            //            });
+            //            SendPrintCommand.IsBackground = true;
+            //            SendPrintCommand.Start();
+
+            //            break;
+            //        }
+            //    }
+            //}
             lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - DataReceived: " + data);
-            GlobalConstants.log.Debug("DataReceived: " + data);
+            GlobalConstants.log.Debug("DataReceived: " + data + " BC:" + BarcodePrint);
         }
 
         private int Save(string barcode, GlobalConstants.ResultStatusValue resultStatus)
@@ -181,7 +216,15 @@ namespace Inavina.View.ScanBarcodes
                 lblResult.Text = ". . .";
                 lblResult.BackColor = Color.FromArgb(64, 64, 64);
             }
-            ControlDevice(resultStatus);
+
+            Thread SerialCommand = new Thread(() =>
+            {
+                ControlDevice(resultStatus);
+            });
+            SerialCommand.IsBackground = true;
+            SerialCommand.Start();
+
+            
             lblNG.Text = _countNG.ToString();
             lblOK.Text = _countOK.ToString();
             lblDuplicate.Text = _countDuplicate.ToString();
@@ -205,13 +248,13 @@ namespace Inavina.View.ScanBarcodes
                     txtBarcode.Visible = false;
                 }
                 _serialPort.Write(((int)data).ToString());
-                GlobalConstants.log.Debug(data);
+                //GlobalConstants.log.Debug(data);
             }
             else
             {
                 //Nếu cổng chưa mở hoặc lỗi thì cần kiểm tra và message cho người dùng
-                lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + "Không kết nối được với thiết bị");
-                GlobalConstants.log.Error("Khong ket noi duoc voi thiet bi");
+                //lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + "Không kết nối được với thiết bị");
+                //GlobalConstants.log.Error("Khong ket noi duoc voi thiet bi");
             }
         }
 
@@ -294,6 +337,7 @@ namespace Inavina.View.ScanBarcodes
         {
             lblTittle.Text = LanguageTranslate.ChangeLanguageText("Tài khoản") + ": " + GlobalConstants.username + "  |  " + LanguageTranslate.ChangeLanguageText("Tên đầy đủ") + ": " + GlobalConstants.fullName + "  |  " + LanguageTranslate.ChangeLanguageText("Ngày") + ": " + DateTime.Now.ToString("dd/MM HH:mm:ss") + "  |  " + LanguageTranslate.ChangeLanguageText("Máy") + ": " + GlobalConstants.machineName;
             txtCa.Text = _shiftRepository.GetShiftNo();
+            //_serialPort.Write("2");
             if (_countTimeEmpty > 0)
             {
                 _countTimeEmpty--;
@@ -317,6 +361,106 @@ namespace Inavina.View.ScanBarcodes
             ControlDisplay("", GlobalConstants.ResultStatusValue.Empty);
             txtBarcode.Focus();
             txtBarcode.SelectAll();
+        }
+
+
+        #region Add Auto Print Barcode
+        private void PrintBarcode (string partnumber, string mold, string machine, string shift)
+        {
+            try
+            {
+                //Table RegistBarcode
+                RegistBarcode registBarcode = new RegistBarcode();
+                int seq = int.Parse(_registBarcodeRepository.GetSEQ(DateTime.Today, shift));
+                string barcode = "";
+                string _id = "";
+                DataTable listBarcode = new DataTable();
+                listBarcode.Columns.Add("Barcode", typeof(string));
+                listBarcode.Columns.Add("PartNo", typeof(string));
+                listBarcode.Columns.Add("DateShift", typeof(string));
+                listBarcode.Columns.Add("MoldNoSEQ", typeof(string));
+                listBarcode.Columns.Add("VN", typeof(string));
+                //Generate barcode
+                seq++;
+                barcode = String.Format("{0}{1}{2}{3}{4}{5}",
+                    partnumber.Trim(),
+                    DateTime.Today.ToString("yyMMdd"),
+                    machine.Trim(),
+                    shift.Trim(),
+                    mold.Trim(),
+                    seq.ToString("0000"));
+                //Set list barcode
+                listBarcode.Rows.Add(new string[] {
+                    barcode,
+                    "P/N:" + partnumber.Trim(),
+                    "Date:" +DateTime.Today.ToString("yyMMdd") + shift.Trim(),
+                    "M/N:" +mold.Trim() + "SEQ" + seq.ToString("0000"),
+                    "VN:" +GlobalConstants.VN
+                });
+                //Insert data
+                registBarcode = new RegistBarcode();
+                registBarcode.Id = _id;
+                registBarcode.PartNo = partnumber.Trim();
+                registBarcode.RegistDate = DateTime.Today;
+                registBarcode.MachineNo = machine.Trim();
+                registBarcode.MoldNo = mold.Trim();
+                registBarcode.ShiftNo = shift.Trim();
+                registBarcode.SEQ = seq.ToString("0000");
+                registBarcode.Barcode = barcode;
+                _registBarcodeRepository.Save(registBarcode);
+
+                UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);
+                int result = unitOfWork.Complete();
+                if (result > 0)
+                {
+                    if (String.IsNullOrEmpty(_id))
+                    {
+                        _registBarcodeRepository.PrintListBarcode(listBarcode);
+                        BarcodePrint = barcode;
+                        //_serialPort.Write("0");
+                        //timer.Enabled = false;
+                    }
+                }
+                else
+                {
+                    XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Lưu thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+        }
+
+        private void LoadPartNumberData()
+        {
+            cbbPartNumber.DataSource = _partNumberRepository.GetAll().OrderBy(_ => _.PartNo).ToList();
+            cbbPartNumber.SelectedIndex = 0;
+        }
+
+        private void LoadMachineData()
+        {
+            cbbMachine.DataSource = _machineRepository.GetAll().OrderBy(_ => _.MachineNo).ToList();
+            cbbMachine.SelectedIndex = 0;
+        }
+
+        private void LoadMoldData()
+        {
+            cbbMold.DataSource = _moldRepository.GetAll().OrderBy(_ => _.MoldNo).ToList();
+            cbbMold.SelectedIndex = 0;
+        }
+        #endregion
+
+        private void cbxAutoPrint_CheckedChanged(object sender, EventArgs e)
+        {
+            if(cbxAutoPrint.Checked)
+                cbbPartNumber.Enabled = cbbMachine.Enabled = cbbMold.Enabled = true;
+            else
+                cbbPartNumber.Enabled = cbbMachine.Enabled = cbbMold.Enabled = false;
+
+
         }
     }
 }

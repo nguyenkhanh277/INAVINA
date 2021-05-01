@@ -30,6 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.lblBarcodePrint = new DevExpress.XtraEditors.LabelControl();
+            this.cbbMold = new System.Windows.Forms.ComboBox();
+            this.cbbMachine = new System.Windows.Forms.ComboBox();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.cbbPartNumber = new System.Windows.Forms.ComboBox();
+            this.cbxAutoPrint = new System.Windows.Forms.CheckBox();
             this.lblNotFound = new DevExpress.XtraEditors.LabelControl();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.lblDuplicate = new DevExpress.XtraEditors.LabelControl();
@@ -61,6 +70,8 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBarcode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
@@ -68,6 +79,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.groupControl2);
             this.panelControl1.Controls.Add(this.lblNotFound);
             this.panelControl1.Controls.Add(this.labelControl11);
             this.panelControl1.Controls.Add(this.lblDuplicate);
@@ -90,8 +102,125 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 50);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(796, 250);
+            this.panelControl1.Size = new System.Drawing.Size(1196, 250);
             this.panelControl1.TabIndex = 0;
+            // 
+            // groupControl2
+            // 
+            this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.groupControl2.AppearanceCaption.Options.UseFont = true;
+            this.groupControl2.Controls.Add(this.lblBarcodePrint);
+            this.groupControl2.Controls.Add(this.cbbMold);
+            this.groupControl2.Controls.Add(this.cbbMachine);
+            this.groupControl2.Controls.Add(this.labelControl6);
+            this.groupControl2.Controls.Add(this.labelControl8);
+            this.groupControl2.Controls.Add(this.labelControl4);
+            this.groupControl2.Controls.Add(this.cbbPartNumber);
+            this.groupControl2.Controls.Add(this.cbxAutoPrint);
+            this.groupControl2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupControl2.Location = new System.Drawing.Point(794, 2);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(400, 246);
+            this.groupControl2.TabIndex = 24;
+            this.groupControl2.Text = "Thiết lập in barcode tự động";
+            // 
+            // lblBarcodePrint
+            // 
+            this.lblBarcodePrint.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.lblBarcodePrint.Appearance.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBarcodePrint.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.lblBarcodePrint.Appearance.Options.UseBackColor = true;
+            this.lblBarcodePrint.Appearance.Options.UseFont = true;
+            this.lblBarcodePrint.Appearance.Options.UseForeColor = true;
+            this.lblBarcodePrint.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblBarcodePrint.Location = new System.Drawing.Point(18, 198);
+            this.lblBarcodePrint.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lblBarcodePrint.Name = "lblBarcodePrint";
+            this.lblBarcodePrint.Size = new System.Drawing.Size(377, 37);
+            this.lblBarcodePrint.TabIndex = 13;
+            this.lblBarcodePrint.Text = "Barcode vừa in";
+            // 
+            // cbbMold
+            // 
+            this.cbbMold.DisplayMember = "MoldNo";
+            this.cbbMold.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbMold.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.cbbMold.FormattingEnabled = true;
+            this.cbbMold.Location = new System.Drawing.Point(193, 148);
+            this.cbbMold.Name = "cbbMold";
+            this.cbbMold.Size = new System.Drawing.Size(100, 33);
+            this.cbbMold.TabIndex = 10;
+            this.cbbMold.ValueMember = "Id";
+            // 
+            // cbbMachine
+            // 
+            this.cbbMachine.DisplayMember = "MachineNo";
+            this.cbbMachine.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbMachine.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.cbbMachine.FormattingEnabled = true;
+            this.cbbMachine.Location = new System.Drawing.Point(18, 148);
+            this.cbbMachine.Name = "cbbMachine";
+            this.cbbMachine.Size = new System.Drawing.Size(100, 33);
+            this.cbbMachine.TabIndex = 9;
+            this.cbbMachine.ValueMember = "Id";
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.labelControl6.Appearance.Options.UseFont = true;
+            this.labelControl6.Location = new System.Drawing.Point(18, 124);
+            this.labelControl6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(61, 23);
+            this.labelControl6.TabIndex = 11;
+            this.labelControl6.Text = "Mã máy";
+            // 
+            // labelControl8
+            // 
+            this.labelControl8.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.labelControl8.Appearance.Options.UseFont = true;
+            this.labelControl8.Location = new System.Drawing.Point(193, 124);
+            this.labelControl8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl8.Name = "labelControl8";
+            this.labelControl8.Size = new System.Drawing.Size(77, 23);
+            this.labelControl8.TabIndex = 12;
+            this.labelControl8.Text = "Mã khuôn";
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.labelControl4.Appearance.Options.UseFont = true;
+            this.labelControl4.Location = new System.Drawing.Point(18, 53);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(94, 23);
+            this.labelControl4.TabIndex = 2;
+            this.labelControl4.Text = "PartNumber";
+            // 
+            // cbbPartNumber
+            // 
+            this.cbbPartNumber.DisplayMember = "PartNo";
+            this.cbbPartNumber.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbPartNumber.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.cbbPartNumber.FormattingEnabled = true;
+            this.cbbPartNumber.Location = new System.Drawing.Point(18, 76);
+            this.cbbPartNumber.Name = "cbbPartNumber";
+            this.cbbPartNumber.Size = new System.Drawing.Size(358, 33);
+            this.cbbPartNumber.TabIndex = 1;
+            this.cbbPartNumber.ValueMember = "Id";
+            // 
+            // cbxAutoPrint
+            // 
+            this.cbxAutoPrint.AutoSize = true;
+            this.cbxAutoPrint.Checked = true;
+            this.cbxAutoPrint.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxAutoPrint.Location = new System.Drawing.Point(18, 26);
+            this.cbxAutoPrint.Name = "cbxAutoPrint";
+            this.cbxAutoPrint.Size = new System.Drawing.Size(252, 21);
+            this.cbxAutoPrint.TabIndex = 0;
+            this.cbxAutoPrint.Text = "Cho phép đăng ký barcode tự động";
+            this.cbxAutoPrint.UseVisualStyleBackColor = true;
+            this.cbxAutoPrint.CheckedChanged += new System.EventHandler(this.cbxAutoPrint_CheckedChanged);
             // 
             // lblNotFound
             // 
@@ -104,7 +233,7 @@
             this.lblNotFound.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblNotFound.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblNotFound.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.lblNotFound.Location = new System.Drawing.Point(618, 155);
+            this.lblNotFound.Location = new System.Drawing.Point(612, 155);
             this.lblNotFound.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblNotFound.Name = "lblNotFound";
             this.lblNotFound.Size = new System.Drawing.Size(150, 40);
@@ -123,7 +252,7 @@
             this.labelControl11.Appearance.Options.UseTextOptions = true;
             this.labelControl11.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl11.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl11.Location = new System.Drawing.Point(532, 155);
+            this.labelControl11.Location = new System.Drawing.Point(526, 155);
             this.labelControl11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(80, 40);
@@ -141,7 +270,7 @@
             this.lblDuplicate.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblDuplicate.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblDuplicate.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.lblDuplicate.Location = new System.Drawing.Point(618, 109);
+            this.lblDuplicate.Location = new System.Drawing.Point(612, 109);
             this.lblDuplicate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblDuplicate.Name = "lblDuplicate";
             this.lblDuplicate.Size = new System.Drawing.Size(150, 40);
@@ -160,7 +289,7 @@
             this.labelControl13.Appearance.Options.UseTextOptions = true;
             this.labelControl13.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl13.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl13.Location = new System.Drawing.Point(532, 109);
+            this.labelControl13.Location = new System.Drawing.Point(526, 109);
             this.labelControl13.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl13.Name = "labelControl13";
             this.labelControl13.Size = new System.Drawing.Size(80, 40);
@@ -178,7 +307,7 @@
             this.lblOK.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblOK.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblOK.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.lblOK.Location = new System.Drawing.Point(618, 61);
+            this.lblOK.Location = new System.Drawing.Point(612, 61);
             this.lblOK.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblOK.Name = "lblOK";
             this.lblOK.Size = new System.Drawing.Size(150, 40);
@@ -197,7 +326,7 @@
             this.labelControl15.Appearance.Options.UseTextOptions = true;
             this.labelControl15.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl15.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl15.Location = new System.Drawing.Point(532, 61);
+            this.labelControl15.Location = new System.Drawing.Point(526, 61);
             this.labelControl15.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl15.Name = "labelControl15";
             this.labelControl15.Size = new System.Drawing.Size(80, 40);
@@ -215,7 +344,7 @@
             this.lblNG.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.lblNG.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblNG.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.lblNG.Location = new System.Drawing.Point(618, 200);
+            this.lblNG.Location = new System.Drawing.Point(612, 200);
             this.lblNG.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblNG.Name = "lblNG";
             this.lblNG.Size = new System.Drawing.Size(150, 40);
@@ -234,7 +363,7 @@
             this.labelControl17.Appearance.Options.UseTextOptions = true;
             this.labelControl17.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.labelControl17.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl17.Location = new System.Drawing.Point(532, 200);
+            this.labelControl17.Location = new System.Drawing.Point(526, 200);
             this.labelControl17.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl17.Name = "labelControl17";
             this.labelControl17.Size = new System.Drawing.Size(80, 40);
@@ -371,7 +500,7 @@
             this.txtBarcode.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.txtBarcode.Properties.AutoHeight = false;
             this.txtBarcode.Properties.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.txtBarcode.Size = new System.Drawing.Size(600, 46);
+            this.txtBarcode.Size = new System.Drawing.Size(594, 46);
             this.txtBarcode.TabIndex = 0;
             this.txtBarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBarcode_KeyDown);
             this.txtBarcode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBarcode_KeyPress);
@@ -406,7 +535,7 @@
             this.btnReset.Location = new System.Drawing.Point(168, 7);
             this.btnReset.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(600, 46);
+            this.btnReset.Size = new System.Drawing.Size(594, 46);
             this.btnReset.TabIndex = 23;
             this.btnReset.Text = "BẤM VÀO ĐÂY ĐỂ RESET";
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
@@ -429,7 +558,7 @@
             this.lblResult.Location = new System.Drawing.Point(0, 300);
             this.lblResult.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(796, 368);
+            this.lblResult.Size = new System.Drawing.Size(1196, 368);
             this.lblResult.TabIndex = 9;
             this.lblResult.Text = ". . .";
             // 
@@ -439,9 +568,9 @@
             this.groupControl1.AppearanceCaption.Options.UseFont = true;
             this.groupControl1.Controls.Add(this.lsvLog);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupControl1.Location = new System.Drawing.Point(796, 50);
+            this.groupControl1.Location = new System.Drawing.Point(796, 300);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(400, 618);
+            this.groupControl1.Size = new System.Drawing.Size(400, 368);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Thông báo";
             // 
@@ -450,9 +579,10 @@
             this.lsvLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lsvLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsvLog.FormattingEnabled = true;
-            this.lsvLog.Location = new System.Drawing.Point(2, 24);
+            this.lsvLog.ItemHeight = 16;
+            this.lsvLog.Location = new System.Drawing.Point(2, 32);
             this.lsvLog.Name = "lsvLog";
-            this.lsvLog.Size = new System.Drawing.Size(396, 592);
+            this.lsvLog.Size = new System.Drawing.Size(396, 334);
             this.lsvLog.TabIndex = 0;
             this.lsvLog.Enter += new System.EventHandler(this.lsvLog_Enter);
             // 
@@ -480,6 +610,7 @@
             this.lblTittle.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.lblTittle.Size = new System.Drawing.Size(1196, 50);
             this.lblTittle.TabIndex = 1;
+            this.lblTittle.Text = "123123123";
             // 
             // btnClose
             // 
@@ -544,23 +675,26 @@
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1196, 668);
+            this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.txtCa);
             this.Controls.Add(this.lblResult);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.panelControl1);
-            this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.lblTittle);
             this.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmScanBarcode";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Quét mã vạch sản phẩm";
+            this.Text = "v";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmScanBarcode_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            this.groupControl2.ResumeLayout(false);
+            this.groupControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBarcode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
@@ -599,5 +733,14 @@
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private System.Windows.Forms.ListBox lsvLog;
         private DevExpress.XtraEditors.LabelControl btnReset;
+        private DevExpress.XtraEditors.GroupControl groupControl2;
+        private System.Windows.Forms.CheckBox cbxAutoPrint;
+        private System.Windows.Forms.ComboBox cbbPartNumber;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private System.Windows.Forms.ComboBox cbbMold;
+        private System.Windows.Forms.ComboBox cbbMachine;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.LabelControl labelControl8;
+        private DevExpress.XtraEditors.LabelControl lblBarcodePrint;
     }
 }

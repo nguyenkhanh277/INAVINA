@@ -89,6 +89,7 @@ namespace Inavina.Persistence.Repositories
 
         public List<ReportSyntheticProductionPlan> GetReportSyntheticProductionPlan(DateTime fromDate, DateTime toDate)
         {
+            ScanBarcodeRepository scanBarcodeRepository = new ScanBarcodeRepository(ProjectDataContext);
             var productionPlans = from x in ProjectDataContext.ProductionPlans
                                   where x.ExpectedDeliveryDate >= fromDate && x.ExpectedDeliveryDate <= toDate
                                   group x by new
@@ -128,9 +129,8 @@ namespace Inavina.Persistence.Repositories
                                };
 
             var result = from x in productionPlans
-                         join y in scanBarcodesDUPLICATE on new { x.PartNo, x.Year, x.Month, x.Day } equals new { y.PartNo, y.Year, y.Month, y.Day } into a
-                         from z in a.DefaultIfEmpty()
-                         select new { x, z };
+                         join y in scanBarcodesDUPLICATE on new { x.PartNo, x.Year, x.Month, x.Day } equals new { y.PartNo, y.Year, y.Month, y.Day }
+                         select new { x, y };
 
             var scanBarcodesNG = from x in ProjectDataContext.ScanBarcodes
                                  where x.ScanDate >= fromDate && x.ScanDate <= toDate &&
@@ -164,9 +164,9 @@ namespace Inavina.Persistence.Repositories
                     reportSyntheticProductionPlan.ExpectedDeliveryDate = new DateTime(item.x.Year, item.x.Month, item.x.Day);
                     reportSyntheticProductionPlan.PartNo = item.x.PartNo;
                     reportSyntheticProductionPlan.QuantityPlan = item.x.QuantityPlan;
-                    reportSyntheticProductionPlan.QuantityScan = (item.z != null ? item.z.QuantityScan : 0);
-                    reportSyntheticProductionPlan.QuantityOK = (item.z != null ? item.z.QuantityOK : 0);
-                    reportSyntheticProductionPlan.QuantityNG = (item.z != null ? item.z.QuantityNG : 0);
+                    reportSyntheticProductionPlan.QuantityScan = item.y.QuantityScan;
+                    reportSyntheticProductionPlan.QuantityOK = item.y.QuantityOK;
+                    reportSyntheticProductionPlan.QuantityNG = item.y.QuantityNG;
                     reportSyntheticProductionPlans.Add(reportSyntheticProductionPlan);
                 }
             }
@@ -187,5 +187,46 @@ namespace Inavina.Persistence.Repositories
             }
             return reportSyntheticProductionPlans;
         }
+
+        //public List<ReportSyntheticProductionPlan> GetReportSyntheticProductionPlanOld(DateTime fromDate, DateTime toDate)
+        //{
+        //    ScanBarcodeRepository scanBarcodeRepository = new ScanBarcodeRepository(ProjectDataContext);
+        //    List<ScanBarcode> scanBarcode;
+
+        //    var query = from x in ProjectDataContext.ProductionPlans
+        //                where x.ExpectedDeliveryDate >= fromDate && x.ExpectedDeliveryDate <= toDate
+        //                group x by new
+        //                {
+        //                    x.ExpectedDeliveryDate,
+        //                    x.PartNo
+        //                } into g
+
+        //                select new
+        //                {
+        //                    ExpectedDeliveryDate = g.Key.ExpectedDeliveryDate,
+        //                    PartNo = g.Key.PartNo,
+        //                    QuantityPlan = g.Sum(_ => _.Quantity)
+        //                };
+
+        //    List<ReportSyntheticProductionPlan> reportSyntheticProductionPlans = new List<ReportSyntheticProductionPlan>();
+        //    if (query.Any())
+        //    {
+        //        ReportSyntheticProductionPlan reportSyntheticProductionPlan;
+        //        foreach (var item in query)
+        //        {
+        //            scanBarcode = scanBarcodeRepository.GetBarcodeByPartNumberInDateTime(item.ExpectedDeliveryDate, item.PartNo);
+
+        //            reportSyntheticProductionPlan = new ReportSyntheticProductionPlan();
+        //            reportSyntheticProductionPlan.ExpectedDeliveryDate = item.ExpectedDeliveryDate;
+        //            reportSyntheticProductionPlan.PartNo = item.PartNo;
+        //            reportSyntheticProductionPlan.QuantityPlan = item.QuantityPlan;
+        //            reportSyntheticProductionPlan.QuantityScan = scanBarcode.Count();
+        //            reportSyntheticProductionPlan.QuantityOK = scanBarcode.Where(_ => _.ResultStatus == GlobalConstants.ResultStatusValue.OK).Count();
+        //            reportSyntheticProductionPlan.QuantityNG = scanBarcode.Where(_ => _.ResultStatus != GlobalConstants.ResultStatusValue.OK).Count();
+        //            reportSyntheticProductionPlans.Add(reportSyntheticProductionPlan);
+        //        }
+        //    }
+        //    return reportSyntheticProductionPlans;
+        //}
     }
 }

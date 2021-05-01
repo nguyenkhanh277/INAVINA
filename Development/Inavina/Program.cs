@@ -66,7 +66,7 @@ namespace Inavina
                             {
                                 return;
                             }
-                            return;
+                            //return;
                         }
                         Registration.Core.License.frmLicense frmLicense = new Registration.Core.License.frmLicense();
                         frmLicense.License = GlobalConstants.license;

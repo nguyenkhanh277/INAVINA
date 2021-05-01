@@ -122,7 +122,6 @@ namespace Inavina.View.Machines
                 Machine machine = new Machine();
                 machine.Id = _id;
                 machine.MachineNo = txtMachineNo.Text.Trim();
-                machine.MachineName = txtMachineName.Text.Trim();
                 machine.Note = txtNote.Text.Trim();
                 machine.Status = (chkUsing.Checked ? GlobalConstants.StatusValue.Using : GlobalConstants.StatusValue.NoUse);
                 _machineRepository.Save(machine);

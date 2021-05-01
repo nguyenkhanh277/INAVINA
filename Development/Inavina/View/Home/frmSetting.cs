@@ -45,7 +45,7 @@ namespace Inavina.View.Home
             txtAddress.Text = Properties.Settings.Default.Address;
             txtPhone.Text = Properties.Settings.Default.Phone;
             txtVN.Text = Properties.Settings.Default.VN;
-            cbbPrinter.Text = Properties.Settings.Default.PrinterName;
+            cbbPrinter.Text = (GeneralHelper.ValidPrinter(Properties.Settings.Default.PrinterName) ? Properties.Settings.Default.PrinterName : "");
             cbbPortCOM.Text = Properties.Settings.Default.PortCOM;
             chkMustUseBarcodeReader.Checked = Properties.Settings.Default.MustUseBarcodeReader;
             txtCountTimeReset.Value = Properties.Settings.Default.CountTimeReset;
@@ -56,7 +56,7 @@ namespace Inavina.View.Home
             cbbPrinter.Items.Clear();
             try
             {
-                cbbPrinter.Items.Add("");
+               cbbPrinter.Items.Add("");
                 foreach (string installedPrinters in PrinterSettings.InstalledPrinters)
                 {
                     cbbPrinter.Items.Add(installedPrinters);
@@ -99,6 +99,7 @@ namespace Inavina.View.Home
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (!CheckData()) return;
+
             Properties.Settings.Default.Company = txtCompany.Text.Trim();
             Properties.Settings.Default.Address = txtAddress.Text.Trim();
             Properties.Settings.Default.Phone = txtPhone.Text.Trim();
@@ -116,7 +117,6 @@ namespace Inavina.View.Home
             GlobalConstants.VN = Properties.Settings.Default.VN;
             GlobalConstants.mustUseBarcodeReader = Properties.Settings.Default.MustUseBarcodeReader;
             GlobalConstants.countTimeReset = Properties.Settings.Default.CountTimeReset;
-
             Close();
         }
 

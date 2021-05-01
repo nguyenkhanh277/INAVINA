@@ -53,8 +53,8 @@ namespace Inavina.View.Home
 
         private bool CheckData()
         {
-            if(!_projectDataContext.CheckConnection(_projectDataContext))
-            {  
+            if (!_projectDataContext.CheckConnection(_projectDataContext))
+            {
                 XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Kết nối tới máy chủ thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
@@ -85,6 +85,7 @@ namespace Inavina.View.Home
             if (!CheckData()) return;
             GlobalConstants.printerName = Properties.Settings.Default.PrinterName;
             GlobalConstants.portCOM = Properties.Settings.Default.PortCOM;
+            //GlobalConstants.portCOM = "COM1";
             GlobalConstants.languageLibrarys = _languageLibraryRepository.GetAll().ToList();
             GlobalConstants.language = Properties.Settings.Default.Language;
             GlobalConstants.shifts = _shiftRepository.GetAll().ToList();
